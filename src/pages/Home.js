@@ -3,12 +3,14 @@ import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
 import "./Home.css";
+import TotalLabel from "../components/TotalLabel";
 
 function Home() {
   const [percent, setPercent] = useState(0);
   const [price, setPrice] = useState(0);
   const [total, setTotal] = useState(0);
   const [productList, setProductList] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const addProduct = (e) => {
     e.preventDefault();
     if (total === 0) {
@@ -23,9 +25,11 @@ function Home() {
     setPrice("");
     setPercent("");
     setTotal(0);
+    setTotalPrice(totalPrice + total);
   };
   const deleteProduct = (id, product) => {
     setProductList(productList.filter((product) => product.id !== id));
+    setTotalPrice(totalPrice - product.total);
   };
   return (
     <div className="homeContainer">
@@ -39,6 +43,7 @@ function Home() {
       />
       <AddButtons addProduct={addProduct} />
       <ListProducts productList={productList} deleteProduct={deleteProduct} />
+      <TotalLabel totalPrice={totalPrice} />
     </div>
   );
 }

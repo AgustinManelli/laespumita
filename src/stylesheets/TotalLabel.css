@@ -1,0 +1,18 @@
+.totalLabelContainer {
+  position: fixed;
+  display: flex;
+  bottom: 20px;
+  right: 0;
+  background: linear-gradient(90deg, #008fd2 40%, #fff 100%);
+  border-radius: 20px 0px 0px 20px;
+  width: 300px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+}
+.totalLabelContainer p {
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 23px;
+}

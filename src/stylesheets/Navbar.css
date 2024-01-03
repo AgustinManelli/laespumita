@@ -1,0 +1,25 @@
+.navbarFix {
+  top: 10px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.navbarContainer {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
+    rgba(12, 20, 66, 0.08) 0px 30px 80px,
+    rgb(230, 233, 237) 0px 0px 0px 0px inset;
+}
+.logoNavbar {
+  height: 60px;
+  margin: 10px;
+}

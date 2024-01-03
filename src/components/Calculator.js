@@ -25,6 +25,7 @@ function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
             className="calcInput calcInput_peso"
             placeholder="Ingrese precio"
             id="input__peso"
+            value={price}
             onInput={priceSetter}
           ></input>
         </label>
@@ -35,6 +36,7 @@ function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
             className="calcInput calcInput_pj"
             placeholder="Ingrese porcentaje"
             id="input__porcentaje"
+            value={percent}
             onInput={percentSetter}
           ></input>
         </label>

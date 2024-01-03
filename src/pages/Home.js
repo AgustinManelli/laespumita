@@ -1,10 +1,11 @@
-import Navbar from "../components/Navbar";
+import Calculator from "../components/Calculator";
+import "./Home.css";
 
 function Home() {
   return (
-    <>
-      <Navbar />
-    </>
+    <div className="homeContainer">
+      <Calculator />
+    </div>
   );
 }
 

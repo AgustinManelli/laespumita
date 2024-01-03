@@ -1,0 +1,50 @@
+.calculatorContainer {
+  margin-top: 100px;
+  background-color: rgb(255, 255, 255);
+  width: 400px;
+  height: fit-content;
+  border-radius: 20px;
+  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
+    rgba(12, 20, 66, 0.08) 0px 30px 80px,
+    rgb(230, 233, 237) 0px 0px 0px 0px inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+}
+.calculatorContainer h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+}
+.calculatorDataSetter {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.inputIcon {
+  position: absolute;
+  right: 9px;
+  height: 100%;
+  width: 25px;
+}
+.inputLabel {
+  position: relative;
+  display: flex;
+}
+.calcInput {
+  width: 150px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

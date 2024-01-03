@@ -1,12 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../stylesheets/Calculator.css";
 import { CiDollar, CiPercent } from "react-icons/ci";
 
-function Calculator() {
-  const [percent, setPercent] = useState("0");
-  const [price, setPrice] = useState("0");
-  const [total, setTotal] = useState("0");
-
+function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
   useEffect(() => {
     setTotal((price * (percent / 100 + 1)).toFixed(2));
   });

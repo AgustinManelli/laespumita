@@ -8,7 +8,7 @@ function Calculator() {
   const [total, setTotal] = useState("0");
 
   useEffect(() => {
-    setTotal(price * (percent / 100 + 1));
+    setTotal((price * (percent / 100 + 1)).toFixed(2));
   });
 
   const percentSetter = (e) => {

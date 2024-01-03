@@ -4,7 +4,7 @@ import { CiDollar, CiPercent } from "react-icons/ci";
 
 function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
   useEffect(() => {
-    setTotal((price * (percent / 100 + 1)).toFixed(2));
+    setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
   });
 
   const percentSetter = (e) => {

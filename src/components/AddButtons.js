@@ -1,9 +1,11 @@
 import { CiCirclePlus } from "react-icons/ci";
 import "../stylesheets/AddButtons.css";
-function AddButtons() {
+function AddButtons({ addProduct }) {
   return (
     <>
-      <CiCirclePlus className="addCircle" />
+      <button onClick={addProduct} className="addButtonCircle">
+        <CiCirclePlus className="addCircle" />
+      </button>
     </>
   );
 }

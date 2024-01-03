@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/Calculator.css";
-import { CiDollar } from "react-icons/ci";
-import { CiPercent } from "react-icons/ci";
+import { CiDollar, CiPercent } from "react-icons/ci";
 
 function Calculator() {
   const [percent, setPercent] = useState("0");

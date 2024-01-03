@@ -6,9 +6,11 @@ function ProductLabel({ total, number, id, product, deleteProduct }) {
   };
   return (
     <div className="labelContainer">
-      <div className="labelData">
-        <p>Producto {number}</p>
-        <p>${total}</p>
+      <div className="labelDataContainer">
+        <div className="labelData">
+          <p>Producto {number}</p>
+          <p>${total}</p>
+        </div>
       </div>
       <div className="labelButtonContainer">
         <button onClick={handleDelete} className="labelButton">

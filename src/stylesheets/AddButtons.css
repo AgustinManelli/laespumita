@@ -7,8 +7,9 @@
   width: 50px;
   height: auto;
   cursor: pointer;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 .addCircle:hover {
   color: rgb(57, 99, 25);
+  transform: scale(110%);
 }

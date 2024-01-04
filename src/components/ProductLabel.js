@@ -19,8 +19,8 @@ function ProductLabel({ total, number, id, product, deleteProduct }) {
       }}
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 50,
+        stiffness: 200,
+        damping: 30,
       }}
     >
       <div className="labelDataContainer">

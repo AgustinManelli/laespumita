@@ -31,3 +31,9 @@
   color: rgb(255, 87, 87);
   transform: scale(110%);
 }
+
+@media screen and (max-width: 815px) {
+  .addButtonsContainer {
+    flex-direction: row;
+  }
+}

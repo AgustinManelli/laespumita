@@ -8,3 +8,10 @@
   gap: 30px;
   z-index: 5;
 }
+
+@media screen and (max-width: 815px) {
+  .homeContainer {
+    flex-direction: column;
+    margin-top: 100px;
+  }
+}

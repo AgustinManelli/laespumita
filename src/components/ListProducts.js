@@ -26,15 +26,28 @@ function ListProducts({ productList, deleteProduct }) {
             </motion.div>
           ))
         ) : (
-          <p
+          <motion.p
+            initial={{ scale: 0.5, opacity: 0, filter: "blur(5px)" }}
+            animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+            exit={{
+              scale: 0.5,
+              opacity: 0,
+              filter: "blur(5px)",
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 30,
+            }}
             style={{
               color: "rgb(134, 134, 134)",
               position: "absolute",
               top: "45%",
+              margin: "0",
             }}
           >
             No hay productos cargados.
-          </p>
+          </motion.p>
         )}
       </AnimatePresence>
     </section>

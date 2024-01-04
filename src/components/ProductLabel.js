@@ -8,6 +8,7 @@ function ProductLabel({ total, number, id, product, deleteProduct }) {
   return (
     <motion.div
       className="labelContainer"
+      layout
       initial={{ rotate: 5, scale: 0.5, opacity: 0, filter: "blur(5px)" }}
       animate={{ rotate: 0, scale: 1, opacity: 1, filter: "blur(0px)" }}
       exit={{

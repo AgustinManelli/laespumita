@@ -11,7 +11,7 @@ function ListProducts({ productList, deleteProduct }) {
   }, [productList]);
   return (
     <section className="listContainer" id="listContainer">
-      <AnimatePresence>
+      <AnimatePresence mode={"popLayout"}>
         {products.length > 0 ? (
           products.map((product, index) => (
             <motion.div key={product.id} style={{ width: "100%" }}>
@@ -29,6 +29,8 @@ function ListProducts({ productList, deleteProduct }) {
           <p
             style={{
               color: "rgb(134, 134, 134)",
+              position: "absolute",
+              top: "45%",
             }}
           >
             No hay productos cargados.

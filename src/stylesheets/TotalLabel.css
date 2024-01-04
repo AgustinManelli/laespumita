@@ -12,7 +12,8 @@
   display: flex;
   background: linear-gradient(90deg, #008fd2 40%, #fff 100%);
   border-radius: 20px 0px 0px 20px;
-  width: 300px;
+  min-width: 300px;
+  max-width: 700px;
   height: 70px;
   justify-content: left;
   align-items: center;

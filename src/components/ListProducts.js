@@ -7,7 +7,7 @@ function ListProducts({ productList, deleteProduct }) {
   useEffect(() => {
     var objDiv = document.getElementById("listContainer");
     objDiv.scrollTop = objDiv.scrollHeight;
-  });
+  }, [productList]);
   return (
     <section className="listContainer" id="listContainer">
       {products.length > 0 ? (

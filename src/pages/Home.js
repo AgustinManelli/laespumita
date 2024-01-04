@@ -45,6 +45,13 @@ function Home() {
   const setCard = () => {
     setIsCard(!isCard);
   };
+  const deleteInputs = () => {
+    setPrice("");
+    setPercent("");
+  };
+  const mostPercent = (num) => {
+    setPercent(num);
+  };
   return (
     <div className="homeContainer">
       <Calculator
@@ -54,6 +61,8 @@ function Home() {
         setPrice={setPrice}
         total={total}
         setTotal={setTotal}
+        deleteInputs={deleteInputs}
+        mostPercent={mostPercent}
       />
       <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
       <ListProducts productList={productList} deleteProduct={deleteProduct} />

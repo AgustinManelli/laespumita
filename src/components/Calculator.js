@@ -1,8 +1,18 @@
 import { useEffect } from "react";
 import "../stylesheets/Calculator.css";
 import { CiDollar, CiPercent } from "react-icons/ci";
+import { FaDeleteLeft } from "react-icons/fa6";
 
-function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
+function Calculator({
+  percent,
+  setPercent,
+  price,
+  setPrice,
+  total,
+  setTotal,
+  deleteInputs,
+  mostPercent,
+}) {
   useEffect(() => {
     setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
   });
@@ -49,12 +59,55 @@ function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
               onInput={percentSetter}
             ></input>
           </label>
+          <button className="deleteInputCalculator" onClick={deleteInputs}>
+            <FaDeleteLeft className="deleteInputCalculatorIcon" />
+          </button>
         </div>
         <h2>Precio a cobrar en caja</h2>
         <div className="calculatorDataGetter">
           <label className="inputLabel">
             <p className="totalResult">${total}</p>
           </label>
+        </div>
+      </section>
+      <section className="mostPercentContainerSection">
+        <h2>Porcentajes</h2>
+        <div className="mostPercentContainer">
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(21)}>
+              <p>21</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox " onClick={() => mostPercent(40)}>
+              <p>40</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(45)}>
+              <p>45</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(50)}>
+              <p>50</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(55)}>
+              <p>55</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(60)}>
+              <p>60</p>
+            </button>
+          </div>
+          <div>
+            <button className="mostPercentBox" onClick={() => mostPercent(70)}>
+              <p>70</p>
+            </button>
+          </div>
         </div>
       </section>
     </div>

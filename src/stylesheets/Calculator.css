@@ -71,3 +71,67 @@ input::-webkit-inner-spin-button {
   font-size: 20px;
   color: rgb(134, 134, 134);
 }
+.deleteInputCalculator {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.deleteInputCalculatorIcon {
+  width: 25px;
+  height: auto;
+  color: rgb(121, 8, 8);
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.deleteInputCalculator:hover .deleteInputCalculatorIcon {
+  transform: scale(110%);
+  color: rgb(255, 87, 87);
+}
+
+.mostPercentContainerSection {
+  background-color: #fff;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  width: 400px;
+  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
+    rgba(12, 20, 66, 0.08) 0px 30px 80px,
+    rgb(230, 233, 237) 0px 0px 0px 0px inset;
+}
+
+.mostPercentContainerSection h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  color: #008fd2;
+}
+
+.mostPercentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mostPercentBox {
+  background-color: rgb(236, 239, 242);
+  border-radius: 10px;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.4s ease-in-out, color 0.2s ease-in-out;
+  color: rgb(134, 134, 134);
+}
+.mostPercentBox:hover {
+  background-color: #008fd2;
+  color: #fff;
+}
+.mostPercentBox p {
+  font-weight: 600;
+}

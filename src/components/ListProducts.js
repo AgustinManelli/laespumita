@@ -1,6 +1,7 @@
 import "../stylesheets/ListProducts.css";
 import { useEffect } from "react";
 import ProductLabel from "./ProductLabel";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ListProducts({ productList, deleteProduct }) {
   const products = productList;
@@ -10,26 +11,30 @@ function ListProducts({ productList, deleteProduct }) {
   }, [productList]);
   return (
     <section className="listContainer" id="listContainer">
-      {products.length > 0 ? (
-        products.map((product, index) => (
-          <ProductLabel
-            total={product.total}
-            number={index + 1}
-            id={product.id}
-            key={product.id}
-            product={product}
-            deleteProduct={deleteProduct}
-          />
-        ))
-      ) : (
-        <p
-          style={{
-            color: "rgb(134, 134, 134)",
-          }}
-        >
-          No hay productos cargados.
-        </p>
-      )}
+      <AnimatePresence>
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <motion.div key={product.id} style={{ width: "100%" }}>
+              <ProductLabel
+                total={product.total}
+                number={index + 1}
+                id={product.id}
+                key={product.id}
+                product={product}
+                deleteProduct={deleteProduct}
+              />
+            </motion.div>
+          ))
+        ) : (
+          <p
+            style={{
+              color: "rgb(134, 134, 134)",
+            }}
+          >
+            No hay productos cargados.
+          </p>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

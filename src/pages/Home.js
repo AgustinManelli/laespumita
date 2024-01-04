@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
@@ -6,9 +6,9 @@ import "./Home.css";
 import TotalLabel from "../components/TotalLabel";
 
 function Home() {
-  const [percent, setPercent] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [percent, setPercent] = useState("");
+  const [price, setPrice] = useState("");
+  const [total, setTotal] = useState("");
   const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const addProduct = (e) => {

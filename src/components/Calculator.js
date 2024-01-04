@@ -44,16 +44,7 @@ function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
       <h2>Precio a cobrar en caja</h2>
       <div className="calculatorDataGetter">
         <label className="inputLabel">
-          <CiDollar className="inputIcon" />
-          <input
-            type="number"
-            className="calcInput calcInput_total"
-            placeholder="Resultado"
-            readOnly
-            disabled
-            value={total}
-            id="input__result"
-          ></input>
+          <p className="totalResult">${total}</p>
         </label>
       </div>
     </section>

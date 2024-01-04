@@ -1,8 +1,15 @@
 .totalLabelContainer {
   position: fixed;
-  display: flex;
   bottom: 20px;
   right: 0;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+.totalLabelPrice {
+  display: flex;
   background: linear-gradient(90deg, #008fd2 40%, #fff 100%);
   border-radius: 20px 0px 0px 20px;
   width: 300px;
@@ -16,4 +23,33 @@
   color: #fff;
   font-weight: 600;
   font-size: 23px;
+}
+.totalCard {
+  border-radius: 20px;
+  background-color: #008fd2;
+  height: 70px;
+  width: 70px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.totalCard:hover {
+  background-color: rgb(255, 87, 87);
+}
+.totalCardAct {
+  border-radius: 20px;
+  background-color: rgb(255, 87, 87);
+  height: 70px;
+  width: 70px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.totalCardAct:hover {
+  background-color: rgb(255, 159, 159);
+}
+.cardIcon {
+  width: 40px;
+  height: auto;
+  color: #fff;
 }

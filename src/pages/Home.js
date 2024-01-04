@@ -11,6 +11,7 @@ function Home() {
   const [total, setTotal] = useState("");
   const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isCard, setIsCard] = useState(false);
   const addProduct = (e) => {
     if (total === 0) {
       return;
@@ -34,6 +35,9 @@ function Home() {
     setProductList([]);
     setTotalPrice(0);
   };
+  const setCard = () => {
+    setIsCard(!isCard);
+  };
   return (
     <div className="homeContainer">
       <Calculator
@@ -46,7 +50,7 @@ function Home() {
       />
       <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
       <ListProducts productList={productList} deleteProduct={deleteProduct} />
-      <TotalLabel totalPrice={totalPrice} />
+      <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
     </div>
   );
 }

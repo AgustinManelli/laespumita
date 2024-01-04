@@ -15,39 +15,49 @@ function Calculator({ percent, setPercent, price, setPrice, total, setTotal }) {
   };
 
   return (
-    <section className="calculatorContainer">
-      <h2>Ingrese datos del producto</h2>
-      <div className="calculatorDataSetter">
-        <label className="inputLabel">
-          <CiDollar className="inputIcon" />
-          <input
-            type="number"
-            className="calcInput calcInput_peso"
-            placeholder="Ingrese precio"
-            id="input__peso"
-            value={price}
-            onInput={priceSetter}
-          ></input>
-        </label>
-        <label className="inputLabel">
-          <CiPercent className="inputIcon" />
-          <input
-            type="number"
-            className="calcInput calcInput_pj"
-            placeholder="Ingrese porcentaje"
-            id="input__porcentaje"
-            value={percent}
-            onInput={percentSetter}
-          ></input>
-        </label>
-      </div>
-      <h2>Precio a cobrar en caja</h2>
-      <div className="calculatorDataGetter">
-        <label className="inputLabel">
-          <p className="totalResult">${total}</p>
-        </label>
-      </div>
-    </section>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <section className="calculatorContainer">
+        <h2>Ingrese datos del producto</h2>
+        <div className="calculatorDataSetter">
+          <label className="inputLabel">
+            <CiDollar className="inputIcon" />
+            <input
+              type="number"
+              className="calcInput calcInput_peso"
+              placeholder="Ingrese precio"
+              id="input__peso"
+              value={price}
+              onInput={priceSetter}
+            ></input>
+          </label>
+          <label className="inputLabel">
+            <CiPercent className="inputIcon" />
+            <input
+              type="number"
+              className="calcInput calcInput_pj"
+              placeholder="Ingrese porcentaje"
+              id="input__porcentaje"
+              value={percent}
+              onInput={percentSetter}
+            ></input>
+          </label>
+        </div>
+        <h2>Precio a cobrar en caja</h2>
+        <div className="calculatorDataGetter">
+          <label className="inputLabel">
+            <p className="totalResult">${total}</p>
+          </label>
+        </div>
+      </section>
+    </div>
   );
 }
 

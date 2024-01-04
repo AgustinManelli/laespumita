@@ -4,6 +4,8 @@ import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
 import "./Home.css";
 import TotalLabel from "../components/TotalLabel";
+import { toast } from "sonner";
+import { CiCircleCheck } from "react-icons/ci";
 
 function Home() {
   const [percent, setPercent] = useState("");
@@ -32,8 +34,13 @@ function Home() {
     setTotalPrice(totalPrice - product.total);
   };
   const deleteAllProduct = () => {
-    setProductList([]);
-    setTotalPrice(0);
+    if (productList.length > 0) {
+      setProductList([]);
+      setTotalPrice(0);
+      toast.success("Productos eliminados correctamente", {
+        duration: 1500,
+      });
+    }
   };
   const setCard = () => {
     setIsCard(!isCard);

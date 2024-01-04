@@ -1,11 +1,12 @@
 import "./App.css";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import TotalLabel from "./components/TotalLabel";
+import { Toaster, toast } from "sonner";
 
 function App() {
   return (
     <div className="App">
+      <Toaster position="bottom-center" richColors />
       <div className="blurredbg"></div>
       <Navbar />
       <Home />

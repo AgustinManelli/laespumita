@@ -31,6 +31,9 @@ function Home() {
     setProductList(productList.filter((product) => product.id !== id));
     setTotalPrice(totalPrice - product.total);
   };
+  const deleteAllProduct = () => {
+    setProductList([]);
+  };
   return (
     <div className="homeContainer">
       <Calculator
@@ -41,7 +44,7 @@ function Home() {
         total={total}
         setTotal={setTotal}
       />
-      <AddButtons addProduct={addProduct} />
+      <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
       <ListProducts productList={productList} deleteProduct={deleteProduct} />
       <TotalLabel totalPrice={totalPrice} />
     </div>

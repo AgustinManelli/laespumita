@@ -22,7 +22,11 @@ function ListProducts({ productList, deleteProduct }) {
           />
         ))
       ) : (
-        <p style={{ color: "rgb(134, 134, 134)" }}>
+        <p
+          style={{
+            color: "rgb(134, 134, 134)",
+          }}
+        >
           No hay productos cargados.
         </p>
       )}

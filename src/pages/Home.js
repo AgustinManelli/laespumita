@@ -12,7 +12,6 @@ function Home() {
   const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const addProduct = (e) => {
-    e.preventDefault();
     if (total === 0) {
       return;
     }
@@ -20,7 +19,7 @@ function Home() {
       id: Date.now(),
       total,
     };
-    const totalProducts = [newProduct, ...productList];
+    const totalProducts = [...productList, newProduct];
     setProductList(totalProducts);
     setPrice("");
     setPercent("");
@@ -33,6 +32,7 @@ function Home() {
   };
   const deleteAllProduct = () => {
     setProductList([]);
+    setTotalPrice(0);
   };
   return (
     <div className="homeContainer">

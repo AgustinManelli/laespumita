@@ -7,11 +7,12 @@
   border-radius: 20px 0px 0px 20px;
   width: 300px;
   height: 70px;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 .totalLabelContainer p {
   margin: 0;
+  margin-left: 20px;
   color: #fff;
   font-weight: 600;
   font-size: 23px;

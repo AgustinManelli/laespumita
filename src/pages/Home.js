@@ -1,13 +1,13 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
 import "./Home.css";
 import TotalLabel from "../components/TotalLabel";
 import { toast } from "sonner";
-import { CiCircleCheck } from "react-icons/ci";
+import TotalWindow from "../components/TotalWindow";
 
-function Home() {
+function Home({ totalModal, setTotalModal }) {
   const [percent, setPercent] = useState("");
   const [price, setPrice] = useState("");
   const [total, setTotal] = useState("");
@@ -67,6 +67,7 @@ function Home() {
       <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
       <ListProducts productList={productList} deleteProduct={deleteProduct} />
       <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
+      <TotalWindow totalModal={totalModal} setTotalModal={setTotalModal} />
     </div>
   );
 }

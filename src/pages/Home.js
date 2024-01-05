@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
@@ -16,6 +16,7 @@ function Home({ totalModal, setTotalModal }) {
   const [productList, setProductList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isCard, setIsCard] = useState(false);
+  const [storedProducts, setStoredProducts] = useState([]);
   const addProduct = (e) => {
     if (total === 0) {
       return;
@@ -55,6 +56,13 @@ function Home({ totalModal, setTotalModal }) {
   const mostPercent = (num) => {
     setPercent(num);
   };
+  const handleSave = () => {
+    const storedProducts = JSON.parse(localStorage.products);
+    const total = storedProducts.concat(productList);
+    window.localStorage.setItem("products", JSON.stringify(total));
+    setStoredProducts(JSON.parse(localStorage.products));
+    deleteAllProduct();
+  };
   return (
     <div className="homeContainer">
       <Calculator
@@ -72,9 +80,15 @@ function Home({ totalModal, setTotalModal }) {
         productList={productList}
         deleteProduct={deleteProduct}
         deleteAllProduct={deleteAllProduct}
+        handleSave={handleSave}
       />
       <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
-      <TotalWindow totalModal={totalModal} setTotalModal={setTotalModal} />
+      <TotalWindow
+        totalModal={totalModal}
+        setTotalModal={setTotalModal}
+        storedProducts={storedProducts}
+        setStoredProducts={setStoredProducts}
+      />
     </div>
   );
 }

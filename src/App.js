@@ -1,10 +1,15 @@
 import "./App.css";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import { Toaster, toast } from "sonner";
-import { useState } from "react";
+import { Toaster } from "sonner";
+import { useEffect, useState } from "react";
 
 function App() {
+  useEffect(() => {
+    if (window.localStorage.getItem("products") === null) {
+      window.localStorage.setItem("products", "[]");
+    }
+  }, []);
   const [totalModal, setTotalModal] = useState(false);
   return (
     <div className="App">

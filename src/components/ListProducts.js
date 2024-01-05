@@ -4,18 +4,18 @@ import ProductLabel from "./ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
 
-function ListProducts({ productList, deleteProduct, deleteAllProduct }) {
+function ListProducts({
+  productList,
+  deleteProduct,
+  deleteAllProduct,
+  handleSave,
+}) {
   const products = productList;
   useEffect(() => {
     var objDiv = document.getElementById("listContainer");
     objDiv.scrollTop = objDiv.scrollHeight;
   }, [productList]);
-  const handleSave = () => {
-    const storedProducts = JSON.parse(localStorage.products);
-    const total = storedProducts.concat(productList);
-    window.localStorage.setItem("products", JSON.stringify(total));
-    deleteAllProduct();
-  };
+
   return (
     <div style={{ position: "relative" }}>
       <section className="listContainer" id="listContainer">

@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import "../stylesheets/TotalWindow.css";
 import { FiX } from "react-icons/fi";
-function TotalWindow({ totalModal, setTotalModal }) {
+function TotalWindow({
+  totalModal,
+  setTotalModal,
+  storedProducts,
+  setStoredProducts,
+}) {
+  useEffect(() => {
+    if (window.localStorage.getItem("products") === null) {
+      setStoredProducts([]);
+    } else {
+      setStoredProducts(JSON.parse(localStorage.products));
+    }
+  }, []);
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()}/${
     currentDate.getMonth() + 1
@@ -8,7 +21,9 @@ function TotalWindow({ totalModal, setTotalModal }) {
   const handleClose = () => {
     setTotalModal(false);
   };
-  const storedProducts = JSON.parse(localStorage.products);
+
+  //const storedProducts = JSON.parse(localStorage.products);
+
   return (
     <section
       className={

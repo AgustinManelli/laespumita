@@ -8,6 +8,7 @@ function TotalWindow({ totalModal, setTotalModal }) {
   const handleClose = () => {
     setTotalModal(false);
   };
+  const storedProducts = JSON.parse(localStorage.products);
   return (
     <section
       className={
@@ -29,6 +30,25 @@ function TotalWindow({ totalModal, setTotalModal }) {
             <button className="totalWindowContentSelectorButton">
               Ventas totales
             </button>
+          </section>
+          <section className="totalWindowContentProducts">
+            <div className="totalWindowDailyLabel indexproductlabelpar">
+              <p>venta</p>
+              <p>hora</p>
+            </div>
+            {storedProducts.map((product, index) => (
+              <div
+                className={
+                  index % 2 === 0
+                    ? "totalWindowDailyLabel"
+                    : "totalWindowDailyLabel indexproductlabelpar"
+                }
+                key={product.id}
+              >
+                <p style={{ width: "50%" }}>$ {product.total}</p>
+                <p style={{ width: "50%" }}>{product.date}</p>
+              </div>
+            ))}
           </section>
         </div>
       </div>

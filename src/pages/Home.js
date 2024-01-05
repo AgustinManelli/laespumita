@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import TotalWindow from "../components/TotalWindow";
 
 function Home({ totalModal, setTotalModal }) {
+  const currentDate = new Date();
+  const formattedDateProduct = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
   const [percent, setPercent] = useState("");
   const [price, setPrice] = useState("");
   const [total, setTotal] = useState("");
@@ -20,6 +22,7 @@ function Home({ totalModal, setTotalModal }) {
     }
     const newProduct = {
       id: Date.now(),
+      date: formattedDateProduct,
       total,
     };
     const totalProducts = [...productList, newProduct];
@@ -65,7 +68,11 @@ function Home({ totalModal, setTotalModal }) {
         mostPercent={mostPercent}
       />
       <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
-      <ListProducts productList={productList} deleteProduct={deleteProduct} />
+      <ListProducts
+        productList={productList}
+        deleteProduct={deleteProduct}
+        deleteAllProduct={deleteAllProduct}
+      />
       <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
       <TotalWindow totalModal={totalModal} setTotalModal={setTotalModal} />
     </div>

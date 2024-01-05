@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
@@ -58,7 +58,12 @@ function Home({ totalModal, setTotalModal }) {
   };
   const handleSave = () => {
     const storedProducts = JSON.parse(localStorage.products);
-    const total = storedProducts.concat(productList);
+    //const total = storedProducts.concat(productList);
+    const total = storedProducts.concat({
+      total: totalPrice,
+      date: formattedDateProduct,
+      id: Date.now(),
+    });
     window.localStorage.setItem("products", JSON.stringify(total));
     setStoredProducts(JSON.parse(localStorage.products));
     deleteAllProduct();

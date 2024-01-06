@@ -103,6 +103,15 @@ function Home({ totalModal, setTotalModal }) {
     const filtered = filteredProduct.filter((product) => product.id !== id);
     setStoredProducts(filtered);
     window.localStorage.setItem("products", JSON.stringify(filtered));
+    const storedTotal = JSON.parse(localStorage.total);
+    const totalIndex = storedTotal.length;
+    if (totalIndex > 0) {
+      const nuevoArray = [...storedTotal];
+      nuevoArray[totalIndex - 1].total -= product.total;
+      const supArray = nuevoArray.filter((product) => product.total > 0);
+      localStorage.setItem("total", JSON.stringify(supArray));
+      setStoredTotal(JSON.parse(localStorage.total));
+    }
   };
   const deleteStoredTotal = (id, product) => {
     const filteredTotal = JSON.parse(localStorage.total);

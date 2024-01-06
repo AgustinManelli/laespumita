@@ -109,6 +109,9 @@
 .totalWindowContentSelectorButton:hover {
   background-color: rgb(212, 216, 219);
 }
+.totalWindowContentSelectorButtonSelected {
+  background-color: rgb(212, 216, 219);
+}
 .totalWindowContentProducts {
   display: flex;
   flex-direction: column;

@@ -56,13 +56,21 @@ function TotalWindow({
         <div className="totalWindowContent">
           <section className="totalWindowContentSelector">
             <button
-              className="totalWindowContentSelectorButton"
+              className={
+                isDaily
+                  ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                  : "totalWindowContentSelectorButton"
+              }
               onClick={handleFilterTrue}
             >
               Venta diaria
             </button>
             <button
-              className="totalWindowContentSelectorButton"
+              className={
+                isDaily
+                  ? "totalWindowContentSelectorButton"
+                  : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+              }
               onClick={handleFilterFalse}
             >
               Ventas totales

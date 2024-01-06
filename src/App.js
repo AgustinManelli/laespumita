@@ -9,6 +9,9 @@ function App() {
     if (window.localStorage.getItem("products") === null) {
       window.localStorage.setItem("products", "[]");
     }
+    if (window.localStorage.getItem("total") === null) {
+      window.localStorage.setItem("total", "[]");
+    }
   }, []);
   const [totalModal, setTotalModal] = useState(false);
   return (

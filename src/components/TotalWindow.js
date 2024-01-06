@@ -48,7 +48,7 @@ function TotalWindow({
     >
       <div className="totalWindowModal">
         <nav className="totalWindowNavbar">
-          <p>Resumen de ventas: {formattedDate}</p>
+          <p>Resumen de ventas</p>
           <button onClick={handleClose} className="totalWindowNavbarButton">
             <FiX className="totalWindowNavbarX" />
           </button>

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../stylesheets/TotalWindow.css";
 import { FiX } from "react-icons/fi";
+import { FaTrash } from "react-icons/fa";
 function TotalWindow({
   totalModal,
   setTotalModal,
   storedProducts,
   setStoredProducts,
+  deleteStoredProduct,
 }) {
   useEffect(() => {
     if (window.localStorage.getItem("products") === null) {
@@ -21,8 +23,6 @@ function TotalWindow({
   const handleClose = () => {
     setTotalModal(false);
   };
-
-  //const storedProducts = JSON.parse(localStorage.products);
 
   return (
     <section
@@ -48,8 +48,8 @@ function TotalWindow({
           </section>
           <section className="totalWindowContentProducts">
             <div className="totalWindowDailyLabel indexproductlabelpar">
-              <p>venta</p>
-              <p>hora</p>
+              <p style={{ width: "50%" }}>venta</p>
+              <p style={{ width: "50%" }}>hora</p>
             </div>
             {storedProducts.map((product, index) => (
               <div
@@ -62,6 +62,12 @@ function TotalWindow({
               >
                 <p style={{ width: "50%" }}>$ {product.total}</p>
                 <p style={{ width: "50%" }}>{product.date}</p>
+                <button
+                  onClick={() => deleteStoredProduct(product.id, product)}
+                  className="totalWindowDailyDeleteButton"
+                >
+                  <FaTrash className="totalWindowDailyDeleteIcon" />
+                </button>
               </div>
             ))}
           </section>

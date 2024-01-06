@@ -115,11 +115,36 @@
   align-items: center;
 }
 .totalWindowDailyLabel {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 60%;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .indexproductlabelpar {
   background-color: rgb(236, 239, 242);
+}
+
+.totalWindowDailyDeleteButton {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+  right: 0;
+}
+.totalWindowDailyDeleteIcon {
+  width: 15px;
+  height: auto;
+  color: rgb(121, 8, 8);
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.totalWindowDailyDeleteButton:hover .totalWindowDailyDeleteIcon {
+  color: rgb(255, 87, 87);
 }

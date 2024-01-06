@@ -4,12 +4,7 @@ import ProductLabel from "./ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
 
-function ListProducts({
-  productList,
-  deleteProduct,
-  deleteAllProduct,
-  handleSave,
-}) {
+function ListProducts({ productList, deleteProduct, handleSave }) {
   const products = productList;
   useEffect(() => {
     var objDiv = document.getElementById("listContainer");

@@ -9,7 +9,9 @@ import TotalWindow from "../components/TotalWindow";
 
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
-  const formattedDateProduct = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  const formattedDateProduct = `${currentDate.getHours()}:${
+    (currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes()
+  }`;
   const [percent, setPercent] = useState("");
   const [price, setPrice] = useState("");
   const [total, setTotal] = useState("");
@@ -57,16 +59,25 @@ function Home({ totalModal, setTotalModal }) {
     setPercent(num);
   };
   const handleSave = () => {
-    const storedProducts = JSON.parse(localStorage.products);
-    //const total = storedProducts.concat(productList);
-    const total = storedProducts.concat({
-      total: totalPrice,
-      date: formattedDateProduct,
-      id: Date.now(),
-    });
-    window.localStorage.setItem("products", JSON.stringify(total));
-    setStoredProducts(JSON.parse(localStorage.products));
-    deleteAllProduct();
+    if (totalPrice > 0) {
+      const storedProducts = JSON.parse(localStorage.products);
+      //const total = storedProducts.concat(productList);
+      const total = storedProducts.concat({
+        total: totalPrice,
+        date: formattedDateProduct,
+        id: Date.now(),
+        productcount: productList,
+      });
+      window.localStorage.setItem("products", JSON.stringify(total));
+      setStoredProducts(JSON.parse(localStorage.products));
+      deleteAllProduct();
+    }
+  };
+  const deleteStoredProduct = (id, product) => {
+    const filteredProduct = JSON.parse(localStorage.products);
+    const filtered = filteredProduct.filter((product) => product.id !== id);
+    setStoredProducts(filtered);
+    window.localStorage.setItem("products", JSON.stringify(filtered));
   };
   return (
     <div className="homeContainer">
@@ -93,6 +104,7 @@ function Home({ totalModal, setTotalModal }) {
         setTotalModal={setTotalModal}
         storedProducts={storedProducts}
         setStoredProducts={setStoredProducts}
+        deleteStoredProduct={deleteStoredProduct}
       />
     </div>
   );

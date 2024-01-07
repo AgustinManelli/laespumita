@@ -1,7 +1,7 @@
-import { CiCirclePlus, CiTrash } from "react-icons/ci";
+import { FaCirclePlus, FaTrash } from "react-icons/fa6";
 import "../stylesheets/AddButtons.css";
 import { useEffect } from "react";
-function AddButtons({ addProduct, deleteAllProduct }) {
+function AddButtons({ addProduct, deleteAllProduct, productList }) {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       addProduct();
@@ -16,10 +16,17 @@ function AddButtons({ addProduct, deleteAllProduct }) {
   return (
     <section className="addButtonsContainer">
       <button id="btnAdd" onClick={addProduct} className="addButtonCircle">
-        <CiCirclePlus className="addCircle" />
+        <FaCirclePlus className="addCircle" />
       </button>
-      <button onClick={deleteAllProduct} className="addButtonCircle">
-        <CiTrash className="deleteCircle" />
+      <button
+        onClick={deleteAllProduct}
+        className={
+          productList.length === 0
+            ? "addButtonCircle locked"
+            : "addButtonCircle"
+        }
+      >
+        <FaTrash className="deleteCircle" />
       </button>
     </section>
   );

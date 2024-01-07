@@ -6,30 +6,35 @@
 .addButtonCircle {
   border: none;
   background: none;
+  cursor: pointer;
 }
 .addCircle {
   color: rgb(57, 99, 25);
-  width: 50px;
+  width: 30px;
   height: auto;
-  cursor: pointer;
   transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
-.addCircle:hover {
+.addButtonCircle:hover .addCircle {
   color: rgb(112, 205, 40);
   transform: scale(110%);
 }
 
 .deleteCircle {
   color: rgb(121, 8, 8);
-  width: 50px;
+  width: 30px;
   height: auto;
   cursor: pointer;
   transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.deleteCircle:hover {
+.addButtonCircle:hover .deleteCircle {
   color: rgb(255, 87, 87);
   transform: scale(110%);
+}
+
+.locked {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 815px) {

@@ -1,5 +1,6 @@
 import "../stylesheets/TotalLabel.css";
 import { CiCreditCard1 } from "react-icons/ci";
+import { FaCreditCard } from "react-icons/fa6";
 function TotalLabel({ totalPrice, isCard, setCard }) {
   return (
     <div className="totalLabelContainer">
@@ -21,7 +22,7 @@ function TotalLabel({ totalPrice, isCard, setCard }) {
         className={isCard ? "totalCardAct" : "totalCard"}
         onClick={setCard}
       >
-        <CiCreditCard1 className="cardIcon" />
+        <FaCreditCard className="cardIcon" />
       </button>
     </div>
   );

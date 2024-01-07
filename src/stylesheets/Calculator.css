@@ -27,13 +27,14 @@
 .inputIcon {
   position: absolute;
   right: 9px;
-  height: 100%;
-  width: 25px;
+  height: auto;
+  width: 15px;
   color: rgb(134, 134, 134);
 }
 .inputLabel {
   position: relative;
   display: flex;
+  align-items: center;
 }
 .calcInput {
   width: 150px;

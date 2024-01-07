@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import "../stylesheets/Calculator.css";
-import { CiDollar, CiPercent } from "react-icons/ci";
-import { FaDeleteLeft } from "react-icons/fa6";
+import { FaDollarSign, FaPercent, FaDeleteLeft } from "react-icons/fa6";
 
 function Calculator({
   percent,
@@ -38,7 +37,7 @@ function Calculator({
         <h2>Ingrese datos del producto</h2>
         <div className="calculatorDataSetter">
           <label className="inputLabel">
-            <CiDollar className="inputIcon" />
+            <FaDollarSign className="inputIcon" />
             <input
               type="number"
               className="calcInput calcInput_peso"
@@ -49,7 +48,7 @@ function Calculator({
             ></input>
           </label>
           <label className="inputLabel">
-            <CiPercent className="inputIcon" />
+            <FaPercent className="inputIcon" />
             <input
               type="number"
               className="calcInput calcInput_pj"

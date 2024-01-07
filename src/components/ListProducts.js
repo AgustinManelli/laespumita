@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import ProductLabel from "./ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
+import { FaCircleCheck } from "react-icons/fa6";
 
 function ListProducts({ productList, deleteProduct, handleSave }) {
   const products = productList;
@@ -55,7 +56,7 @@ function ListProducts({ productList, deleteProduct, handleSave }) {
         </AnimatePresence>
       </section>
       <button className="listButton" onClick={handleSave}>
-        <FiCheckCircle className="listButtonIcon" />
+        <FaCircleCheck className="listButtonIcon" />
       </button>
     </div>
   );

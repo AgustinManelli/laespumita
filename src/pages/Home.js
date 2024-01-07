@@ -9,12 +9,16 @@ import TotalWindow from "../components/TotalWindow";
 
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
-  const idDay = `${currentDate.getDay() + currentDate.getMonth()}`;
-  const formattedDateProduct = `${currentDate.getHours()}:${
-    (currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes()
-  }`;
+  const idDay = `${
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
+  }${
+    (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
+  }${currentDate.getFullYear()}`;
+  const formattedDateProduct = `${
+    (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()
+  }:${(currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes()}`;
   const formattedDay = `${
-    (currentDate.getDay() < 10 ? "0" : "") + currentDate.getDay()
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
   }/${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }/${currentDate.getFullYear()}`;
@@ -68,34 +72,44 @@ function Home({ totalModal, setTotalModal }) {
   };
   const handleSave = () => {
     if (totalPrice > 0) {
-      const storedTotal = JSON.parse(localStorage.total);
-      const totalIndex = storedTotal.length;
-      if (storedTotal.filter((all) => all.id === idDay).length > 0) {
+      try {
+        const storedTotal = JSON.parse(localStorage.total);
+        const totalIndex = storedTotal.length;
         const nuevoArray = [...storedTotal];
-        nuevoArray[totalIndex - 1].total += totalPrice;
-        localStorage.setItem("total", JSON.stringify(nuevoArray));
-        setStoredTotal(JSON.parse(localStorage.total));
-      } else {
-        const totalall = storedTotal.concat({
-          id: idDay,
+        if (storedTotal.filter((all) => all.id === idDay).length > 0) {
+          nuevoArray[totalIndex - 1].total += totalPrice;
+          localStorage.setItem("total", JSON.stringify(nuevoArray));
+          setStoredTotal(JSON.parse(localStorage.total));
+        } else {
+          const totalall = storedTotal.concat({
+            id: idDay,
+            total: totalPrice,
+            date: formattedDay,
+          });
+          window.localStorage.setItem("total", JSON.stringify(totalall));
+          setStoredTotal(JSON.parse(localStorage.total));
+        }
+        if (totalIndex > 0) {
+          const totalId = nuevoArray[totalIndex - 1].id;
+          if (idDay !== totalId) {
+            window.localStorage.setItem("products", "[]");
+            setStoredProducts(JSON.parse(localStorage.products));
+          }
+        }
+        const storedProducts = JSON.parse(localStorage.products);
+        const total = storedProducts.concat({
           total: totalPrice,
-          date: formattedDay,
+          date: formattedDateProduct,
+          id: Date.now(),
+          productcount: productList,
+          day: idDay,
         });
-        window.localStorage.setItem("total", JSON.stringify(totalall));
-        setStoredTotal(JSON.parse(localStorage.total));
+        window.localStorage.setItem("products", JSON.stringify(total));
+        setStoredProducts(JSON.parse(localStorage.products));
+        deleteAllProduct();
+      } catch {
+        alert("hubo un problema y no se pudo guardar");
       }
-
-      const storedProducts = JSON.parse(localStorage.products);
-      //const total = storedProducts.concat(productList);
-      const total = storedProducts.concat({
-        total: totalPrice,
-        date: formattedDateProduct,
-        id: Date.now(),
-        productcount: productList,
-      });
-      window.localStorage.setItem("products", JSON.stringify(total));
-      setStoredProducts(JSON.parse(localStorage.products));
-      deleteAllProduct();
     }
   };
   const deleteStoredProduct = (id, product) => {
@@ -116,6 +130,16 @@ function Home({ totalModal, setTotalModal }) {
   const deleteStoredTotal = (id, product) => {
     const filteredTotal = JSON.parse(localStorage.total);
     const filtered = filteredTotal.filter((product) => product.id !== id);
+    const flagDay = product.id;
+    const filteredDaily = JSON.parse(localStorage.products);
+    const filteredDailyProduct = filteredDaily.filter(
+      (product) => product.day !== flagDay
+    );
+    setStoredProducts(filteredDailyProduct);
+    window.localStorage.setItem(
+      "products",
+      JSON.stringify(filteredDailyProduct)
+    );
     setStoredTotal(filtered);
     window.localStorage.setItem("total", JSON.stringify(filtered));
   };
@@ -131,7 +155,11 @@ function Home({ totalModal, setTotalModal }) {
         deleteInputs={deleteInputs}
         mostPercent={mostPercent}
       />
-      <AddButtons addProduct={addProduct} deleteAllProduct={deleteAllProduct} />
+      <AddButtons
+        addProduct={addProduct}
+        deleteAllProduct={deleteAllProduct}
+        productList={productList}
+      />
       <ListProducts
         productList={productList}
         deleteProduct={deleteProduct}

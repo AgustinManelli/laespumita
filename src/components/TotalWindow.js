@@ -15,13 +15,15 @@ function TotalWindow({
   deleteStoredTotal,
 }) {
   useEffect(() => {
-    if (window.localStorage.getItem("products") === null) {
+    if (window.localStorage.getItem("products") === "[null]") {
       setStoredProducts([]);
+      window.localStorage.setItem("products", JSON.stringify(storedProducts));
     } else {
       setStoredProducts(JSON.parse(localStorage.products));
     }
-    if (window.localStorage.getItem("total") === null) {
+    if (window.localStorage.getItem("total") === "[null]") {
       setStoredTotal([]);
+      window.localStorage.setItem("total", JSON.stringify(storedTotal));
     } else {
       setStoredTotal(JSON.parse(localStorage.total));
     }
@@ -48,7 +50,7 @@ function TotalWindow({
     >
       <div className="totalWindowModal">
         <nav className="totalWindowNavbar">
-          <p>Resumen de ventas</p>
+          <p>Resumen de ventas al día {formattedDate}</p>
           <button onClick={handleClose} className="totalWindowNavbarButton">
             <FiX className="totalWindowNavbarX" />
           </button>

@@ -34,8 +34,9 @@
   width: 25px;
   height: auto;
   color: rgb(134, 134, 134);
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 .navbarOpenModal:hover .navbarOpenModalIcon {
   color: #008fd2;
+  transform: scale(110%);
 }

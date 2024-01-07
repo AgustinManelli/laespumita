@@ -1,6 +1,6 @@
 import logo from "../assets/logo.svg";
 import "../stylesheets/Navbar.css";
-import { FiDollarSign } from "react-icons/fi";
+import { FaDollarSign } from "react-icons/fa6";
 
 function Navbar({ setTotalModal }) {
   const handleOpenModal = () => {
@@ -13,7 +13,7 @@ function Navbar({ setTotalModal }) {
           <img src={logo} alt="la espumita logo" className="logoNavbar" />
         </div>
         <button onClick={handleOpenModal} className="navbarOpenModal">
-          <FiDollarSign className="navbarOpenModalIcon" />
+          <FaDollarSign className="navbarOpenModalIcon" />
         </button>
       </nav>
     </div>

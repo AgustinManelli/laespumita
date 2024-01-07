@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import "../stylesheets/TotalWindow.css";
-import { FiX } from "react-icons/fi";
+import { FaX } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
+import { motion } from "framer-motion";
 function TotalWindow({
   totalModal,
   setTotalModal,
@@ -48,91 +49,104 @@ function TotalWindow({
         totalModal ? "totalWindowContainer" : "totalWindowContainerHidden"
       }
     >
-      <div className="totalWindowModal">
-        <nav className="totalWindowNavbar">
-          <p>Resumen de ventas al día {formattedDate}</p>
-          <button onClick={handleClose} className="totalWindowNavbarButton">
-            <FiX className="totalWindowNavbarX" />
-          </button>
-        </nav>
-        <div className="totalWindowContent">
-          <section className="totalWindowContentSelector">
-            <button
-              className={
-                isDaily
-                  ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
-                  : "totalWindowContentSelectorButton"
-              }
-              onClick={handleFilterTrue}
-            >
-              Venta diaria
+      {totalModal ? (
+        <motion.div
+          className="totalWindowModal"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 30,
+          }}
+        >
+          <nav className="totalWindowNavbar">
+            <p>Resumen de ventas al día {formattedDate}</p>
+            <button onClick={handleClose} className="totalWindowNavbarButton">
+              <FaX className="totalWindowNavbarX" />
             </button>
-            <button
-              className={
-                isDaily
-                  ? "totalWindowContentSelectorButton"
-                  : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
-              }
-              onClick={handleFilterFalse}
-            >
-              Ventas totales
-            </button>
-          </section>
-          {isDaily ? (
-            <section className="totalWindowContentProducts">
-              <div className="totalWindowDailyLabel indexproductlabelpar">
-                <p style={{ width: "50%" }}>venta</p>
-                <p style={{ width: "50%" }}>hora</p>
-              </div>
-              {storedProducts.map((product, index) => (
-                <div
-                  className={
-                    index % 2 === 0
-                      ? "totalWindowDailyLabel"
-                      : "totalWindowDailyLabel indexproductlabelpar"
-                  }
-                  key={product.id}
-                >
-                  <p style={{ width: "50%" }}>$ {product.total}</p>
-                  <p style={{ width: "50%" }}>{product.date}</p>
-                  <button
-                    onClick={() => deleteStoredProduct(product.id, product)}
-                    className="totalWindowDailyDeleteButton"
-                  >
-                    <FaTrash className="totalWindowDailyDeleteIcon" />
-                  </button>
-                </div>
-              ))}
+          </nav>
+          <div className="totalWindowContent">
+            <section className="totalWindowContentSelector">
+              <button
+                className={
+                  isDaily
+                    ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                    : "totalWindowContentSelectorButton"
+                }
+                onClick={handleFilterTrue}
+              >
+                Venta diaria
+              </button>
+              <button
+                className={
+                  isDaily
+                    ? "totalWindowContentSelectorButton"
+                    : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                }
+                onClick={handleFilterFalse}
+              >
+                Ventas totales
+              </button>
             </section>
-          ) : (
-            <section className="totalWindowContentProducts">
-              <div className="totalWindowDailyLabel indexproductlabelpar">
-                <p style={{ width: "50%" }}>venta</p>
-                <p style={{ width: "50%" }}>día</p>
-              </div>
-              {storedTotal.map((product, index) => (
-                <div
-                  className={
-                    index % 2 === 0
-                      ? "totalWindowDailyLabel"
-                      : "totalWindowDailyLabel indexproductlabelpar"
-                  }
-                  key={product.id}
-                >
-                  <p style={{ width: "50%" }}>$ {product.total}</p>
-                  <p style={{ width: "50%" }}>{product.date}</p>
-                  <button
-                    onClick={() => deleteStoredTotal(product.id, product)}
-                    className="totalWindowDailyDeleteButton"
-                  >
-                    <FaTrash className="totalWindowDailyDeleteIcon" />
-                  </button>
+            {isDaily ? (
+              <section className="totalWindowContentProducts">
+                <div className="totalWindowDailyLabel indexproductlabelpar">
+                  <p style={{ width: "50%" }}>venta</p>
+                  <p style={{ width: "50%" }}>hora</p>
                 </div>
-              ))}
-            </section>
-          )}
-        </div>
-      </div>
+                {storedProducts.map((product, index) => (
+                  <div
+                    className={
+                      index % 2 === 0
+                        ? "totalWindowDailyLabel"
+                        : "totalWindowDailyLabel indexproductlabelpar"
+                    }
+                    key={product.id}
+                  >
+                    <p style={{ width: "50%" }}>$ {product.total}</p>
+                    <p style={{ width: "50%" }}>{product.date}</p>
+                    <button
+                      onClick={() => deleteStoredProduct(product.id, product)}
+                      className="totalWindowDailyDeleteButton"
+                    >
+                      <FaTrash className="totalWindowDailyDeleteIcon" />
+                    </button>
+                  </div>
+                ))}
+              </section>
+            ) : (
+              <section className="totalWindowContentProducts">
+                <div className="totalWindowDailyLabel indexproductlabelpar">
+                  <p style={{ width: "50%" }}>venta</p>
+                  <p style={{ width: "50%" }}>día</p>
+                </div>
+                {storedTotal.map((product, index) => (
+                  <div
+                    className={
+                      index % 2 === 0
+                        ? "totalWindowDailyLabel"
+                        : "totalWindowDailyLabel indexproductlabelpar"
+                    }
+                    key={product.id}
+                  >
+                    <p style={{ width: "50%" }}>$ {product.total}</p>
+                    <p style={{ width: "50%" }}>{product.date}</p>
+                    <button
+                      onClick={() => deleteStoredTotal(product.id, product)}
+                      className="totalWindowDailyDeleteButton"
+                    >
+                      <FaTrash className="totalWindowDailyDeleteIcon" />
+                    </button>
+                  </div>
+                ))}
+              </section>
+            )}
+          </div>
+        </motion.div>
+      ) : (
+        <div style={{ position: "absolute" }}></div>
+      )}
     </section>
   );
 }

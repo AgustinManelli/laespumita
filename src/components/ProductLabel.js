@@ -1,6 +1,7 @@
 import "../stylesheets/ProductLabel.css";
 import { motion } from "framer-motion";
 import { CiTrash } from "react-icons/ci";
+import { FaTrash } from "react-icons/fa6";
 function ProductLabel({ total, number, id, product, deleteProduct }) {
   const handleDelete = () => {
     deleteProduct(id, product);
@@ -31,7 +32,7 @@ function ProductLabel({ total, number, id, product, deleteProduct }) {
       </div>
       <div className="labelButtonContainer">
         <button onClick={handleDelete} className="labelButton">
-          <CiTrash className="labelIcon" />
+          <FaTrash className="labelIcon" />
         </button>
       </div>
     </motion.div>

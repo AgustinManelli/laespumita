@@ -23,6 +23,8 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 .inputIcon {
   position: absolute;
@@ -82,6 +84,9 @@ input::-webkit-inner-spin-button {
   height: auto;
   color: rgb(121, 8, 8);
   transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .deleteInputCalculator:hover .deleteInputCalculatorIcon {
   transform: scale(110%);

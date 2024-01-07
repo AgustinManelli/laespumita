@@ -30,8 +30,10 @@ function TotalWindow({
     }
   }, []);
   const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()}/${
-    currentDate.getMonth() + 1
+  const formattedDate = `${
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
+  }/${
+    (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }/${currentDate.getFullYear()}`;
   const handleClose = () => {
     setTotalModal(false);

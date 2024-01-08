@@ -1,12 +1,11 @@
 import "../stylesheets/TotalLabel.css";
-import { CiCreditCard1 } from "react-icons/ci";
 import { FaCreditCard } from "react-icons/fa6";
-function TotalLabel({ totalPrice, isCard, setCard }) {
+function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
   return (
     <div className="totalLabelContainer">
       <section className="totalLabelPrice">
         <p>
-          TOTAL:{" "}
+          TOTAL: {totalPrice}{" "}
           {isCard
             ? parseFloat(totalPrice * 1.15).toLocaleString("es-ES", {
                 minimumFractionDigits: 0,

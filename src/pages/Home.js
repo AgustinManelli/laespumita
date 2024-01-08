@@ -10,7 +10,7 @@ import TotalWindow from "../components/TotalWindow";
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
   const idDay = `${
-    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate() + 1
   }${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }${currentDate.getFullYear()}`;
@@ -60,15 +60,15 @@ function Home({ totalModal, setTotalModal }) {
       });
     }
   };
-  const setCard = () => {
-    setIsCard(!isCard);
-  };
   const deleteInputs = () => {
     setPrice("");
     setPercent("");
   };
   const mostPercent = (num) => {
     setPercent(num);
+  };
+  const setCard = () => {
+    setIsCard(!isCard);
   };
   const handleSave = () => {
     if (totalPrice > 0) {
@@ -87,7 +87,9 @@ function Home({ totalModal, setTotalModal }) {
         }
         const storedProduct = JSON.parse(localStorage.products);
         const total = storedProduct.concat({
-          total: parseFloat(totalPrice.toFixed(2)),
+          total: parseFloat(
+            (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+          ),
           date: formattedDateProduct,
           id: Date.now(),
           productcount: productList,
@@ -97,7 +99,9 @@ function Home({ totalModal, setTotalModal }) {
         setStoredProducts(JSON.parse(localStorage.products));
 
         if (storedTotal.filter((all) => all.id === idDay).length > 0) {
-          nuevoArray[totalIndex - 1].total += totalPrice;
+          nuevoArray[totalIndex - 1].total += parseFloat(
+            (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+          );
           nuevoArray[totalIndex - 1].productsList = nuevoArray[
             totalIndex - 1
           ].productsList = total;
@@ -106,7 +110,9 @@ function Home({ totalModal, setTotalModal }) {
         } else {
           const totalall = storedTotal.concat({
             id: idDay,
-            total: parseFloat(totalPrice.toFixed(2)),
+            total: parseFloat(
+              (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+            ),
             date: formattedDay,
             productsList: total,
           });
@@ -187,7 +193,12 @@ function Home({ totalModal, setTotalModal }) {
         handleSave={handleSave}
         storedProducts={storedProducts}
       />
-      <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
+      <TotalLabel
+        totalPrice={totalPrice}
+        setTotalPrice={setTotalPrice}
+        isCard={isCard}
+        setCard={setCard}
+      />
       <TotalWindow
         totalModal={totalModal}
         setTotalModal={setTotalModal}

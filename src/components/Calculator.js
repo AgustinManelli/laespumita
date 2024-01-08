@@ -73,37 +73,86 @@ function Calculator({
         <h2>Porcentajes</h2>
         <div className="mostPercentContainer">
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(21)}>
+            <button
+              className={
+                percent === "21"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("21")}
+            >
               <p>21</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox " onClick={() => mostPercent(40)}>
+            <button
+              className={
+                percent === "40"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("40")}
+            >
               <p>40</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(45)}>
+            <button
+              className={
+                percent === "45"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("45")}
+            >
               <p>45</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(50)}>
+            <button
+              className={
+                percent === "50"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("50")}
+            >
               <p>50</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(55)}>
+            <button
+              className={
+                percent === "55"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("55")}
+            >
               <p>55</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(60)}>
+            <button
+              className={
+                percent === "60"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("60")}
+            >
               <p>60</p>
             </button>
           </div>
           <div>
-            <button className="mostPercentBox" onClick={() => mostPercent(70)}>
+            <button
+              className={
+                percent === "70"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => mostPercent("70")}
+            >
               <p>70</p>
             </button>
           </div>

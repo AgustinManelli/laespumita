@@ -141,3 +141,7 @@ input::-webkit-inner-spin-button {
 .mostPercentBox p {
   font-weight: 600;
 }
+.percentSelected {
+  background-color: #008fd2;
+  color: #fff;
+}

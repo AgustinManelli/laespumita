@@ -83,7 +83,7 @@ function Home({ totalModal, setTotalModal }) {
         } else {
           const totalall = storedTotal.concat({
             id: idDay,
-            total: totalPrice,
+            total: parseFloat(totalPrice.toFixed(2)),
             date: formattedDay,
           });
           window.localStorage.setItem("total", JSON.stringify(totalall));
@@ -98,7 +98,7 @@ function Home({ totalModal, setTotalModal }) {
         }
         const storedProducts = JSON.parse(localStorage.products);
         const total = storedProducts.concat({
-          total: totalPrice,
+          total: parseFloat(totalPrice.toFixed(2)),
           date: formattedDateProduct,
           id: Date.now(),
           productcount: productList,

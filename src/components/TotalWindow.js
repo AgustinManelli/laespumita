@@ -3,7 +3,8 @@ import "../stylesheets/TotalWindow.css";
 import { FaX } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { FaAngleDown } from "react-icons/fa6";
+import TotalWindowLabel from "./TotalWindowLabel";
+import TotalWindowLabelDaily from "./TotalWindowLabelDaily";
 function TotalWindow({
   totalModal,
   setTotalModal,
@@ -24,18 +25,20 @@ function TotalWindow({
   }, [isDaily, totalModal]);
 
   useEffect(() => {
-    if (window.localStorage.getItem("products") === "[null]") {
-      setStoredProducts([]);
-      window.localStorage.setItem("products", JSON.stringify(storedProducts));
-    } else {
-      setStoredProducts(JSON.parse(localStorage.products));
-    }
-    if (window.localStorage.getItem("total") === "[null]") {
-      setStoredTotal([]);
-      window.localStorage.setItem("total", JSON.stringify(storedTotal));
-    } else {
-      setStoredTotal(JSON.parse(localStorage.total));
-    }
+    try {
+      if (window.localStorage.getItem("products") === "[null]") {
+        setStoredProducts([]);
+        window.localStorage.setItem("products", JSON.stringify(storedProducts));
+      } else {
+        setStoredProducts(JSON.parse(localStorage.products));
+      }
+      if (window.localStorage.getItem("total") === "[null]") {
+        setStoredTotal([]);
+        window.localStorage.setItem("total", JSON.stringify(storedTotal));
+      } else {
+        setStoredTotal(JSON.parse(localStorage.total));
+      }
+    } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const currentDate = new Date();
@@ -104,81 +107,31 @@ function TotalWindow({
             <p style={{ width: "50%" }}>{isDaily ? "hora" : "día"}</p>
           </div>
           <div className="totalWindowContent" id="totalWindowContent">
-            {isDaily ? (
-              <section className="totalWindowContentProducts">
-                {storedProducts.map((product, index) => (
-                  <div
-                    className={
-                      index % 2 === 0
-                        ? "totalWindowDailyLabel"
-                        : "totalWindowDailyLabel indexproductlabelpar"
-                    }
-                    key={product.id}
-                  >
-                    <p style={{ width: "50%" }}>$ {product.total}</p>
-                    <p style={{ width: "50%" }}>{product.date}</p>
-                    <button
-                      onClick={() => deleteStoredProduct(product.id, product)}
-                      className="totalWindowDailyDeleteButton"
-                    >
-                      <FaTrash className="totalWindowDailyDeleteIcon" />
-                    </button>
-                  </div>
-                ))}
-              </section>
-            ) : (
-              <section className="totalWindowContentProducts">
-                {storedTotal.map((product, index) => (
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div
-                      className={
-                        index % 2 === 0
-                          ? "totalWindowDailyLabel"
-                          : "totalWindowDailyLabel indexproductlabelpar"
-                      }
+            <section className="totalWindowContentProducts">
+              {isDaily ? (
+                <>
+                  {storedProducts.map((product, index) => (
+                    <TotalWindowLabelDaily
+                      index={index}
+                      product={product}
+                      deleteStoredProduct={deleteStoredProduct}
                       key={product.id}
-                    >
-                      <p style={{ width: "50%" }}>$ {product.total}</p>
-                      <p style={{ width: "50%" }}>{product.date}</p>
-                      <button
-                        onClick={() => deleteStoredTotal(product.id, product)}
-                        className="totalWindowDailyDeleteButton"
-                      >
-                        <FaTrash className="totalWindowDailyDeleteIcon" />
-                      </button>
-                      {/*<label className="labelHiddenSwitch">
-                        <input
-                          className="hiddenSwitch"
-                          type="checkbox"
-                          id={product.id}
-                        ></input>
-                        <FaAngleDown />
-                    </label>*/}
-                    </div>
-                    {/*<div className="hiddenTotalWindow">
-                      {product.productsList.map((list, index) => (
-                        <div
-                          key={list.id}
-                          style={{ backgroundColor: "rgb(0, 143, 210,0.2)" }}
-                        >
-                          <p>
-                            venta {index + 1}: {list.total}
-                          </p>
-                        </div>
-                      ))}
-                      </div>*/}
-                  </div>
-                ))}
-              </section>
-            )}
+                    />
+                  ))}
+                </>
+              ) : (
+                <>
+                  {storedTotal.map((product, index) => (
+                    <TotalWindowLabel
+                      index={index}
+                      product={product}
+                      deleteStoredProduct={deleteStoredTotal}
+                      key={product.id}
+                    />
+                  ))}
+                </>
+              )}
+            </section>
           </div>
         </motion.div>
       ) : (

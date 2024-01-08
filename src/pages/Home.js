@@ -76,8 +76,16 @@ function Home({ totalModal, setTotalModal }) {
         const storedTotal = JSON.parse(localStorage.total);
         const totalIndex = storedTotal.length;
         const nuevoArray = [...storedTotal];
-        const storedProduct = JSON.parse(localStorage.products);
 
+        if (totalIndex > 0) {
+          console.log("entre");
+          const totalId = nuevoArray[totalIndex - 1].id;
+          if (idDay !== totalId) {
+            window.localStorage.setItem("products", "[]");
+            setStoredProducts(JSON.parse(localStorage.products));
+          }
+        }
+        const storedProduct = JSON.parse(localStorage.products);
         const total = storedProduct.concat({
           total: parseFloat(totalPrice.toFixed(2)),
           date: formattedDateProduct,
@@ -87,6 +95,7 @@ function Home({ totalModal, setTotalModal }) {
         });
         window.localStorage.setItem("products", JSON.stringify(total));
         setStoredProducts(JSON.parse(localStorage.products));
+
         if (storedTotal.filter((all) => all.id === idDay).length > 0) {
           nuevoArray[totalIndex - 1].total += totalPrice;
           nuevoArray[totalIndex - 1].productsList = nuevoArray[
@@ -104,13 +113,7 @@ function Home({ totalModal, setTotalModal }) {
           window.localStorage.setItem("total", JSON.stringify(totalall));
           setStoredTotal(JSON.parse(localStorage.total));
         }
-        if (totalIndex > 0) {
-          const totalId = nuevoArray[totalIndex - 1].id;
-          if (idDay !== totalId) {
-            window.localStorage.setItem("products", "[]");
-            setStoredProducts(JSON.parse(localStorage.products));
-          }
-        }
+
         setProductList([]);
         setTotalPrice(0);
         toast.success("Venta cargada correctamente", {

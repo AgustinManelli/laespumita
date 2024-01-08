@@ -5,7 +5,6 @@ import { useState } from "react";
 function TotalWindowLabel({ index, product, deleteStoredProduct }) {
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {
-    // Cambiar el estado para alternar la clase
     setClassAdded(!isClassAdded);
   };
   return (
@@ -49,12 +48,9 @@ function TotalWindowLabel({ index, product, deleteStoredProduct }) {
         }
       >
         {product.productsList.map((list, index) => (
-          <div
-            key={list.id}
-            style={{ backgroundColor: "rgb(0, 143, 210,0.2)" }}
-          >
+          <div key={list.id}>
             <p>
-              venta {index + 1}: {list.total}
+              venta {index + 1}: ${list.total}
             </p>
           </div>
         ))}

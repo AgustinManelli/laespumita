@@ -78,7 +78,6 @@ function Home({ totalModal, setTotalModal }) {
         const nuevoArray = [...storedTotal];
 
         if (totalIndex > 0) {
-          console.log("entre");
           const totalId = nuevoArray[totalIndex - 1].id;
           if (idDay !== totalId) {
             window.localStorage.setItem("products", "[]");

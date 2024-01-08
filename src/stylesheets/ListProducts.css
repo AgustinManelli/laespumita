@@ -33,7 +33,6 @@
 .listContainer::-webkit-scrollbar-thumb:hover {
   background: rgb(142, 183, 202);
 }
-
 .listButton {
   position: absolute;
   background: none;

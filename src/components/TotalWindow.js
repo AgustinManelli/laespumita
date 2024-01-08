@@ -3,6 +3,7 @@ import "../stylesheets/TotalWindow.css";
 import { FaX } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { FaAngleDown } from "react-icons/fa6";
 function TotalWindow({
   totalModal,
   setTotalModal,
@@ -129,21 +130,51 @@ function TotalWindow({
               <section className="totalWindowContentProducts">
                 {storedTotal.map((product, index) => (
                   <div
-                    className={
-                      index % 2 === 0
-                        ? "totalWindowDailyLabel"
-                        : "totalWindowDailyLabel indexproductlabelpar"
-                    }
-                    key={product.id}
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "column",
+                    }}
                   >
-                    <p style={{ width: "50%" }}>$ {product.total}</p>
-                    <p style={{ width: "50%" }}>{product.date}</p>
-                    <button
-                      onClick={() => deleteStoredTotal(product.id, product)}
-                      className="totalWindowDailyDeleteButton"
+                    <div
+                      className={
+                        index % 2 === 0
+                          ? "totalWindowDailyLabel"
+                          : "totalWindowDailyLabel indexproductlabelpar"
+                      }
+                      key={product.id}
                     >
-                      <FaTrash className="totalWindowDailyDeleteIcon" />
-                    </button>
+                      <p style={{ width: "50%" }}>$ {product.total}</p>
+                      <p style={{ width: "50%" }}>{product.date}</p>
+                      <button
+                        onClick={() => deleteStoredTotal(product.id, product)}
+                        className="totalWindowDailyDeleteButton"
+                      >
+                        <FaTrash className="totalWindowDailyDeleteIcon" />
+                      </button>
+                      {/*<label className="labelHiddenSwitch">
+                        <input
+                          className="hiddenSwitch"
+                          type="checkbox"
+                          id={product.id}
+                        ></input>
+                        <FaAngleDown />
+                    </label>*/}
+                    </div>
+                    {/*<div className="hiddenTotalWindow">
+                      {product.productsList.map((list, index) => (
+                        <div
+                          key={list.id}
+                          style={{ backgroundColor: "rgb(0, 143, 210,0.2)" }}
+                        >
+                          <p>
+                            venta {index + 1}: {list.total}
+                          </p>
+                        </div>
+                      ))}
+                      </div>*/}
                   </div>
                 ))}
               </section>

@@ -131,6 +131,30 @@
   padding-top: 2px;
   padding-bottom: 2px;
 }
+.hiddenSwitch {
+  position: absolute;
+  opacity: 0;
+  visibility: 0;
+  cursor: pointer;
+}
+.labelHiddenSwitch {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+}
+input:checked ~ .hiddenTotalWindow {
+  max-height: 100px;
+}
+.hiddenTotalWindow {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  max-height: 0px;
+  overflow: hidden;
+  cursor: pointer;
+}
 .indexproductlabelpar {
   background-color: rgb(236, 239, 242);
 }

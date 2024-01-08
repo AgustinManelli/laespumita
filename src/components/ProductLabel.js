@@ -1,6 +1,5 @@
 import "../stylesheets/ProductLabel.css";
 import { motion } from "framer-motion";
-import { CiTrash } from "react-icons/ci";
 import { FaTrash } from "react-icons/fa6";
 function ProductLabel({ total, number, id, product, deleteProduct }) {
   const handleDelete = () => {

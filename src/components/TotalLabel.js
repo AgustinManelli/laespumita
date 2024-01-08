@@ -5,7 +5,7 @@ function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
     <div className="totalLabelContainer">
       <section className="totalLabelPrice">
         <p>
-          TOTAL: {totalPrice}{" "}
+          TOTAL:{" "}
           {isCard
             ? parseFloat(totalPrice * 1.15).toLocaleString("es-ES", {
                 minimumFractionDigits: 0,

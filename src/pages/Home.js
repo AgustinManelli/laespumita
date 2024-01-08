@@ -106,9 +106,15 @@ function Home({ totalModal, setTotalModal }) {
         });
         window.localStorage.setItem("products", JSON.stringify(total));
         setStoredProducts(JSON.parse(localStorage.products));
-        deleteAllProduct();
+        setProductList([]);
+        setTotalPrice(0);
+        toast.success("Venta cargada correctamente", {
+          duration: 1500,
+        });
       } catch {
-        alert("hubo un problema y no se pudo guardar");
+        toast.error("Se produjo un error al cargar la venta", {
+          duration: 1500,
+        });
       }
     }
   };

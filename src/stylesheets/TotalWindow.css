@@ -152,12 +152,13 @@
 .totalWindowDailyDeleteIcon {
   width: 15px;
   height: auto;
-  color: rgb(121, 8, 8);
-  transition: color 0.2s ease-in-out;
+  color: rgb(134, 134, 134);
+  transition: opacity 0.2s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.3;
 }
 .totalWindowDailyDeleteButton:hover .totalWindowDailyDeleteIcon {
-  color: rgb(255, 87, 87);
+  opacity: 1;
 }

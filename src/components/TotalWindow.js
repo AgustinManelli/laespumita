@@ -35,6 +35,7 @@ function TotalWindow({
     } else {
       setStoredTotal(JSON.parse(localStorage.total));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const currentDate = new Date();
   const formattedDate = `${

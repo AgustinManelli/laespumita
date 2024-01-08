@@ -16,6 +16,13 @@ function TotalWindow({
   deleteStoredTotal,
 }) {
   useEffect(() => {
+    try {
+      var totalWindowDiv = document.getElementById("totalWindowContent");
+      totalWindowDiv.scrollTop = totalWindowDiv.scrollHeight;
+    } catch {}
+  }, [isDaily, totalModal]);
+
+  useEffect(() => {
     if (window.localStorage.getItem("products") === "[null]") {
       setStoredProducts([]);
       window.localStorage.setItem("products", JSON.stringify(storedProducts));
@@ -68,35 +75,35 @@ function TotalWindow({
               <FaX className="totalWindowNavbarX" />
             </button>
           </nav>
-          <div className="totalWindowContent">
-            <section className="totalWindowContentSelector">
-              <button
-                className={
-                  isDaily
-                    ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
-                    : "totalWindowContentSelectorButton"
-                }
-                onClick={handleFilterTrue}
-              >
-                Venta diaria
-              </button>
-              <button
-                className={
-                  isDaily
-                    ? "totalWindowContentSelectorButton"
-                    : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
-                }
-                onClick={handleFilterFalse}
-              >
-                Ventas totales
-              </button>
-            </section>
+          <section className="totalWindowContentSelector">
+            <button
+              className={
+                isDaily
+                  ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                  : "totalWindowContentSelectorButton"
+              }
+              onClick={handleFilterTrue}
+            >
+              Venta diaria
+            </button>
+            <button
+              className={
+                isDaily
+                  ? "totalWindowContentSelectorButton"
+                  : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+              }
+              onClick={handleFilterFalse}
+            >
+              Ventas totales
+            </button>
+          </section>
+          <div className="totalWindowDailyLabel indexproductlabelpar totalWindowDailyLabelTop">
+            <p style={{ width: "50%" }}>venta</p>
+            <p style={{ width: "50%" }}>{isDaily ? "hora" : "día"}</p>
+          </div>
+          <div className="totalWindowContent" id="totalWindowContent">
             {isDaily ? (
               <section className="totalWindowContentProducts">
-                <div className="totalWindowDailyLabel indexproductlabelpar">
-                  <p style={{ width: "50%" }}>venta</p>
-                  <p style={{ width: "50%" }}>hora</p>
-                </div>
                 {storedProducts.map((product, index) => (
                   <div
                     className={
@@ -119,10 +126,6 @@ function TotalWindow({
               </section>
             ) : (
               <section className="totalWindowContentProducts">
-                <div className="totalWindowDailyLabel indexproductlabelpar">
-                  <p style={{ width: "50%" }}>venta</p>
-                  <p style={{ width: "50%" }}>día</p>
-                </div>
                 {storedTotal.map((product, index) => (
                   <div
                     className={

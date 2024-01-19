@@ -1,13 +1,7 @@
 import { FaTrash } from "react-icons/fa";
-function TotalWindowLabel({ index, product, deleteStoredProduct }) {
+function TotalWindowLabel({ product, deleteStoredProduct }) {
   return (
-    <div
-      className={
-        index % 2 === 0
-          ? "totalWindowDailyLabel"
-          : "totalWindowDailyLabel indexproductlabelpar"
-      }
-    >
+    <div className="totalWindowDailyLabel">
       <p style={{ width: "50%" }}>$ {product.total}</p>
       <p style={{ width: "50%" }}>{product.date}</p>
       <button

@@ -23,7 +23,6 @@ function TotalWindow({
       totalWindowDiv.scrollTop = totalWindowDiv.scrollHeight;
     } catch {}
   }, [isDaily, totalModal]);
-
   useEffect(() => {
     try {
       if (window.localStorage.getItem("products") === "[null]") {
@@ -49,6 +48,7 @@ function TotalWindow({
   }/${currentDate.getFullYear()}`;
   const handleClose = () => {
     setTotalModal(false);
+    setIsDaily(true);
   };
   const handleFilterTrue = () => {
     setIsDaily(true);
@@ -102,10 +102,55 @@ function TotalWindow({
               Ventas totales
             </button>
           </section>
-          <div className="totalWindowDailyLabel indexproductlabelpar totalWindowDailyLabelTop">
-            <p style={{ width: "50%" }}>venta</p>
-            <p style={{ width: "50%" }}>{isDaily ? "hora" : "día"}</p>
-          </div>
+          {isDaily ? (
+            <div className="totalWindowDailyLabelTop">
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p>venta</p>
+              </div>
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p>hora</p>
+              </div>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "10px",
+                width: "60%",
+              }}
+            >
+              <div
+                className="totalWindowDailyLabelTop"
+                style={{
+                  width: "100%",
+                }}
+              >
+                <p>ventas</p>
+                <p>día</p>
+              </div>
+              <div
+                className="totalWindowDailyLabelTop"
+                style={{ width: "140px" }}
+              >
+                <p>gráfica</p>
+              </div>
+            </div>
+          )}
           <div className="totalWindowContent" id="totalWindowContent">
             <section className="totalWindowContentProducts">
               {isDaily ? (
@@ -127,6 +172,8 @@ function TotalWindow({
                       product={product}
                       deleteStoredProduct={deleteStoredTotal}
                       key={product.id}
+                      totalModal={totalModal}
+                      setTotalModal={setTotalModal}
                     />
                   ))}
                 </>

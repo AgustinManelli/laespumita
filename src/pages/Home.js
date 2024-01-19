@@ -10,7 +10,7 @@ import TotalWindow from "../components/TotalWindow";
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
   const idDay = `${
-    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate() + 1
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
   }${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }${currentDate.getFullYear()}`;
@@ -22,6 +22,12 @@ function Home({ totalModal, setTotalModal }) {
   }/${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }/${currentDate.getFullYear()}`;
+  const chartFormattedDay = `${currentDate.getFullYear()}-${
+    (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
+  }-${(currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()}`;
+  const chartFormattedTime = `${
+    (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()
+  }`;
   const [percent, setPercent] = useState("");
   const [price, setPrice] = useState("");
   const [total, setTotal] = useState("");
@@ -86,13 +92,15 @@ function Home({ totalModal, setTotalModal }) {
         }
         const storedProduct = JSON.parse(localStorage.products);
         const total = storedProduct.concat({
+          id: Date.now(),
+          date: formattedDateProduct,
           total: parseFloat(
             (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
           ),
-          date: formattedDateProduct,
-          id: Date.now(),
           productcount: productList,
-          day: idDay,
+          totalId: idDay,
+          chartDate: chartFormattedDay,
+          chartTime: chartFormattedTime,
         });
         window.localStorage.setItem("products", JSON.stringify(total));
         setStoredProducts(JSON.parse(localStorage.products));
@@ -158,7 +166,7 @@ function Home({ totalModal, setTotalModal }) {
     const flagDay = product.id;
     const filteredDaily = JSON.parse(localStorage.products);
     const filteredDailyProduct = filteredDaily.filter(
-      (product) => product.day !== flagDay
+      (product) => product.totalId !== flagDay
     );
     setStoredProducts(filteredDailyProduct);
     window.localStorage.setItem(

@@ -1,9 +1,9 @@
 .totalWindowLabelContainerTotal {
-  width: 60%;
+  width: 80%;
   display: flex;
   align-items: start;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
 .totalWindowLabelContainer {
   position: relative;
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 60%;
+  width: 80%;
   padding-top: 2px;
   padding-bottom: 2px;
   height: 30px;
@@ -38,7 +38,7 @@
   margin-top: 10px;
 }
 .totalWindowDailyLabelTop {
-  width: 60%;
+  width: 80%;
   background-color: rgb(0, 143, 210, 0.5);
   border-radius: 10px;
   height: 30px;

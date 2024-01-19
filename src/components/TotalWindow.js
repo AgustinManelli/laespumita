@@ -131,7 +131,7 @@ function TotalWindow({
                 display: "flex",
                 flexDirection: "row",
                 gap: "10px",
-                width: "60%",
+                width: "80%",
               }}
             >
               <div

@@ -54,7 +54,10 @@ function ListProducts({ productList, deleteProduct, handleSave }) {
           )}
         </AnimatePresence>
       </section>
-      <button className="listButton" onClick={handleSave}>
+      <button
+        className={productList.length > 0 ? "listButton" : "listButton locked"}
+        onClick={handleSave}
+      >
         <FaCircleCheck className="listButtonIcon" />
       </button>
     </div>

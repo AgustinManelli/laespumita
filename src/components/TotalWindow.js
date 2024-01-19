@@ -145,7 +145,7 @@ function TotalWindow({
               </div>
               <div
                 className="totalWindowDailyLabelTop"
-                style={{ width: "140px" }}
+                style={{ width: "130px" }}
               >
                 <p>gráfica</p>
               </div>
@@ -174,6 +174,7 @@ function TotalWindow({
                       key={product.id}
                       totalModal={totalModal}
                       setTotalModal={setTotalModal}
+                      lastIndex={index !== storedTotal.length - 1}
                     />
                   ))}
                 </>

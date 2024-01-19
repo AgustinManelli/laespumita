@@ -3,7 +3,7 @@
   display: flex;
   align-items: start;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 .totalWindowLabelContainer {
   position: relative;
@@ -112,12 +112,30 @@
   gap: 10px;
   justify-content: center;
   width: 100%;
-  max-height: fit-content;
-  overflow: hidden;
+  height: fit-content;
+  max-height: 150px;
+  overflow-y: auto;
   background-color: rgb(0, 143, 210, 0.2);
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   margin-bottom: 5px;
   margin-top: 10px;
+}
+
+.hiddenTotalWindowActived::-webkit-scrollbar {
+  width: 7px;
+}
+.hiddenTotalWindowActived::-webkit-scrollbar-track {
+  background: rgb(236, 239, 242);
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.hiddenTotalWindowActived::-webkit-scrollbar-thumb {
+  background: rgb(201, 204, 207);
+  border-radius: 3px;
+}
+.hiddenTotalWindowActived::-webkit-scrollbar-thumb:hover {
+  background: rgb(142, 183, 202);
 }

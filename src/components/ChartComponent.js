@@ -60,28 +60,18 @@ function ChartComponent({ chartList }) {
   }, [chartList]);
 
   return (
-    <button
+    <div
+      ref={chartContainerRef}
       style={{
-        border: "none",
-        padding: "0",
-        margin: "0",
-        background: "none",
-        cursor: "pointer",
+        marginTop: "10px",
+        width: "100px",
+        height: "24px",
+        right: "-120px",
+        backgroundColor: "rgb(236, 239, 242)",
+        padding: "5px",
+        borderRadius: "10px",
       }}
-    >
-      <div
-        ref={chartContainerRef}
-        style={{
-          marginTop: "10px",
-          width: "100px",
-          height: "24px",
-          right: "-120px",
-          backgroundColor: "rgb(236, 239, 242)",
-          padding: "5px",
-          borderRadius: "10px",
-        }}
-      ></div>
-    </button>
+    ></div>
   );
 }
 

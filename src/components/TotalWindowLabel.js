@@ -5,7 +5,13 @@ import { useEffect, useState } from "react";
 import ChartComponent from "./ChartComponent";
 import ChartComponentExpanded from "./ChartComponentExpanded";
 
-function TotalWindowLabel({ product, deleteStoredProduct, totalModal }) {
+function TotalWindowLabel({
+  index,
+  product,
+  deleteStoredProduct,
+  totalModal,
+  lastIndex,
+}) {
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {
     setClassAdded(!isClassAdded);
@@ -117,6 +123,7 @@ function TotalWindowLabel({ product, deleteStoredProduct, totalModal }) {
               style={{
                 backgroundColor: "rgb(0, 0, 0, 0.05)",
                 height: "34px",
+                minHeight: "34px",
                 display: "flex",
                 justifyContent: "start",
                 alignItems: "center",
@@ -131,11 +138,36 @@ function TotalWindowLabel({ product, deleteStoredProduct, totalModal }) {
           ))}
         </div>
         {isClassAdded ? (
-          <div>
+          <div
+            style={{
+              position: "relative",
+              width: "calc(100% - 10px)",
+              backgroundColor: "rgb(236, 239, 242)",
+              borderRadius: "10px",
+              marginTop: "5px",
+              padding: "5px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
             <ChartComponentExpanded chartList={chartList} />
           </div>
         ) : (
           <></>
+        )}
+        {isClassAdded && lastIndex ? (
+          <div
+            style={{
+              width: "100%",
+              height: "2px",
+              backgroundColor: "#008fd2",
+              marginBottom: "10px",
+            }}
+          ></div>
+        ) : (
+          <div></div>
         )}
       </div>
       <ChartComponent chartList={chartList} />

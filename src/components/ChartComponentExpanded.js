@@ -61,13 +61,8 @@ function ChartComponentExpanded({ chartList }) {
     <div
       ref={chartContainerRef}
       style={{
-        position: "relative",
         width: "calc(100% - 10px)",
         height: "100px",
-        padding: "5px",
-        borderRadius: "10px",
-        backgroundColor: "rgb(236, 239, 242)",
-        marginTop: "5px",
       }}
     ></div>
   );

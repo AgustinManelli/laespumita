@@ -10,7 +10,7 @@ import TotalWindow from "../components/TotalWindow";
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
   const idDay = `${
-    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate() + 1
+    (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
   }${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }${currentDate.getFullYear()}`;

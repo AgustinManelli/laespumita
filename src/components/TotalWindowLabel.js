@@ -113,50 +113,58 @@ function TotalWindowLabel({
           </label>
         </div>
         <div
-          className={
-            isClassAdded ? "hiddenTotalWindowActived" : "hiddenTotalWindow"
-          }
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
         >
-          {product.productsList.map((list, index) => (
+          <div
+            className={
+              isClassAdded ? "hiddenTotalWindowActived" : "hiddenTotalWindow"
+            }
+          >
+            {product.productsList.map((list, index) => (
+              <div
+                key={list.id}
+                style={{
+                  backgroundColor: "rgb(0, 0, 0, 0.05)",
+                  height: "34px",
+                  minHeight: "34px",
+                  display: "flex",
+                  justifyContent: "start",
+                  alignItems: "center",
+                  width: "95%",
+                  borderRadius: "10px",
+                }}
+              >
+                <p style={{ marginLeft: "20px", marginRight: "20px" }}>
+                  venta {index + 1} ({list.date}): ${list.total}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          {isClassAdded ? (
             <div
-              key={list.id}
               style={{
-                backgroundColor: "rgb(0, 0, 0, 0.05)",
-                height: "34px",
-                minHeight: "34px",
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-                width: "95%",
+                position: "relative",
+                width: "calc(95% - 10px)",
+                backgroundColor: "rgb(236, 239, 242)",
                 borderRadius: "10px",
+                marginTop: "5px",
+                padding: "5px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: "20px",
               }}
             >
-              <p style={{ marginLeft: "20px", marginRight: "20px" }}>
-                venta {index + 1} ({list.date}): ${list.total}
-              </p>
+              <ChartComponentExpanded chartList={chartList} />
             </div>
-          ))}
+          ) : (
+            <></>
+          )}
         </div>
-        {isClassAdded ? (
-          <div
-            style={{
-              position: "relative",
-              width: "calc(100% - 10px)",
-              backgroundColor: "rgb(236, 239, 242)",
-              borderRadius: "10px",
-              marginTop: "5px",
-              padding: "5px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: "20px",
-            }}
-          >
-            <ChartComponentExpanded chartList={chartList} />
-          </div>
-        ) : (
-          <></>
-        )}
         {isClassAdded && lastIndex ? (
           <div
             style={{

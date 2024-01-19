@@ -156,10 +156,9 @@ function TotalWindow({
                 <>
                   {storedProducts.map((product, index) => (
                     <TotalWindowLabelDaily
-                      index={index}
+                      key={product.id}
                       product={product}
                       deleteStoredProduct={deleteStoredProduct}
-                      key={product.id}
                     />
                   ))}
                 </>
@@ -167,12 +166,10 @@ function TotalWindow({
                 <>
                   {storedTotal.map((product, index) => (
                     <TotalWindowLabel
-                      index={index}
+                      key={product.id}
                       product={product}
                       deleteStoredProduct={deleteStoredTotal}
-                      key={product.id}
                       totalModal={totalModal}
-                      setTotalModal={setTotalModal}
                       lastIndex={index !== storedTotal.length - 1}
                     />
                   ))}

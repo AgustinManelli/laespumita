@@ -6,7 +6,6 @@ import ChartComponent from "./ChartComponent";
 import ChartComponentExpanded from "./ChartComponentExpanded";
 
 function TotalWindowLabel({
-  index,
   product,
   deleteStoredProduct,
   totalModal,
@@ -17,6 +16,11 @@ function TotalWindowLabel({
     setClassAdded(!isClassAdded);
   };
   const [chartList, setChartList] = useState([]);
+
+  useEffect(() => {
+    var objDiv = document.getElementById("hiddenTotalWindow");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  }, [isClassAdded]);
 
   useEffect(() => {
     const length = product.productsList.length;
@@ -119,6 +123,7 @@ function TotalWindowLabel({
             className={
               isClassAdded ? "hiddenTotalWindowActived" : "hiddenTotalWindow"
             }
+            id="hiddenTotalWindow"
           >
             {product.productsList.map((list, index) => (
               <div

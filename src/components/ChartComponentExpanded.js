@@ -7,40 +7,48 @@ function ChartComponentExpanded({ chartList }) {
   useEffect(() => {
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        background: { type: ColorType.solid, color: "rgb(236, 239, 242)" },
+        background: {
+          type: ColorType.solid,
+          color: "rgb(236, 239, 242)",
+        },
+        fontSize: 10,
       },
       rightPriceScale: {
         visible: true,
         borderVisible: true,
         autoScale: true,
+        borderColor: "#008fd2",
       },
-      OverlayPriceScaleOptions: {},
       crosshair: {
         mode: 1,
         vertLine: {
           visible: false,
+          labelBackgroundColor: "#008fd2",
         },
         horzLine: {
-          visible: false,
+          visible: true,
+          labelBackgroundColor: "#008fd2",
+          style: 4,
         },
       },
       grid: {
         vertLines: {
-          visible: true,
+          visible: false,
         },
         horzLines: {
-          visible: true,
+          visible: false,
         },
       },
       timeScale: {
         visible: true,
-        barSpacing: 30,
+        barSpacing: 50,
         borderVisible: true,
         secondsVisible: false,
         timeVisible: true,
+        borderColor: "#008fd2",
       },
       handleScroll: true,
-      handleScale: true,
+      handleScale: false,
       autoSize: true,
     });
     const newSeries = chart.addAreaSeries({
@@ -49,7 +57,7 @@ function ChartComponentExpanded({ chartList }) {
       bottomColor: "rgba(41, 98, 255, 0)",
       priceLineVisible: false,
       lastValueVisible: false,
-      crosshairMarkerVisible: false,
+      crosshairMarkerVisible: true,
       lineWidth: 2,
     });
 

@@ -12,24 +12,9 @@ function DeleteAllParameters({ setStoredTotal, setStoredProducts }) {
     }
   };
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: "20px",
-        left: "20px",
-        opacity: "0.2",
-        zIndex: "100",
-      }}
-    >
-      <button
-        style={{
-          border: "none",
-          backgroundColor: "none",
-          cursor: "pointer",
-        }}
-        onClick={handlReset}
-      >
-        <FaArrowRotateLeft />
+    <div className="deleteAllParametersContainer">
+      <button className="deleteAllParametersButton" onClick={handlReset}>
+        <FaArrowRotateLeft className="deleteAllParametersIcon" />
       </button>
     </div>
   );

@@ -1,0 +1,19 @@
+.deleteAllParametersContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+.deleteAllParametersButton {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+}
+.deleteAllParametersIcon {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.2;
+}
+.deleteAllParametersButton:hover .deleteAllParametersIcon {
+  transform: rotate(-360deg) scale(130%);
+  opacity: 0.4;
+}

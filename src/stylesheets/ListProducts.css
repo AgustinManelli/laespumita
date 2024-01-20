@@ -48,12 +48,31 @@
   cursor: pointer;
 }
 .listButtonIcon {
-  color: rgb(57, 99, 25);
+  stroke: rgb(57, 99, 25);
+  stroke-width: 2;
   width: 30px;
   height: auto;
-  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out,
+    stroke-width 0.2s ease-in-out;
 }
 .listButton:hover .listButtonIcon {
-  color: rgb(112, 205, 40);
+  stroke: rgb(87, 173, 22);
+  stroke-width: 1.5;
   transform: scale(110%);
+}
+.CheckIconCheck {
+  stroke-dasharray: 20;
+}
+
+.listButton:hover .CheckIconCheck {
+  animation: draw 0.5s ease forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

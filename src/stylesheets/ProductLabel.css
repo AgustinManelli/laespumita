@@ -34,10 +34,6 @@
   align-items: center;
   justify-content: center;
 }
-.labelButton:hover .labelIcon {
-  color: rgb(255, 87, 87);
-  transform: scale(110%);
-}
 .labelButton {
   background: none;
   border-radius: 20px;
@@ -53,6 +49,21 @@
 .labelIcon {
   width: 20px;
   height: auto;
-  color: rgb(121, 8, 8);
+  stroke: rgb(121, 8, 8);
   transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  stroke-width: 2;
+  overflow: visible;
+}
+
+.labelButton:hover .labelIcon {
+  stroke: rgb(255, 87, 87);
+  transform: scale(110%);
+}
+
+.labelIconLid {
+  transition: transform 0.2s ease-in-out;
+}
+
+.labelButton:hover .labelIconLid {
+  transform: translateY(-7px) translateX(3px) rotate(10deg);
 }

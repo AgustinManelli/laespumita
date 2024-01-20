@@ -1,17 +1,19 @@
 .totalLabelContainer {
   position: fixed;
   bottom: 20px;
-  right: 0;
+  right: 20px;
   width: fit-content;
   height: fit-content;
   display: flex;
   flex-direction: row-reverse;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 .totalLabelPrice {
   display: flex;
-  background: linear-gradient(90deg, #008fd2 40%, #fff 100%);
-  border-radius: 20px 0px 0px 20px;
+  background: #fff;
+  border-radius: 20px;
   min-width: 300px;
   max-width: 700px;
   height: 70px;
@@ -21,15 +23,15 @@
 .totalLabelContainer p {
   margin: 0;
   margin-left: 20px;
-  color: #fff;
+  color: rgb(134, 134, 134);
   font-weight: 600;
   font-size: 23px;
 }
 .totalCard {
   border-radius: 20px;
-  background-color: #008fd2;
-  height: 70px;
-  width: 70px;
+  background-color: #ffffff;
+  height: 55px;
+  width: 55px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
@@ -40,8 +42,8 @@
 .totalCardAct {
   border-radius: 20px;
   background-color: rgb(255, 87, 87);
-  height: 70px;
-  width: 70px;
+  height: 55px;
+  width: 55px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
@@ -50,7 +52,44 @@
   background-color: rgb(255, 159, 159);
 }
 .cardIcon {
-  width: 40px;
+  width: 30px;
   height: auto;
-  color: #fff;
+  stroke: #008fd2;
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out;
+}
+.totalCard:hover .cardIcon {
+  stroke: #fff;
+}
+.cardIconAct {
+  width: 30px;
+  height: auto;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.cardIconType {
+  stroke-dasharray: 20;
+}
+.totalCardAct:hover .cardIconType {
+  animation: check1 1s ease forwards;
+}
+.totalCard:hover .cardIconType {
+  animation: check2 1s ease forwards;
+}
+
+@keyframes check1 {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes check2 {
+  0% {
+    stroke-dashoffset: -20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

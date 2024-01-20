@@ -30,8 +30,8 @@
   position: absolute;
   right: 9px;
   height: auto;
-  width: 15px;
-  color: rgb(134, 134, 134);
+  width: 20px;
+  stroke: rgb(134, 134, 134);
 }
 .inputLabel {
   position: relative;
@@ -80,17 +80,26 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 .deleteInputCalculatorIcon {
-  width: 25px;
+  width: 23px;
   height: auto;
-  color: rgb(121, 8, 8);
-  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  stroke: rgb(121, 8, 8);
+  transition: transform 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  transform: rotate(180deg);
   display: flex;
   align-items: center;
   justify-content: center;
+  stroke-width: 2;
 }
 .deleteInputCalculator:hover .deleteInputCalculatorIcon {
-  transform: scale(110%);
-  color: rgb(255, 87, 87);
+  transform: scale(110%) rotate(180deg);
+  stroke: rgb(255, 87, 87);
+}
+.deleteInputCalculatorIconX {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.deleteInputCalculator:hover .deleteInputCalculatorIconX {
+  transform: rotate(-360deg);
 }
 
 .mostPercentContainerSection {

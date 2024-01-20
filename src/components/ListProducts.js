@@ -2,7 +2,6 @@ import "../stylesheets/ListProducts.css";
 import { useEffect } from "react";
 import ProductLabel from "./ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCircleCheck } from "react-icons/fa6";
 
 function ListProducts({ productList, deleteProduct, handleSave }) {
   const products = productList;
@@ -10,6 +9,30 @@ function ListProducts({ productList, deleteProduct, handleSave }) {
     var objDiv = document.getElementById("listContainer");
     objDiv.scrollTop = objDiv.scrollHeight;
   }, [productList]);
+
+  const CheckIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="listButtonIcon"
+      data-src="/icons/checkmark-square-04-stroke-rounded.svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      role="img"
+    >
+      <path
+        d="M15 2.5H12C7.52166 2.5 5.28249 2.5 3.89124 3.89124C2.5 5.28249 2.5 7.52166 2.5 12C2.5 16.4783 2.5 18.7175 3.89124 20.1088C5.28249 21.5 7.52166 21.5 12 21.5C16.4783 21.5 18.7175 21.5 20.1088 20.1088C21.5 18.7175 21.5 16.4783 21.5 12V10"
+        strokeLinecap="round"
+      ></path>
+      <path
+        className="CheckIconCheck"
+        id="CheckIconCheck"
+        d="M8.5 10L12 13.5L21.0002 3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  );
 
   return (
     <div style={{ position: "relative" }}>
@@ -58,7 +81,7 @@ function ListProducts({ productList, deleteProduct, handleSave }) {
         className={productList.length > 0 ? "listButton" : "listButton locked"}
         onClick={handleSave}
       >
-        <FaCircleCheck className="listButtonIcon" />
+        <CheckIcon />
       </button>
     </div>
   );

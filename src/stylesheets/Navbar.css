@@ -33,10 +33,25 @@
 .navbarOpenModalIcon {
   width: 25px;
   height: auto;
-  color: rgb(134, 134, 134);
-  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  stroke: rgb(134, 134, 134);
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 .navbarOpenModal:hover .navbarOpenModalIcon {
-  color: #008fd2;
+  stroke: #008fd2;
   transform: scale(110%);
+}
+
+.navbarOpenModal:hover .navbarOpenModalIconLine {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: line 1s ease forwards;
+}
+@keyframes line {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

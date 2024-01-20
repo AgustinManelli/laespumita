@@ -6,7 +6,7 @@
 }
 .deleteAllParametersButton {
   border: none;
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
 }
 .deleteAllParametersIcon {

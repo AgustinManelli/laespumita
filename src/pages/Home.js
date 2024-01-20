@@ -6,6 +6,7 @@ import "./Home.css";
 import TotalLabel from "../components/TotalLabel";
 import { toast } from "sonner";
 import TotalWindow from "../components/TotalWindow";
+import DeleteAllParameters from "../components/DeleteAllParameters";
 
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
@@ -217,6 +218,10 @@ function Home({ totalModal, setTotalModal }) {
         storedTotal={storedTotal}
         setStoredTotal={setStoredTotal}
         deleteStoredTotal={deleteStoredTotal}
+      />
+      <DeleteAllParameters
+        setStoredTotal={setStoredTotal}
+        setStoredProducts={setStoredProducts}
       />
     </div>
   );

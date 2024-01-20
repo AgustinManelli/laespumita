@@ -10,11 +10,13 @@ function TotalWindowLabel({
   deleteStoredProduct,
   totalModal,
   lastIndex,
+  setStoredTotal,
 }) {
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {
     setClassAdded(!isClassAdded);
   };
+
   const [chartList, setChartList] = useState([]);
 
   useEffect(() => {
@@ -26,7 +28,6 @@ function TotalWindowLabel({
     const length = product.productsList.length;
     let newSale = [];
     let flagHours = [];
-
     for (let i = 0; i < length; i++) {
       const currentTime =
         Date.parse(
@@ -82,7 +83,6 @@ function TotalWindowLabel({
         flagHours.push(parseInt(product.productsList[i].chartTime));
       }
     }
-
     setChartList(newSale);
   }, [totalModal]);
 

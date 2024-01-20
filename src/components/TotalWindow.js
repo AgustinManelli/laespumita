@@ -171,6 +171,7 @@ function TotalWindow({
                       deleteStoredProduct={deleteStoredTotal}
                       totalModal={totalModal}
                       lastIndex={index !== storedTotal.length - 1}
+                      setStoredTotal={setStoredTotal}
                     />
                   ))}
                 </>

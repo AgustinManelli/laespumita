@@ -10,6 +10,8 @@ function Calculator({
   setTotal,
   deleteInputs,
   mostPercent,
+  stockistPercent,
+  isStockist,
 }) {
   useEffect(() => {
     setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
@@ -132,7 +134,9 @@ function Calculator({
         <h2>Precio a cobrar en caja</h2>
         <div className="calculatorDataGetter">
           <label className="inputLabel">
-            <p className="totalResult">${total}</p>
+            <p className="totalResult">
+              ${isStockist > 0 ? total * (1 + isStockist / 100) : total}
+            </p>
           </label>
         </div>
       </section>
@@ -221,6 +225,37 @@ function Calculator({
               onClick={() => mostPercent("70")}
             >
               <p>70</p>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="mostPercentContainerSection">
+        <div
+          className="mostPercentContainer"
+          style={{ justifyContent: "center", gap: "10px" }}
+        >
+          <div>
+            <button
+              className={
+                isStockist === "10.5"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => stockistPercent("10.5")}
+            >
+              <p>10.5</p>
+            </button>
+          </div>
+          <div>
+            <button
+              className={
+                isStockist === "21"
+                  ? "mostPercentBox percentSelected"
+                  : "mostPercentBox"
+              }
+              onClick={() => stockistPercent("21")}
+            >
+              <p>21</p>
             </button>
           </div>
         </div>

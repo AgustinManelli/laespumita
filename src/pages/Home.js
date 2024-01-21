@@ -30,6 +30,7 @@ function Home({ totalModal, setTotalModal }) {
     (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()
   }`;
   const [percent, setPercent] = useState("");
+  const [isStockist, setIsStockist] = useState("");
   const [price, setPrice] = useState("");
   const [total, setTotal] = useState("");
   const [productList, setProductList] = useState([]);
@@ -42,17 +43,18 @@ function Home({ totalModal, setTotalModal }) {
     if (total === 0) {
       return;
     }
+    const tempTotal = isStockist > 0 ? total * (1 + isStockist / 100) : total;
     const newProduct = {
       id: Date.now(),
       date: formattedDateProduct,
-      total,
+      total: tempTotal,
     };
     const totalProducts = [...productList, newProduct];
     setProductList(totalProducts);
     setPrice("");
     setPercent("");
     setTotal(0);
-    setTotalPrice(totalPrice + total);
+    setTotalPrice(totalPrice + tempTotal);
   };
   const deleteProduct = (id, product) => {
     setProductList(productList.filter((product) => product.id !== id));
@@ -73,6 +75,9 @@ function Home({ totalModal, setTotalModal }) {
   };
   const mostPercent = (num) => {
     setPercent(num);
+  };
+  const stockistPercent = (num) => {
+    setIsStockist(num);
   };
   const setCard = () => {
     setIsCard(!isCard);
@@ -188,6 +193,8 @@ function Home({ totalModal, setTotalModal }) {
         setTotal={setTotal}
         deleteInputs={deleteInputs}
         mostPercent={mostPercent}
+        stockistPercent={stockistPercent}
+        isStockist={isStockist}
       />
       <AddButtons
         addProduct={addProduct}

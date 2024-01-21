@@ -1,7 +1,7 @@
 .calculatorContainer {
   background-color: rgb(255, 255, 255);
   width: 400px;
-  height: fit-content;
+  height: 100%;
   border-radius: 20px;
   box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
     rgba(12, 20, 66, 0.08) 0px 30px 80px,
@@ -20,6 +20,7 @@
   color: #008fd2;
 }
 .calculatorDataSetter {
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
   gap: 10px;

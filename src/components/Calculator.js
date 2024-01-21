@@ -97,6 +97,7 @@ function Calculator({
         gap: "15px",
         alignItems: "center",
         justifyContent: "center",
+        height: "340px",
       }}
     >
       <section className="calculatorContainer">

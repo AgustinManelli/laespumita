@@ -51,13 +51,15 @@
   padding: 0;
 }
 .totalWindowNavbarButton:hover .totalWindowNavbarX {
-  color: rgb(255, 87, 87);
+  stroke: rgb(255, 87, 87);
+  transform: scale(120%);
 }
 .totalWindowNavbarX {
   width: 18px;
   height: 15px;
-  color: rgb(134, 134, 134);
-  transition: color 0.2s ease-in-out;
+  stroke: rgb(134, 134, 134);
+  stroke-width: 2;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .totalWindowContent {

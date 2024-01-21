@@ -100,9 +100,15 @@
   cursor: pointer;
   z-index: 1;
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-  overflow: visible;
 }
-.actHiddenIcon {
+
+.arrowIconContainer {
+  height: 20px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.arrowIconAct {
   opacity: 1;
   transform: rotate(180deg);
 }

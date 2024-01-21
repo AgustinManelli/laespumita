@@ -16,6 +16,23 @@ function TotalWindow({
   setStoredTotal,
   deleteStoredTotal,
 }) {
+  const CancelIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="totalWindowNavbarX"
+      data-src="/icons/cancel-01-stroke-rounded.svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      role="img"
+    >
+      <path
+        d="M19 5L5 19M5 5L19 19"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  );
   useEffect(() => {
     try {
       var totalWindowDiv = document.getElementById("totalWindowContent");
@@ -76,7 +93,7 @@ function TotalWindow({
           <nav className="totalWindowNavbar">
             <p>Resumen de ventas al día {formattedDate}</p>
             <button onClick={handleClose} className="totalWindowNavbarButton">
-              <FaX className="totalWindowNavbarX" />
+              <CancelIcon />
             </button>
           </nav>
           <section className="totalWindowContentSelector">

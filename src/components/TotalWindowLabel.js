@@ -23,13 +23,7 @@ function TotalWindowLabel({
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      className={
-        isClassAdded
-          ? product.productsList.length > 0
-            ? "actHiddenIcon hiddenSwitchIcon"
-            : "hiddenSwitchIcon"
-          : "hiddenSwitchIcon"
-      }
+      className="hiddenSwitchIcon"
       data-src="/icons/arrow-down-01-stroke-rounded.svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       role="img"
@@ -37,10 +31,8 @@ function TotalWindowLabel({
     >
       <path
         d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
-        stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></path>
     </svg>
   );
@@ -154,7 +146,15 @@ function TotalWindowLabel({
               id={product.id + 1}
               onClick={handleCheckboxClick}
             ></input>
-            <ArrowIcon />
+            <div
+              className={
+                isClassAdded
+                  ? "arrowIconContainer arrowIconAct"
+                  : "arrowIconContainer"
+              }
+            >
+              <ArrowIcon />
+            </div>
           </label>
         </div>
         <div

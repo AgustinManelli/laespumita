@@ -33,6 +33,24 @@
 .listContainer::-webkit-scrollbar-thumb:hover {
   background: rgb(142, 183, 202);
 }
+.EmptyListIcon {
+  stroke: rgb(134, 134, 134);
+  stroke-width: 2;
+  width: 30px;
+  height: auto;
+}
+.EmptyListIconArrow {
+  transform-origin: 69% 77%;
+  animation: EmptyListIconArrowRotate 2s normal infinite;
+}
+@keyframes EmptyListIconArrowRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
 .listButton {
   position: absolute;
   background: none;

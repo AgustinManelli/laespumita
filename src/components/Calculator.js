@@ -107,7 +107,7 @@ function Calculator({
             <input
               type="number"
               className="calcInput calcInput_peso"
-              placeholder="Ingrese precio"
+              placeholder="Precio"
               id="input__peso"
               value={price}
               onInput={priceSetter}
@@ -118,7 +118,7 @@ function Calculator({
             <input
               type="number"
               className="calcInput calcInput_pj"
-              placeholder="Ingrese porcentaje"
+              placeholder="Procentaje"
               id="input__porcentaje"
               value={percent}
               onInput={percentSetter}

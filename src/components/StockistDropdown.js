@@ -79,13 +79,21 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
       <motion.button
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
+        style={isStockist > 0 ? { backgroundColor: "#008fd2" } : {}}
       >
-        <motion.div className="stockistDDSelected">
+        <motion.div
+          className="stockistDDSelected"
+          style={isStockist > 0 ? { color: "#fff" } : {}}
+        >
           {isStockist > 0 ? <p>{isStockist}</p> : <StockistIcon />}
         </motion.div>
-        <div className="stockistDDAlertContainer">
-          <div className="stockistDDAlert"></div>
-        </div>
+        {isStockist > 0 ? (
+          <div className="stockistDDAlertContainer">
+            <div className="stockistDDAlert"></div>
+          </div>
+        ) : (
+          <></>
+        )}
       </motion.button>
       <motion.ul
         variants={{

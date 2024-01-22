@@ -11,7 +11,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 20px;
-  gap: 15px;
+  gap: 10px;
 }
 .calculatorContainer h2 {
   margin: 0;
@@ -128,7 +128,7 @@ input::-webkit-inner-spin-button {
 .mostPercentContainerSection h2 {
   margin: 0;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 15px;
   color: #008fd2;
 }
 
@@ -141,9 +141,10 @@ input::-webkit-inner-spin-button {
 }
 
 .mostPercentBox {
+  width: 43px;
+  height: 43px;
   background-color: rgb(236, 239, 242);
-  border-radius: 100%;
-  padding: 15px;
+  border-radius: 15px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, color 0.4s ease-in-out,
@@ -153,7 +154,7 @@ input::-webkit-inner-spin-button {
 .mostPercentBox:hover {
   background-color: #008fd2;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .mostPercentBox p {
   font-weight: 600;
@@ -162,4 +163,34 @@ input::-webkit-inner-spin-button {
   background-color: #008fd2;
   color: #fff;
   border-radius: 10px;
+}
+
+.stockistPercentContainerSection {
+  background-color: #fff;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  width: 400px;
+  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
+    rgba(12, 20, 66, 0.08) 0px 30px 80px,
+    rgb(230, 233, 237) 0px 0px 0px 0px inset;
+}
+.stockistPercentContainerSection h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
+  color: #008fd2;
+}
+.stockistPercentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

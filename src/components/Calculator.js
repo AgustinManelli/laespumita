@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "../stylesheets/Calculator.css";
+import StockistDropdown from "./StockistDropdown";
 
 function Calculator({
   percent,
@@ -96,7 +97,7 @@ function Calculator({
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "15px",
+        gap: "10px",
         alignItems: "center",
         justifyContent: "center",
         height: "340px",
@@ -141,20 +142,8 @@ function Calculator({
         </div>
       </section>
       <section className="mostPercentContainerSection">
-        <h2>Porcentajes</h2>
+        <h2>Porcentaje cliente</h2>
         <div className="mostPercentContainer">
-          <div>
-            <button
-              className={
-                percent === "21"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("21")}
-            >
-              <p>21</p>
-            </button>
-          </div>
           <div>
             <button
               className={
@@ -227,11 +216,20 @@ function Calculator({
               <p>70</p>
             </button>
           </div>
+          <div
+            style={{ width: "2px", height: "41px", backgroundColor: "#008fd2" }}
+          ></div>
+          <StockistDropdown
+            isStockist={isStockist}
+            stockistPercent={stockistPercent}
+          />
+          <div></div>
         </div>
       </section>
-      <section className="mostPercentContainerSection">
+      {/*<section className="stockistPercentContainerSection">
+        <h2>Porcentaje viajante</h2>
         <div
-          className="mostPercentContainer"
+          className="stockistPercentContainer"
           style={{ justifyContent: "center", gap: "10px" }}
         >
           <div>
@@ -259,7 +257,7 @@ function Calculator({
             </button>
           </div>
         </div>
-      </section>
+            </section>*/}
     </div>
   );
 }

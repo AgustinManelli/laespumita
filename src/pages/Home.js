@@ -72,6 +72,7 @@ function Home({ totalModal, setTotalModal }) {
   const deleteInputs = () => {
     setPrice("");
     setPercent("");
+    setIsStockist("");
   };
   const mostPercent = (num) => {
     setPercent(num);

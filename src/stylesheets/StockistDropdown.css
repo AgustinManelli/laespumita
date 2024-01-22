@@ -1,0 +1,111 @@
+.stockistDDContainer {
+  width: fit-content;
+  position: relative;
+}
+.stockistDDContainer button {
+  appearance: button;
+  -webkit-appearance: button;
+  border: none;
+  border-radius: 15px;
+  padding: 5.5px 5.5px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  background-color: rgb(236, 239, 242);
+  width: 43px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stockistDDContainer button:hover .stockistDDSelected {
+  color: #fff;
+}
+.stockistDDSelected {
+  color: rgb(134, 134, 134);
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "montserrat";
+}
+.stockistDDContainer button:hover {
+  background-color: #008fd2;
+  border-radius: 5px;
+}
+.stockistDDContainer button:hover .StockistIcon {
+  stroke: #fff;
+}
+.StockistIconLine {
+  stroke-dasharray: 20;
+  stroke-dashoffset: -20;
+}
+.stockistDDContainer button:hover .StockistIconLine {
+  stroke: #fff;
+  animation: truckWind 0.8s ease-in-out infinite;
+}
+@keyframes truckWind {
+  0% {
+    stroke-dashoffset: -20;
+  }
+  25% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 20;
+  }
+  75% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
+.stockistDDContainer button:hover .StockistIconTruck {
+  stroke: #fff;
+  animation: truckMove 0.4s normal infinite;
+}
+@keyframes truckMove {
+  0% {
+    transform: translateY(-0.5px);
+  }
+  33% {
+    transform: translateY(0px);
+  }
+  66% {
+    transform: translateY(0.5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.StockistIcon {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  overflow: visible;
+  stroke: #008fd2;
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out;
+}
+.stockistDDContainer ul {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 239, 242);
+  top: 35px;
+}
+.stockistDDContainer li {
+  color: rgb(134, 134, 134);
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.stockistDDContainer li:hover {
+  background-color: rgb(221, 221, 221);
+}
+.stockistDDContainer ul li {
+  list-style: none;
+  margin: 0;
+  padding: 7.5px;
+}

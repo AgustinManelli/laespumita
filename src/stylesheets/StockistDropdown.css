@@ -92,8 +92,9 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: rgb(236, 239, 242);
-  top: 35px;
+  background-color: rgb(255, 255, 255);
+  top: 40px;
+  left: 2px;
 }
 .stockistDDContainer li {
   color: rgb(134, 134, 134);

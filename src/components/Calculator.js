@@ -142,7 +142,7 @@ function Calculator({
         </div>
       </section>
       <section className="mostPercentContainerSection">
-        <h2>Porcentaje cliente</h2>
+        <h2>Porcentajes</h2>
         <div className="mostPercentContainer">
           <div>
             <button

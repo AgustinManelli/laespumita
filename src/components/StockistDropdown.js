@@ -83,6 +83,9 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
         <motion.div className="stockistDDSelected">
           {isStockist > 0 ? <p>{isStockist}</p> : <StockistIcon />}
         </motion.div>
+        <div className="stockistDDAlertContainer">
+          <div className="stockistDDAlert"></div>
+        </div>
       </motion.button>
       <motion.ul
         variants={{
@@ -114,7 +117,9 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
             setIsOpen(false);
           }}
         >
-          <motion.div>0</motion.div>
+          <motion.div>
+            <p className="stockistDDSelected">0</p>
+          </motion.div>
         </motion.li>
 
         <motion.li
@@ -124,7 +129,9 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
             setIsOpen(false);
           }}
         >
-          <motion.div>10.5</motion.div>
+          <motion.div>
+            <p className="stockistDDSelected">10.5</p>
+          </motion.div>
         </motion.li>
 
         <motion.li
@@ -134,7 +141,9 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
             setIsOpen(false);
           }}
         >
-          <motion.div>21</motion.div>
+          <motion.div>
+            <p className="stockistDDSelected">21</p>
+          </motion.div>
         </motion.li>
       </motion.ul>
     </motion.nav>

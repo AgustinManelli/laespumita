@@ -15,6 +15,9 @@ function App() {
     if (window.localStorage.getItem("mostPercent") === null) {
       window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
     }
+    if (window.localStorage.getItem("percentStockist") === null) {
+      window.localStorage.setItem("percentStockist", "[10.5,21]");
+    }
   }, []);
   const [totalModal, setTotalModal] = useState(false);
   return (

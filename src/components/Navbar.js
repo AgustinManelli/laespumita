@@ -2,7 +2,13 @@ import logo from "../assets/logo.svg";
 import "../stylesheets/Navbar.css";
 import ConfigDropdown from "./ConfigDropdown";
 
-function Navbar({ setTotalModal, isMostPercentCache, setIsMostPercentCache }) {
+function Navbar({
+  setTotalModal,
+  isMostPercentCache,
+  setIsMostPercentCache,
+  isPercentStockist,
+  setIsPercentStockist,
+}) {
   const ConfigIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,6 +83,8 @@ function Navbar({ setTotalModal, isMostPercentCache, setIsMostPercentCache }) {
           <ConfigDropdown
             isMostPercentCache={isMostPercentCache}
             setIsMostPercentCache={setIsMostPercentCache}
+            isPercentStockist={isPercentStockist}
+            setIsPercentStockist={setIsPercentStockist}
           />
         </div>
       </nav>

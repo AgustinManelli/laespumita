@@ -46,6 +46,12 @@ function Home({ totalModal, setTotalModal }) {
       ? [40, 45, 50, 55, 60, 70]
       : JSON.parse(window.localStorage.getItem("mostPercent"))
   );
+  const [isPercentStockist, setIsPercentStockist] = useState(
+    window.localStorage.getItem("percentStockist") === null ||
+      window.localStorage.getItem("percentStockist") === undefined
+      ? [10.5, 21]
+      : JSON.parse(window.localStorage.getItem("percentStockist"))
+  );
 
   const addProduct = (e) => {
     if (total === 0) {
@@ -197,6 +203,8 @@ function Home({ totalModal, setTotalModal }) {
         setTotalModal={setTotalModal}
         isMostPercentCache={isMostPercentCache}
         setIsMostPercentCache={setIsMostPercentCache}
+        isPercentStockist={isPercentStockist}
+        setIsPercentStockist={setIsPercentStockist}
       />
       <Calculator
         percent={percent}
@@ -210,6 +218,7 @@ function Home({ totalModal, setTotalModal }) {
         stockistPercent={stockistPercent}
         isStockist={isStockist}
         isMostPercentCache={isMostPercentCache}
+        isPercentStockist={isPercentStockist}
       />
       <AddButtons
         addProduct={addProduct}

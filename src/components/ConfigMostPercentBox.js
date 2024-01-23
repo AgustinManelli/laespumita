@@ -27,6 +27,7 @@ function ConfigMostPercentBox({
   isFocused,
   setIsFocused,
   handleBoxDelete,
+  name,
 }) {
   const [number, setNumber] = useState(percent);
   const [isEditing, setIsEditing] = useState(false);
@@ -67,7 +68,7 @@ function ConfigMostPercentBox({
       const mostPercent = [...isMostPercentCache];
       mostPercent[index] = parseInt(number);
       setIsMostPercentCache(mostPercent);
-      window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
+      window.localStorage.setItem(name, JSON.stringify(mostPercent));
     }
   };
 

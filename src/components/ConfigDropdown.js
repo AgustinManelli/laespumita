@@ -53,9 +53,15 @@ const itemVariants = {
   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
 };
 
-function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
+function ConfigDropdown({
+  isMostPercentCache,
+  setIsMostPercentCache,
+  isPercentStockist,
+  setIsPercentStockist,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [isFocusedStockist, setIsFocusedStockist] = useState(false);
 
   const currentDate = new Date();
 
@@ -73,6 +79,25 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
     mostPercent.splice(index, 1);
     window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
     setIsMostPercentCache(mostPercent);
+  };
+
+  const handleAddPercentStockist = () => {
+    const percentStockist = [...isPercentStockist];
+    percentStockist.splice(isPercentStockist.length, 0, "");
+    setIsPercentStockist(percentStockist);
+    window.localStorage.setItem(
+      "percentStockist",
+      JSON.stringify(percentStockist)
+    );
+    setIsFocusedStockist(true);
+  };
+
+  const handleBoxDeleteStockist = (index) => {
+    setIsFocusedStockist(false);
+    const percentStockist = [...isPercentStockist];
+    percentStockist.splice(index, 1);
+    window.localStorage.setItem("mostPercent", JSON.stringify(percentStockist));
+    setIsPercentStockist(percentStockist);
   };
 
   return (
@@ -124,7 +149,7 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
           <div className="confiSeparator"></div>
           <section className="configSection">
             <div className="configSectionPercent">
-              <p>porcentajes</p>
+              <p className="configSectionPercentP">porcentajes</p>
               <div className="configSectionBoxes">
                 {isMostPercentCache.map((percent, index) => (
                   <ConfigMostPercentBox
@@ -135,6 +160,7 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
                     isFocused={isFocused}
                     setIsFocused={setIsFocused}
                     handleBoxDelete={handleBoxDelete}
+                    name="mostPercent"
                     key={`${index}${currentDate}`}
                   />
                 ))}
@@ -142,6 +168,34 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
                   <button
                     className="configAddButton"
                     onClick={handleAddPercent}
+                  >
+                    <PlusConfig />
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+            <div className="configSectionPercent">
+              <p className="configSectionPercentP">porcentajes viajantes</p>
+              <div className="configSectionBoxes">
+                {isPercentStockist.map((percent, index) => (
+                  <ConfigMostPercentBox
+                    percent={percent}
+                    index={index}
+                    isMostPercentCache={isPercentStockist}
+                    setIsMostPercentCache={setIsPercentStockist}
+                    isFocused={isFocusedStockist}
+                    setIsFocused={setIsFocusedStockist}
+                    handleBoxDelete={handleBoxDeleteStockist}
+                    name="percentStockist"
+                    key={`-${index + 1}${currentDate}`}
+                  />
+                ))}
+                {isPercentStockist.length < 3 ? (
+                  <button
+                    className="configAddButton"
+                    onClick={handleAddPercentStockist}
                   >
                     <PlusConfig />
                   </button>

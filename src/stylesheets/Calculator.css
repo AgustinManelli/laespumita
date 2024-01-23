@@ -136,8 +136,15 @@ input::-webkit-inner-spin-button {
 .mostPercentContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.mostPerrcentList {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   width: 100%;
 }
 

@@ -56,7 +56,7 @@ const StockistIcon = () => (
   </svg>
 );
 
-function SrockistDropdown({ isStockist, stockistPercent }) {
+function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeStockistDropdown = () => {
@@ -130,29 +130,20 @@ function SrockistDropdown({ isStockist, stockistPercent }) {
           </motion.div>
         </motion.li>
 
-        <motion.li
-          variants={itemVariants}
-          onClick={() => {
-            stockistPercent("10.51");
-            setIsOpen(false);
-          }}
-        >
-          <motion.div>
-            <p className="stockistDDSelected">10.5</p>
-          </motion.div>
-        </motion.li>
-
-        <motion.li
-          variants={itemVariants}
-          onClick={() => {
-            stockistPercent("21");
-            setIsOpen(false);
-          }}
-        >
-          <motion.div>
-            <p className="stockistDDSelected">21</p>
-          </motion.div>
-        </motion.li>
+        {isPercentStockist.map((stockist, index) => (
+          <motion.li
+            key={index}
+            variants={itemVariants}
+            onClick={() => {
+              stockistPercent(`${stockist}`);
+              setIsOpen(false);
+            }}
+          >
+            <motion.div>
+              <p className="stockistDDSelected">{stockist}</p>
+            </motion.div>
+          </motion.li>
+        ))}
       </motion.ul>
     </motion.nav>
   );

@@ -14,6 +14,7 @@ function Calculator({
   stockistPercent,
   isStockist,
   isMostPercentCache,
+  isPercentStockist,
 }) {
   useEffect(() => {
     setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
@@ -145,32 +146,40 @@ function Calculator({
       <section className="mostPercentContainerSection">
         <h2>Porcentajes</h2>
         <div className="mostPercentContainer">
-          {isMostPercentCache.map((percentCache, index) => (
-            <div key={index}>
-              <button
-                className={
-                  percent === `${percentCache}`
-                    ? "mostPercentBox percentSelected"
-                    : "mostPercentBox"
-                }
-                onClick={() => {
-                  if (parseInt(percent) !== percentCache) {
-                    mostPercent(`${percentCache}`);
-                  } else {
-                    mostPercent("");
+          <div className="mostPerrcentList">
+            {isMostPercentCache.map((percentCache, index) => (
+              <div key={index}>
+                <button
+                  className={
+                    percent === `${percentCache}`
+                      ? "mostPercentBox percentSelected"
+                      : "mostPercentBox"
                   }
-                }}
-              >
-                <p>{percentCache}</p>
-              </button>
-            </div>
-          ))}
+                  onClick={() => {
+                    if (parseInt(percent) !== percentCache) {
+                      mostPercent(`${percentCache}`);
+                    } else {
+                      mostPercent("");
+                    }
+                  }}
+                >
+                  <p>{percentCache}</p>
+                </button>
+              </div>
+            ))}
+          </div>
           <div
-            style={{ width: "2px", height: "41px", backgroundColor: "#008fd2" }}
+            style={{
+              width: "2px",
+              height: "41px",
+              backgroundColor: "#008fd2",
+              marginRight: "22px",
+            }}
           ></div>
           <StockistDropdown
             isStockist={isStockist}
             stockistPercent={stockistPercent}
+            isPercentStockist={isPercentStockist}
           />
           <div></div>
         </div>

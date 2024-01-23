@@ -9,7 +9,7 @@
   align-items: center;
   color: rgb(142, 147, 154);
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "montserrat";
 }
 
@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 14px;
   padding: 0;
   text-align: center;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
@@ -7,6 +7,7 @@ import TotalLabel from "../components/TotalLabel";
 import { toast } from "sonner";
 import TotalWindow from "../components/TotalWindow";
 import DeleteAllParameters from "../components/DeleteAllParameters";
+import Navbar from "../components/Navbar";
 
 function Home({ totalModal, setTotalModal }) {
   const currentDate = new Date();
@@ -39,6 +40,12 @@ function Home({ totalModal, setTotalModal }) {
   const [storedProducts, setStoredProducts] = useState([]);
   const [storedTotal, setStoredTotal] = useState([]);
   const [isDaily, setIsDaily] = useState(true);
+  const [isMostPercentCache, setIsMostPercentCache] = useState(
+    window.localStorage.getItem("mostPercent") === null ||
+      window.localStorage.getItem("mostPercent") === undefined
+      ? [40, 45, 50, 55, 60, 70]
+      : JSON.parse(window.localStorage.getItem("mostPercent"))
+  );
   const addProduct = (e) => {
     if (total === 0) {
       return;
@@ -185,6 +192,11 @@ function Home({ totalModal, setTotalModal }) {
   };
   return (
     <div className="homeContainer">
+      <Navbar
+        setTotalModal={setTotalModal}
+        isMostPercentCache={isMostPercentCache}
+        setIsMostPercentCache={setIsMostPercentCache}
+      />
       <Calculator
         percent={percent}
         setPercent={setPercent}
@@ -196,6 +208,7 @@ function Home({ totalModal, setTotalModal }) {
         mostPercent={mostPercent}
         stockistPercent={stockistPercent}
         isStockist={isStockist}
+        isMostPercentCache={isMostPercentCache}
       />
       <AddButtons
         addProduct={addProduct}

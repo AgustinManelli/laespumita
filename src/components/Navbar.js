@@ -1,7 +1,8 @@
 import logo from "../assets/logo.svg";
 import "../stylesheets/Navbar.css";
+import ConfigDropdown from "./ConfigDropdown";
 
-function Navbar({ setTotalModal }) {
+function Navbar({ setTotalModal, isMostPercentCache, setIsMostPercentCache }) {
   const ConfigIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -62,13 +63,21 @@ function Navbar({ setTotalModal }) {
         <div>
           <img src={logo} alt="la espumita logo" className="logoNavbar" />
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <button onClick={handleOpenModal} className="navbarOpenModal">
             <AnalyticsIcon />
           </button>
-          <button className="navbarOpenModal" style={{ marginRight: "30px" }}>
-            <ConfigIcon />
-          </button>
+          <ConfigDropdown
+            isMostPercentCache={isMostPercentCache}
+            setIsMostPercentCache={setIsMostPercentCache}
+          />
         </div>
       </nav>
     </div>

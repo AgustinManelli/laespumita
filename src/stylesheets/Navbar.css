@@ -54,21 +54,3 @@
     stroke-dashoffset: 0;
   }
 }
-.ConfigIcon {
-  width: 24px;
-  height: auto;
-  stroke: rgb(134, 134, 134);
-  stroke-width: 2;
-  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
-.navbarOpenModal:hover .ConfigIcon {
-  stroke: #008fd2;
-  transform: scale(110%);
-}
-.ConfigIconGear {
-  transform-origin: 50% 50%;
-  transition: transform 1s ease-in-out;
-}
-.navbarOpenModal:hover .ConfigIconGear {
-  transform: rotate(-360deg);
-}

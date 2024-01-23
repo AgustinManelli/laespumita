@@ -12,13 +12,16 @@ function App() {
     if (window.localStorage.getItem("total") === null) {
       window.localStorage.setItem("total", "[]");
     }
+    if (window.localStorage.getItem("mostPercent") === null) {
+      window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
+    }
   }, []);
   const [totalModal, setTotalModal] = useState(false);
   return (
     <div className="App">
       <Toaster position="bottom-center" richColors />
       <div className="blurredbg"></div>
-      <Navbar setTotalModal={setTotalModal} />
+
       <Home totalModal={totalModal} setTotalModal={setTotalModal} />
     </div>
   );

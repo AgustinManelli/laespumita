@@ -1,0 +1,132 @@
+.configDDContainer {
+  width: fit-content;
+  position: relative;
+}
+.configDDButton {
+  appearance: button;
+  -webkit-appearance: button;
+  border: none;
+  border-radius: 15px;
+  padding: 5.5px 5.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+.configDDButton:hover .configDDSelected {
+  color: #fff;
+}
+.configDDSelected {
+  color: rgb(134, 134, 134);
+  font-weight: 600;
+  font-size: 13px;
+  font-family: "montserrat";
+}
+.configDDContent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  top: 65px;
+  right: 0px;
+  width: 300px;
+  height: 350px;
+  box-shadow: rgba(142, 147, 154, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.04) 0px 2px 8px, rgba(0, 0, 0, 0.05) 0px 30px 70px;
+  overflow: hidden;
+}
+.configDDContainer li {
+  color: rgb(134, 134, 134);
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.configDDContainer li:hover {
+  background-color: rgb(221, 221, 221);
+}
+.configDDContainer .configDDContent li {
+  list-style: none;
+  margin: 0;
+  padding: 7.5px;
+}
+.ConfigIcon {
+  width: 24px;
+  height: auto;
+  stroke: rgb(134, 134, 134);
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.configDDButton:hover .ConfigIcon {
+  stroke: #008fd2;
+  transform: scale(110%);
+}
+.ConfigIconGear {
+  transform-origin: 50% 50%;
+  transition: transform 1s ease-in-out;
+}
+.configDDButton:hover .ConfigIconGear {
+  transform: rotate(-360deg);
+}
+
+.configContainer {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.configSection {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.configSectionPercent {
+  position: relative;
+  width: 100%;
+}
+
+.configSectionBoxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.configAddButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.configAddButton:hover .PlusConfig {
+  stroke: #008fd2;
+}
+
+.PlusConfig {
+  width: 25px;
+  height: 25px;
+  stroke: rgb(142, 147, 154);
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out;
+}
+
+.configFooter {
+  background-color: rgba(245, 247, 250, 0.9);
+  color: rgb(142, 147, 154);
+  font-size: 12px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 13px;
+  text-align: left;
+}

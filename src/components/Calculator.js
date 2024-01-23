@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../stylesheets/Calculator.css";
 import StockistDropdown from "./StockistDropdown";
 
@@ -13,6 +13,7 @@ function Calculator({
   mostPercent,
   stockistPercent,
   isStockist,
+  isMostPercentCache,
 }) {
   useEffect(() => {
     setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
@@ -144,78 +145,26 @@ function Calculator({
       <section className="mostPercentContainerSection">
         <h2>Porcentajes</h2>
         <div className="mostPercentContainer">
-          <div>
-            <button
-              className={
-                percent === "40"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("40")}
-            >
-              <p>40</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                percent === "45"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("45")}
-            >
-              <p>45</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                percent === "50"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("50")}
-            >
-              <p>50</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                percent === "55"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("55")}
-            >
-              <p>55</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                percent === "60"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("60")}
-            >
-              <p>60</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                percent === "70"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => mostPercent("70")}
-            >
-              <p>70</p>
-            </button>
-          </div>
+          {isMostPercentCache.map((percentCache) => (
+            <div key={percentCache}>
+              <button
+                className={
+                  percent === `${percentCache}`
+                    ? "mostPercentBox percentSelected"
+                    : "mostPercentBox"
+                }
+                onClick={() => {
+                  if (parseInt(percent) !== percentCache) {
+                    mostPercent(`${percentCache}`);
+                  } else {
+                    mostPercent("");
+                  }
+                }}
+              >
+                <p>{percentCache}</p>
+              </button>
+            </div>
+          ))}
           <div
             style={{ width: "2px", height: "41px", backgroundColor: "#008fd2" }}
           ></div>

@@ -118,7 +118,10 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
         }}
       >
         <div className="configContainer">
-          <header></header>
+          <header className="configHeader">
+            <h2>configuración</h2>
+          </header>
+          <div className="confiSeparator"></div>
           <section className="configSection">
             <div className="configSectionPercent">
               <p>porcentajes</p>
@@ -148,6 +151,7 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
               </div>
             </div>
           </section>
+          <div className="confiSeparator"></div>
           <footer>
             <div className="configFooter">
               <p>2024 La espumita · Argentina</p>

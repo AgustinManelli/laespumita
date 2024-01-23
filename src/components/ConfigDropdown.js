@@ -55,15 +55,25 @@ const itemVariants = {
 
 function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-  /*const closeStockistDropdown = () => {
-    window.addEventListener("click", function (e) {
-      if (document.getElementById("configDDContainer").contains(e.target)) {
-      } else {
-        setIsOpen(false);
-      }
-    });
-  };*/
+  const currentDate = new Date();
+
+  const handleAddPercent = () => {
+    const mostPercent = [...isMostPercentCache];
+    mostPercent.splice(isMostPercentCache.length, 0, "");
+    setIsMostPercentCache(mostPercent);
+    window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
+    setIsFocused(true);
+  };
+
+  const handleBoxDelete = (index) => {
+    setIsFocused(false);
+    const mostPercent = [...isMostPercentCache];
+    mostPercent.splice(index, 1);
+    window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
+    setIsMostPercentCache(mostPercent);
+  };
 
   return (
     <motion.nav
@@ -71,7 +81,6 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
       initial={false}
       animate={isOpen ? "open" : "closed"}
       id="configDDContainer"
-      /*ref={closeStockistDropdown()}*/
     >
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
@@ -114,11 +123,23 @@ function ConfigDropdown({ isMostPercentCache, setIsMostPercentCache }) {
             <div className="configSectionPercent">
               <p>porcentajes</p>
               <div className="configSectionBoxes">
-                {isMostPercentCache.map((percent) => (
-                  <ConfigMostPercentBox percent={percent} key={percent} />
+                {isMostPercentCache.map((percent, index) => (
+                  <ConfigMostPercentBox
+                    percent={percent}
+                    index={index}
+                    isMostPercentCache={isMostPercentCache}
+                    setIsMostPercentCache={setIsMostPercentCache}
+                    isFocused={isFocused}
+                    setIsFocused={setIsFocused}
+                    handleBoxDelete={handleBoxDelete}
+                    key={`${index}${currentDate}`}
+                  />
                 ))}
                 {isMostPercentCache.length < 6 ? (
-                  <button className="configAddButton">
+                  <button
+                    className="configAddButton"
+                    onClick={handleAddPercent}
+                  >
                     <PlusConfig />
                   </button>
                 ) : (

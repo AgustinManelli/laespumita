@@ -145,8 +145,8 @@ function Calculator({
       <section className="mostPercentContainerSection">
         <h2>Porcentajes</h2>
         <div className="mostPercentContainer">
-          {isMostPercentCache.map((percentCache) => (
-            <div key={percentCache}>
+          {isMostPercentCache.map((percentCache, index) => (
+            <div key={index}>
               <button
                 className={
                   percent === `${percentCache}`

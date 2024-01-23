@@ -46,6 +46,7 @@ function Home({ totalModal, setTotalModal }) {
       ? [40, 45, 50, 55, 60, 70]
       : JSON.parse(window.localStorage.getItem("mostPercent"))
   );
+
   const addProduct = (e) => {
     if (total === 0) {
       return;

@@ -152,7 +152,21 @@
 .configAddButton:hover .PlusConfig {
   stroke: #008fd2;
 }
-
+.PlusConfigBox {
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.configAddButton:hover .PlusConfigBox {
+  transform: scale(0%);
+  filter: blur(3px);
+}
+.PlusConfigPlus {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.configAddButton:hover .PlusConfigPlus {
+  transform: scale(170%);
+}
 .PlusConfig {
   width: 35px;
   height: 25px;

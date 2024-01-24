@@ -3,7 +3,7 @@
   background-color: rgba(245, 247, 250, 0.9);
   width: 35px;
   height: 35px;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,10 @@
   cursor: pointer;
   font-size: 14px;
   font-family: "montserrat";
+  transition: background-color 0.2s ease-in-out;
+}
+.ConfigMostPercentBoxContainer:hover {
+  background-color: rgb(231, 233, 236);
 }
 
 .ConfigMostPercentBoxContainer input {
@@ -20,9 +24,9 @@
   appearance: none;
   outline: none;
   border: none;
-  background-color: rgba(245, 247, 250, 0.9);
+  background-color: rgb(231, 233, 236);
   color: rgb(142, 147, 154);
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

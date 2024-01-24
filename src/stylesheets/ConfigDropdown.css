@@ -187,12 +187,33 @@
   width: 20px;
   height: 20px;
   stroke-width: 2;
+  overflow-y: visible;
 }
 .SunIconRay {
   transform-origin: 50% 50%;
+  transition: filter 0.3s ease-in-out;
+}
+.SunIconCloud {
+  transform: scale(80%) translateY(7px) translateX(27px);
+  transform-origin: 50% 50%;
+}
+.configSectionThemeRadio .radio .name:hover .SunIconCloud {
+  animation: cloudMove 20s linear infinite 3s;
+}
+@keyframes cloudMove {
+  0% {
+    transform: scale(80%) translateY(7px) translateX(27px);
+  }
+  30% {
+    transform: scale(80%) translateY(7px) translateX(-27px);
+  }
+  100% {
+    transform: scale(80%) translateY(7px) translateX(-27px);
+  }
 }
 .configSectionThemeRadio .radio .name:hover .SunIconRay {
-  animation: configSun 5s linear infinite;
+  animation: configSun 20s linear infinite;
+  filter: blur(0.3px);
 }
 @keyframes configSun {
   0% {
@@ -201,6 +222,22 @@
   100% {
     transform: rotate(360deg);
   }
+}
+.MoonIconWorld {
+  transform: translateY(10px);
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-in-out;
+}
+.configSectionThemeRadio .radio .name:hover .MoonIconWorld {
+  transform: none;
+}
+.MoonIconMoon {
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-in-out, stroke-width 0.5s ease-in-out;
+}
+.configSectionThemeRadio .radio .name:hover .MoonIconMoon {
+  transform: scale(80%);
+  stroke-width: 2.5;
 }
 .confiSeparator {
   height: 1px;

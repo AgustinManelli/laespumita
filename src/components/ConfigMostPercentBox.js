@@ -89,9 +89,7 @@ function ConfigMostPercentBox({
         onClick={handleBoxClick}
         className="ConfigMostPercentBoxContainer"
         style={{
-          backgroundColor: boxesHovered
-            ? theme.borderColor
-            : theme.backgroundOverall,
+          backgroundColor: boxesHovered ? theme.hover : theme.backgroundOverall,
           color: theme.secondTitles,
         }}
         onMouseEnter={handleMouseEnter}
@@ -106,7 +104,7 @@ function ConfigMostPercentBox({
             onKeyPress={handleInputKeyPress}
             ref={inputRef}
             style={{
-              backgroundColor: theme.borderColor,
+              backgroundColor: theme.hover,
               color: theme.secondTitles,
             }}
           />

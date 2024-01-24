@@ -11,9 +11,9 @@
 .labelDataContainer {
   width: 90%;
   display: flex;
-  background-color: rgb(236, 239, 242);
   flex-direction: column;
   border-radius: 20px;
+  border: 1px solid;
 }
 .labelData {
   width: 100%;

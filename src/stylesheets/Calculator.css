@@ -1,11 +1,7 @@
 .calculatorContainer {
-  background-color: rgb(255, 255, 255);
   width: 400px;
   height: 100%;
   border-radius: 20px;
-  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
-    rgba(12, 20, 66, 0.08) 0px 30px 80px,
-    rgb(230, 233, 237) 0px 0px 0px 0px inset;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +28,7 @@
   right: 9px;
   height: auto;
   width: 20px;
-  stroke: rgb(134, 134, 134);
+  stroke-width: 2;
 }
 .inputLabel {
   position: relative;
@@ -42,32 +38,18 @@
 .calcInput {
   width: 150px;
   border: none;
-  background-color: rgb(236, 239, 242);
   border-radius: 10px;
   padding: 10px;
   outline: none;
   transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  color: rgb(134, 134, 134);
   font-size: 13px;
 }
 .calcInput::placeholder {
-  color: rgb(134, 134, 134);
+  color: inherit;
   font-size: 13px;
   font-family: "montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
-}
-.calcInput:hover {
-  background-color: #fff;
-  box-shadow: 0px 2px 5px rgba(12, 20, 66, 0.05),
-    0px 10px 40px rgba(12, 20, 66, 0.06),
-    inset 0px -1px 2px rgba(12, 20, 66, 0.08);
-}
-.calcInput:focus {
-  background-color: #fff;
-  box-shadow: 0px 2px 5px rgba(12, 20, 66, 0.05),
-    0px 10px 40px rgba(12, 20, 66, 0.06),
-    inset 0px -1px 2px rgba(12, 20, 66, 0.08);
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -78,7 +60,6 @@ input::-webkit-inner-spin-button {
   margin: 0;
   font-weight: 600;
   font-size: 20px;
-  color: rgb(134, 134, 134);
 }
 .deleteInputCalculator {
   background: none;
@@ -110,7 +91,6 @@ input::-webkit-inner-spin-button {
 
 .mostPercentContainerSection {
   position: relative;
-  background-color: #fff;
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
@@ -121,9 +101,6 @@ input::-webkit-inner-spin-button {
   gap: 10px;
   flex-direction: column;
   width: 400px;
-  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
-    rgba(12, 20, 66, 0.08) 0px 30px 80px,
-    rgb(230, 233, 237) 0px 0px 0px 0px inset;
 }
 
 .mostPercentContainerSection h2 {
@@ -151,54 +128,22 @@ input::-webkit-inner-spin-button {
 .mostPercentBox {
   width: 43px;
   height: 43px;
-  background-color: rgb(236, 239, 242);
   border-radius: 15px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, color 0.4s ease-in-out,
     border-radius 0.3s ease-in-out;
-  color: rgb(134, 134, 134);
 }
 .mostPercentBox:hover {
-  background-color: #008fd2;
-  color: #fff;
+  background-color: #008fd2 !important;
+  color: #fff !important;
   border-radius: 5px;
 }
 .mostPercentBox p {
   font-weight: 600;
 }
 .percentSelected {
-  background-color: #008fd2;
-  color: #fff;
+  background-color: #008fd2 !important;
+  color: #fff !important;
   border-radius: 10px;
-}
-
-.stockistPercentContainerSection {
-  background-color: #fff;
-  padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-direction: column;
-  width: 400px;
-  box-shadow: rgba(12, 20, 66, 0.02) 0px 4px 12px,
-    rgba(12, 20, 66, 0.08) 0px 30px 80px,
-    rgb(230, 233, 237) 0px 0px 0px 0px inset;
-}
-.stockistPercentContainerSection h2 {
-  margin: 0;
-  font-weight: 500;
-  font-size: 15px;
-  color: #008fd2;
-}
-.stockistPercentContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
 }

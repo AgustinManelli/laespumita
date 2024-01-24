@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "../stylesheets/TotalLabel.css";
+import { useTheme } from "../context/ThemeProvider";
 
 function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
+  const { theme } = useTheme();
   const CardIconCheck = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,8 +39,11 @@ function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
   );
   return (
     <div className="totalLabelContainer">
-      <section className="totalLabelPrice">
-        <p>
+      <section
+        className="totalLabelPrice"
+        style={{ backgroundColor: theme.backgroundContainer }}
+      >
+        <p style={{ color: theme.secondTitles }}>
           TOTAL:{" "}
           {isCard
             ? parseFloat(totalPrice * 1.15).toLocaleString("es-ES", {
@@ -54,6 +59,7 @@ function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
       <button
         className={isCard ? "totalCardAct" : "totalCard"}
         onClick={setCard}
+        style={{ backgroundColor: theme.backgroundContainer }}
       >
         <CardIconCheck />
       </button>

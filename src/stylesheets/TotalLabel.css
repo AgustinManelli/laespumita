@@ -12,7 +12,6 @@
 }
 .totalLabelPrice {
   display: flex;
-  background: #fff;
   border-radius: 20px;
   min-width: 300px;
   max-width: 700px;
@@ -37,11 +36,11 @@
   transition: background-color 0.3s ease-in-out;
 }
 .totalCard:hover {
-  background-color: rgb(255, 87, 87);
+  background-color: rgb(255, 87, 87) !important;
 }
 .totalCardAct {
   border-radius: 20px;
-  background-color: rgb(255, 87, 87);
+  background-color: rgb(255, 87, 87) !important;
   height: 55px;
   width: 55px;
   border: none;

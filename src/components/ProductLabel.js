@@ -1,6 +1,8 @@
 import "../stylesheets/ProductLabel.css";
 import { motion } from "framer-motion";
+import { useTheme } from "../context/ThemeProvider";
 function ProductLabel({ total, number, id, product, deleteProduct }) {
+  const { theme } = useTheme();
   const handleDelete = () => {
     deleteProduct(id, product);
   };
@@ -45,8 +47,14 @@ function ProductLabel({ total, number, id, product, deleteProduct }) {
         damping: 30,
       }}
     >
-      <div className="labelDataContainer">
-        <div className="labelData">
+      <div
+        className="labelDataContainer"
+        style={{
+          backgroundColor: theme.backgroundOverall,
+          borderColor: theme.borderColor,
+        }}
+      >
+        <div className="labelData" style={{ color: theme.secondTitles }}>
           <p>Producto {number}</p>
           <p>${total}</p>
         </div>

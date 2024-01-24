@@ -1,6 +1,42 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import "../stylesheets/StockistDropdown.css";
+import { useTheme } from "../context/ThemeProvider";
+
+function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
+  const { theme } = useTheme();
+  const [boxesHovered, setBoxesHoveres] = useState(false);
+  const handleMouseEnter = () => {
+    setBoxesHoveres(true);
+  };
+  const handleMouseLeave = () => {
+    setBoxesHoveres(false);
+  };
+  return (
+    <>
+      <motion.li
+        key={index}
+        variants={itemVariants}
+        onClick={() => {
+          stockistPercent(`${stockist}`);
+          setIsOpen(false);
+        }}
+        style={{
+          color: theme.secondTitles,
+          backgroundColor: boxesHovered
+            ? theme.hover
+            : theme.backgroundContainer,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <motion.div>
+          <p className="stockistDDSelected">{stockist}</p>
+        </motion.div>
+      </motion.li>
+    </>
+  );
+}
 
 const itemVariants = {
   open: {
@@ -58,6 +94,15 @@ const StockistIcon = () => (
 
 function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
+
+  const [boxesHovered, setBoxesHoveres] = useState(false);
+  const handleMouseEnter = () => {
+    setBoxesHoveres(true);
+  };
+  const handleMouseLeave = () => {
+    setBoxesHoveres(false);
+  };
 
   const closeStockistDropdown = () => {
     window.addEventListener("click", function (e) {
@@ -79,7 +124,11 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
       <motion.button
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
-        style={isStockist > 0 ? { backgroundColor: "#008fd2" } : {}}
+        style={
+          isStockist > 0
+            ? { backgroundColor: "#008fd2" }
+            : { backgroundColor: theme.backgroundOverall }
+        }
       >
         <motion.div
           className="stockistDDSelected"
@@ -88,7 +137,10 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
           {isStockist > 0 ? <p>{isStockist}</p> : <StockistIcon />}
         </motion.div>
         {isStockist > 0 ? (
-          <div className="stockistDDAlertContainer">
+          <div
+            className="stockistDDAlertContainer"
+            style={{ backgroundColor: theme.backgroundContainer }}
+          >
             <div className="stockistDDAlert"></div>
           </div>
         ) : (
@@ -116,7 +168,11 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
             },
           },
         }}
-        style={{ pointerEvents: isOpen ? "auto" : "none", paddingLeft: "0px" }}
+        style={{
+          pointerEvents: isOpen ? "auto" : "none",
+          paddingLeft: "0px",
+          backgroundColor: theme.backgroundContainer,
+        }}
       >
         <motion.li
           variants={itemVariants}
@@ -124,6 +180,14 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
             stockistPercent("0");
             setIsOpen(false);
           }}
+          style={{
+            color: theme.secondTitles,
+            backgroundColor: boxesHovered
+              ? theme.hover
+              : theme.backgroundContainer,
+          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <motion.div>
             <p className="stockistDDSelected">0</p>
@@ -131,18 +195,12 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
         </motion.li>
 
         {isPercentStockist.map((stockist, index) => (
-          <motion.li
-            key={index}
-            variants={itemVariants}
-            onClick={() => {
-              stockistPercent(`${stockist}`);
-              setIsOpen(false);
-            }}
-          >
-            <motion.div>
-              <p className="stockistDDSelected">{stockist}</p>
-            </motion.div>
-          </motion.li>
+          <StockistDDLi
+            index={index}
+            stockistPercent={stockistPercent}
+            stockist={stockist}
+            setIsOpen={setIsOpen}
+          />
         ))}
       </motion.ul>
     </motion.nav>

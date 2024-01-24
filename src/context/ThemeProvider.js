@@ -34,16 +34,23 @@ const ThemeContext = createContext();
 
 function ThemeProvider(props) {
   const [theme, setTheme] = useState("light");
+  const [wTheme, setWTheme] = useState(true);
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");
-  const setLight = () => setTheme("light");
-  const setDark = () => setTheme("dark");
+  const setLight = () => {
+    setTheme("light");
+    setWTheme(true);
+  };
+  const setDark = () => {
+    setTheme("dark");
+    setWTheme(false);
+  };
   const value = {
     theme: themeStyles[theme],
     toggleTheme,
     setLight,
     setDark,
-    themeName: theme,
+    wTheme,
   };
   return <ThemeContext.Provider value={value} {...props} />;
 }

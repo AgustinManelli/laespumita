@@ -40,6 +40,7 @@ function ConfigDropdown({
     setIsLight(false);
     setDark();
   };
+
   const MoonIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +54,21 @@ function ConfigDropdown({
     >
       <path
         d="M21.5 14.0784C20.3003 14.7189 18.9301 15.0821 17.4751 15.0821C12.7491 15.0821 8.91792 11.2509 8.91792 6.52485C8.91792 5.06986 9.28105 3.69968 9.92163 2.5C5.66765 3.49698 2.5 7.31513 2.5 11.8731C2.5 17.1899 6.8101 21.5 12.1269 21.5C16.6849 21.5 20.503 18.3324 21.5 14.0784Z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="MoonIconMoon"
+      ></path>
+      <circle
+        style={{ fill: isDark ? theme.hover : theme.backgroundContainer }}
+        className="MoonIconWorld"
+        cx="12"
+        cy="51.6"
+        r="33"
+      />
+      <path
+        d="M17.4776 10.0001C17.485 10 17.4925 10 17.5 10C19.9853 10 22 12.0147 22 14.5C22 16.9853 19.9853 19 17.5 19H7C4.23858 19 2 16.7614 2 14C2 11.4003 3.98398 9.26407 6.52042 9.0227M17.4776 10.0001C17.4924 9.83536 17.5 9.66856 17.5 9.5C17.5 6.46243 15.0376 4 12 4C9.12324 4 6.76233 6.20862 6.52042 9.0227M17.4776 10.0001C17.3753 11.1345 16.9286 12.1696 16.2428 13M6.52042 9.0227C6.67826 9.00768 6.83823 9 7 9C8.12582 9 9.16474 9.37209 10.0005 10"
+        style={{ fill: isDark ? theme.hover : theme.backgroundContainer }}
+        class="SunIconCloud"
         strokeLinecap="round"
         strokeLinejoin="round"
       ></path>
@@ -74,6 +90,13 @@ function ConfigDropdown({
         d="M12 2V3.5M12 20.5V22M19.0708 19.0713L18.0101 18.0106M5.98926 5.98926L4.9286 4.9286M22 12H20.5M3.5 12H2M19.0713 4.92871L18.0106 5.98937M5.98975 18.0107L4.92909 19.0714"
         strokeLinecap="round"
         class="SunIconRay"
+      ></path>
+      <path
+        d="M17.4776 10.0001C17.485 10 17.4925 10 17.5 10C19.9853 10 22 12.0147 22 14.5C22 16.9853 19.9853 19 17.5 19H7C4.23858 19 2 16.7614 2 14C2 11.4003 3.98398 9.26407 6.52042 9.0227M17.4776 10.0001C17.4924 9.83536 17.5 9.66856 17.5 9.5C17.5 6.46243 15.0376 4 12 4C9.12324 4 6.76233 6.20862 6.52042 9.0227M17.4776 10.0001C17.3753 11.1345 16.9286 12.1696 16.2428 13M6.52042 9.0227C6.67826 9.00768 6.83823 9 7 9C8.12582 9 9.16474 9.37209 10.0005 10"
+        style={{ fill: isLight ? theme.hover : theme.backgroundContainer }}
+        class="SunIconCloud"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></path>
     </svg>
   );

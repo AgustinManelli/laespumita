@@ -15,7 +15,6 @@
   cursor: pointer;
   text-align: left;
   transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-  background-color: rgb(236, 239, 242);
   width: 43px;
   height: 43px;
   display: flex;
@@ -26,14 +25,13 @@
   color: #fff;
 }
 .stockistDDSelected {
-  color: rgb(134, 134, 134);
   font-weight: 600;
   font-size: 13px;
   font-size: 600;
   font-family: "montserrat";
 }
 .stockistDDContainer button:hover {
-  background-color: #008fd2;
+  background-color: #008fd2 !important;
   border-radius: 5px;
 }
 .stockistDDContainer button:hover .StockistIcon {
@@ -97,11 +95,9 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
   top: 44px;
 }
 .stockistDDContainer li {
-  color: rgb(134, 134, 134);
   display: block;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -124,8 +120,8 @@
   position: absolute;
   top: -7px;
   right: -7px;
-  background-color: #ffffff;
   border-radius: 100%;
+  padding: 4px;
 }
 .stockistDDAlert {
   width: 10px;
@@ -133,19 +129,18 @@
   border-radius: 100%;
   background-color: #ff0000;
   animation: Alert 3s ease-in-out infinite;
-  border: 4px solid #fff;
 }
 @keyframes Alert {
   0% {
     opacity: 0;
   }
-  25% {
+  5% {
     opacity: 1;
   }
-  50% {
-    opacity: 1;
+  10% {
+    opacity: 0;
   }
-  75% {
+  14% {
     opacity: 1;
   }
   100% {

@@ -98,7 +98,10 @@ function ConfigDropdown({
     setIsFocusedStockist(false);
     const percentStockist = [...isPercentStockist];
     percentStockist.splice(index, 1);
-    window.localStorage.setItem("mostPercent", JSON.stringify(percentStockist));
+    window.localStorage.setItem(
+      "percentStockist",
+      JSON.stringify(percentStockist)
+    );
     setIsPercentStockist(percentStockist);
   };
 

@@ -1,6 +1,8 @@
 .stockistDDContainer {
   width: fit-content;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .stockistDDContainer button {
   appearance: button;
@@ -27,6 +29,7 @@
   color: rgb(134, 134, 134);
   font-weight: 600;
   font-size: 13px;
+  font-size: 600;
   font-family: "montserrat";
 }
 .stockistDDContainer button:hover {
@@ -91,16 +94,23 @@
 .stockistDDContainer ul {
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(255, 255, 255);
-  top: 40px;
-  left: 2px;
+  top: 44px;
 }
 .stockistDDContainer li {
   color: rgb(134, 134, 134);
   display: block;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 .stockistDDContainer li:hover {
   background-color: rgb(221, 221, 221);

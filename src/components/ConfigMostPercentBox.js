@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../stylesheets/ConfigMostPercentBox.css";
+import { useTheme } from "../context/ThemeProvider";
 
 const CancelIcon = () => (
   <svg
@@ -32,6 +33,16 @@ function ConfigMostPercentBox({
   const [number, setNumber] = useState(percent);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);
+  const [boxesHovered, setBoxesHoveres] = useState(false);
+
+  const handleMouseEnter = () => {
+    setBoxesHoveres(true);
+  };
+  const handleMouseLeave = () => {
+    setBoxesHoveres(false);
+  };
+
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -74,7 +85,18 @@ function ConfigMostPercentBox({
 
   return (
     <div className="ConfigMostPercentBoxContainerTotal">
-      <div onClick={handleBoxClick} className="ConfigMostPercentBoxContainer">
+      <div
+        onClick={handleBoxClick}
+        className="ConfigMostPercentBoxContainer"
+        style={{
+          backgroundColor: boxesHovered
+            ? theme.borderColor
+            : theme.backgroundOverall,
+          color: theme.secondTitles,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {isEditing || (isFocused && index + 1 === isMostPercentCache.length) ? (
           <input
             type="number"
@@ -83,12 +105,19 @@ function ConfigMostPercentBox({
             onBlur={handleInputBlur}
             onKeyPress={handleInputKeyPress}
             ref={inputRef}
+            style={{
+              backgroundColor: theme.borderColor,
+              color: theme.secondTitles,
+            }}
           />
         ) : (
           <p>{number}</p>
         )}
       </div>
-      <div className="configAddButtonContainer">
+      <div
+        className="configAddButtonContainer"
+        style={{ backgroundColor: theme.backgroundContainer }}
+      >
         <button
           className="ConfigMostPercentBoxDelete"
           onClick={() => {

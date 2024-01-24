@@ -8,8 +8,10 @@ import { toast } from "sonner";
 import TotalWindow from "../components/TotalWindow";
 import DeleteAllParameters from "../components/DeleteAllParameters";
 import Navbar from "../components/Navbar";
+import { useTheme } from "../context/ThemeProvider";
 
 function Home({ totalModal, setTotalModal }) {
+  const { theme, toggleTheme, themeName } = useTheme();
   const currentDate = new Date();
   const idDay = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
@@ -198,7 +200,10 @@ function Home({ totalModal, setTotalModal }) {
     window.localStorage.setItem("total", JSON.stringify(filtered));
   };
   return (
-    <div className="homeContainer">
+    <div
+      className="homeContainer"
+      style={{ backgroundColor: theme.background }}
+    >
       <Navbar
         setTotalModal={setTotalModal}
         isMostPercentCache={isMostPercentCache}

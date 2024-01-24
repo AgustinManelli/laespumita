@@ -16,6 +16,7 @@ function Calculator({
   isStockist,
   isMostPercentCache,
   isPercentStockist,
+  setInputCalculatorFocus,
 }) {
   const [inputHovered, setInputHovered] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
@@ -31,9 +32,11 @@ function Calculator({
   };
   const handleMouseFocus = () => {
     setInputFocus(true);
+    setInputCalculatorFocus(true);
   };
   const handleMouseBlur = () => {
     setInputFocus(false);
+    setInputCalculatorFocus(false);
   };
   const handleMouseEnter2 = () => {
     setInputHovered2(true);
@@ -43,9 +46,11 @@ function Calculator({
   };
   const handleMouseFocus2 = () => {
     setInputFocus2(true);
+    setInputCalculatorFocus(true);
   };
   const handleMouseBlur2 = () => {
     setInputFocus2(false);
+    setInputCalculatorFocus(false);
   };
 
   useEffect(() => {

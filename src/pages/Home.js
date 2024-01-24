@@ -54,6 +54,7 @@ function Home({ totalModal, setTotalModal }) {
       ? [10.5, 21]
       : JSON.parse(window.localStorage.getItem("percentStockist"))
   );
+  const [inputCalculatorFocus, setInputCalculatorFocus] = useState(false);
 
   const addProduct = (e) => {
     if (total === 0) {
@@ -227,11 +228,13 @@ function Home({ totalModal, setTotalModal }) {
         isStockist={isStockist}
         isMostPercentCache={isMostPercentCache}
         isPercentStockist={isPercentStockist}
+        setInputCalculatorFocus={setInputCalculatorFocus}
       />
       <AddButtons
         addProduct={addProduct}
         deleteAllProduct={deleteAllProduct}
         productList={productList}
+        inputCalculatorFocus={inputCalculatorFocus}
       />
       <ListProducts
         productList={productList}

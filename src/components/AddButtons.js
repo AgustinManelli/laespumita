@@ -1,6 +1,11 @@
 import "../stylesheets/AddButtons.css";
 import { useEffect } from "react";
-function AddButtons({ addProduct, deleteAllProduct, productList }) {
+function AddButtons({
+  addProduct,
+  deleteAllProduct,
+  productList,
+  inputCalculatorFocus,
+}) {
   const AddIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +57,7 @@ function AddButtons({ addProduct, deleteAllProduct, productList }) {
     </svg>
   );
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && inputCalculatorFocus) {
       addProduct();
     }
   };

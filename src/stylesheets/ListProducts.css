@@ -41,7 +41,7 @@
 }
 .EmptyListIconArrow {
   transform-origin: 69% 77%;
-  animation: EmptyListIconArrowRotate 2s normal infinite;
+  animation: EmptyListIconArrowRotate 5s linear infinite;
 }
 @keyframes EmptyListIconArrowRotate {
   0% {

@@ -202,7 +202,10 @@ function Home({ totalModal, setTotalModal }) {
   return (
     <div
       className="homeContainer"
-      style={{ backgroundColor: theme.background }}
+      style={{
+        backgroundColor: theme.background,
+        transition: "background-color 0.3s ease-in-out",
+      }}
     >
       <Navbar
         setTotalModal={setTotalModal}

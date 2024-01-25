@@ -33,7 +33,7 @@
 }
 .navbarOpenModal:hover .navbarOpenModalIcon {
   stroke: #008fd2 !important;
-  transform: scale(110%);
+  transform: scale(110%) !important;
 }
 
 .navbarOpenModal:hover .navbarOpenModalIconLine {

@@ -121,7 +121,7 @@ function TotalWindow({
                   ? theme.hover
                   : theme.backgroundOverall,
                 borderColor: theme.borderColor,
-                color: theme.secondTitles,
+                color: theme.text,
               }}
               onClick={handleFilterTrue}
               onMouseEnter={() => {
@@ -146,7 +146,7 @@ function TotalWindow({
                     : theme.backgroundOverall
                   : theme.hover,
                 borderColor: theme.borderColor,
-                color: theme.secondTitles,
+                color: theme.text,
               }}
               onClick={handleFilterFalse}
               onMouseEnter={() => {

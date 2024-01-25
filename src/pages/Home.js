@@ -209,6 +209,7 @@ function Home({ totalModal, setTotalModal }) {
       }}
     >
       <Navbar
+        totalModal={totalModal}
         setTotalModal={setTotalModal}
         isMostPercentCache={isMostPercentCache}
         setIsMostPercentCache={setIsMostPercentCache}

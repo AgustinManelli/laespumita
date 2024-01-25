@@ -4,6 +4,7 @@ import ConfigDropdown from "./ConfigDropdown";
 import { useTheme } from "../context/ThemeProvider";
 
 function Navbar({
+  totalModal,
   setTotalModal,
   isMostPercentCache,
   setIsMostPercentCache,
@@ -20,7 +21,10 @@ function Navbar({
       data-src="/icons/analytics-01-stroke-rounded.svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       role="img"
-      style={{ stroke: theme.stroke }}
+      style={{
+        stroke: totalModal ? "#008fd2" : theme.stroke,
+        transform: totalModal ? "scale(110%)" : "none",
+      }}
     >
       <path
         d="M7 17L7 13"

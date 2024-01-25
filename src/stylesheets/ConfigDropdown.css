@@ -1,6 +1,8 @@
 .configDDContainer {
   width: fit-content;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .configDDButton {
   appearance: button;
@@ -17,6 +19,12 @@
   justify-content: center;
   align-items: center;
   margin-right: 30px;
+  width: 43px;
+  height: 43px;
+  z-index: 1;
+}
+.configDDSelected {
+  z-index: 0;
 }
 .configDDContent {
   position: absolute;

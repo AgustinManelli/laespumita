@@ -2,24 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "../stylesheets/ConfigMostPercentBox.css";
 import { useTheme } from "../context/ThemeProvider";
 
-const CancelIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    className="ConfigMostPercentBoxX"
-    data-src="/icons/cancel-01-stroke-rounded.svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    role="img"
-  >
-    <path
-      d="M19 5L5 19M5 5L19 19"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    ></path>
-  </svg>
-);
-
 function ConfigMostPercentBox({
   percent,
   index,
@@ -30,6 +12,23 @@ function ConfigMostPercentBox({
   handleBoxDelete,
   name,
 }) {
+  const CancelIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="ConfigMostPercentBoxX"
+      data-src="/icons/cancel-01-stroke-rounded.svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      role="img"
+    >
+      <path
+        d="M19 5L5 19M5 5L19 19"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></path>
+    </svg>
+  );
   const [number, setNumber] = useState(percent);
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);

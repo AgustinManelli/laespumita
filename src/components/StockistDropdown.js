@@ -6,6 +6,7 @@ import { useTheme } from "../context/ThemeProvider";
 function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
   const { theme } = useTheme();
   const [boxesHovered, setBoxesHoveres] = useState(false);
+
   const handleMouseEnter = () => {
     setBoxesHoveres(true);
   };

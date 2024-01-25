@@ -57,7 +57,7 @@ function AddButtons({
     </svg>
   );
   const handleKeyPress = (event) => {
-    if (event.key === "Enter" && inputCalculatorFocus) {
+    if (event.key === "Enter" /*&& inputCalculatorFocus*/) {
       addProduct();
     }
   };

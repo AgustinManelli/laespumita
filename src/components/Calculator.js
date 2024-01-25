@@ -164,8 +164,12 @@ function Calculator({
               }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              onFocus={handleMouseFocus}
-              onBlur={handleMouseBlur}
+              /*</label>onFocus={() => {
+                handleMouseFocus();
+              }}
+              onBlur={() => {
+                handleMouseBlur();
+              }}*/
             ></input>
           </label>
           <label className="inputLabel">
@@ -187,8 +191,12 @@ function Calculator({
               }}
               onMouseEnter={handleMouseEnter2}
               onMouseLeave={handleMouseLeave2}
-              onFocus={handleMouseFocus2}
-              onBlur={handleMouseBlur2}
+              /*onFocus={() => {
+                handleMouseFocus2();
+              }}
+              onBlur={() => {
+                handleMouseBlur2();
+              }}*/
             ></input>
           </label>
           <button className="deleteInputCalculator" onClick={deleteInputs}>

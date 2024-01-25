@@ -206,7 +206,7 @@
   transform-origin: 50% 50%;
 }
 .configSectionThemeRadio .radio .name:hover .SunIconCloud {
-  animation: cloudMove 20s linear infinite 3s;
+  animation: cloudMove 20s linear infinite 3s !important;
 }
 @keyframes cloudMove {
   0% {
@@ -220,8 +220,8 @@
   }
 }
 .configSectionThemeRadio .radio .name:hover .SunIconRay {
-  animation: configSun 20s linear infinite;
-  filter: blur(0.3px);
+  animation: configSun 20s linear infinite !important;
+  filter: blur(0.3px) !important;
 }
 @keyframes configSun {
   0% {
@@ -237,15 +237,15 @@
   transition: transform 0.5s ease-in-out;
 }
 .configSectionThemeRadio .radio .name:hover .MoonIconWorld {
-  transform: none;
+  transform: none !important;
 }
 .MoonIconMoon {
   transform-origin: 50% 50%;
   transition: transform 0.5s ease-in-out, stroke-width 0.5s ease-in-out;
 }
 .configSectionThemeRadio .radio .name:hover .MoonIconMoon {
-  transform: scale(80%);
-  stroke-width: 2.5;
+  transform: scale(80%) !important;
+  stroke-width: 2.5 !important;
 }
 .confiSeparator {
   height: 1px;

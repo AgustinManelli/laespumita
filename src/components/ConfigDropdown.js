@@ -29,9 +29,16 @@ const MoonIcon = ({ theme, isDark }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
       className="MoonIconMoon"
+      style={{
+        transform: isDark ? "scale(80%)" : "none",
+        strokeWidth: isDark ? "2.5" : "2",
+      }}
     ></path>
     <circle
-      style={{ fill: isDark ? theme.hover : theme.backgroundContainer }}
+      style={{
+        fill: isDark ? theme.hover : theme.backgroundContainer,
+        transform: isDark ? "none" : "translateY(10px)",
+      }}
       className="MoonIconWorld"
       cx="12"
       cy="51.6"
@@ -39,8 +46,11 @@ const MoonIcon = ({ theme, isDark }) => (
     />
     <path
       d="M17.4776 10.0001C17.485 10 17.4925 10 17.5 10C19.9853 10 22 12.0147 22 14.5C22 16.9853 19.9853 19 17.5 19H7C4.23858 19 2 16.7614 2 14C2 11.4003 3.98398 9.26407 6.52042 9.0227M17.4776 10.0001C17.4924 9.83536 17.5 9.66856 17.5 9.5C17.5 6.46243 15.0376 4 12 4C9.12324 4 6.76233 6.20862 6.52042 9.0227M17.4776 10.0001C17.3753 11.1345 16.9286 12.1696 16.2428 13M6.52042 9.0227C6.67826 9.00768 6.83823 9 7 9C8.12582 9 9.16474 9.37209 10.0005 10"
-      style={{ fill: isDark ? theme.hover : theme.backgroundContainer }}
-      class="SunIconCloud"
+      style={{
+        fill: isDark ? theme.hover : theme.backgroundContainer,
+        animation: isDark ? "cloudMove 20s linear infinite 3s" : "none",
+      }}
+      className="SunIconCloud"
       strokeLinecap="round"
       strokeLinejoin="round"
     ></path>
@@ -61,11 +71,18 @@ const SunIcon = ({ theme, isLight }) => (
     <path
       d="M12 2V3.5M12 20.5V22M19.0708 19.0713L18.0101 18.0106M5.98926 5.98926L4.9286 4.9286M22 12H20.5M3.5 12H2M19.0713 4.92871L18.0106 5.98937M5.98975 18.0107L4.92909 19.0714"
       strokeLinecap="round"
-      class="SunIconRay"
+      className="SunIconRay"
+      style={{
+        animation: isLight ? "configSun 20s linear infinite" : "none",
+        filter: isLight ? "blur(0.3px)" : "none",
+      }}
     ></path>
     <path
       d="M17.4776 10.0001C17.485 10 17.4925 10 17.5 10C19.9853 10 22 12.0147 22 14.5C22 16.9853 19.9853 19 17.5 19H7C4.23858 19 2 16.7614 2 14C2 11.4003 3.98398 9.26407 6.52042 9.0227M17.4776 10.0001C17.4924 9.83536 17.5 9.66856 17.5 9.5C17.5 6.46243 15.0376 4 12 4C9.12324 4 6.76233 6.20862 6.52042 9.0227M17.4776 10.0001C17.3753 11.1345 16.9286 12.1696 16.2428 13M6.52042 9.0227C6.67826 9.00768 6.83823 9 7 9C8.12582 9 9.16474 9.37209 10.0005 10"
-      style={{ fill: isLight ? theme.hover : theme.backgroundContainer }}
+      style={{
+        fill: isLight ? theme.hover : theme.backgroundContainer,
+        animation: isLight ? "cloudMove 20s linear infinite 3s" : "none",
+      }}
       class="SunIconCloud"
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -77,6 +77,7 @@ function ConfigMostPercentBox({
       setIsFocused(false);
       const mostPercent = [...isMostPercentCache];
       mostPercent[index] = parseInt(number);
+      mostPercent.sort((a, b) => a - b);
       setIsMostPercentCache(mostPercent);
       window.localStorage.setItem(name, JSON.stringify(mostPercent));
     }

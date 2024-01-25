@@ -1,9 +1,8 @@
-import { FaTrash } from "react-icons/fa";
-import { FaAngleDown } from "react-icons/fa6";
 import "../stylesheets/TotalWindowLabel.css";
 import { useEffect, useState } from "react";
 import ChartComponent from "./ChartComponent";
 import ChartComponentExpanded from "./ChartComponentExpanded";
+import { useTheme } from "../context/ThemeProvider";
 
 function TotalWindowLabel({
   product,
@@ -12,6 +11,7 @@ function TotalWindowLabel({
   lastIndex,
   setStoredTotal,
 }) {
+  const { theme } = useTheme();
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {
     setClassAdded(!isClassAdded);
@@ -27,7 +27,7 @@ function TotalWindowLabel({
       data-src="/icons/arrow-down-01-stroke-rounded.svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       role="img"
-      color="#000000"
+      style={{ stroke: theme.stroke }}
     >
       <path
         d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
@@ -45,6 +45,7 @@ function TotalWindowLabel({
       data-src="/icons/delete-01-stroke-rounded.svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       role="img"
+      style={{ stroke: theme.stroke }}
     >
       <path
         d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
@@ -130,9 +131,12 @@ function TotalWindowLabel({
   return (
     <div className="totalWindowLabelContainerTotal">
       <div className="totalWindowLabelContainer">
-        <div className="totalWindowLabel">
-          <p style={{ width: "50%" }}>$ {product.total}</p>
-          <p style={{ width: "50%" }}>{product.date}</p>
+        <div
+          className="totalWindowLabel"
+          style={{ backgroundColor: theme.backgroundOverall }}
+        >
+          <p style={{ width: "50%", color: theme.text }}>$ {product.total}</p>
+          <p style={{ width: "50%", color: theme.text }}>{product.date}</p>
           <button
             onClick={() => deleteStoredProduct(product.id, product)}
             className="totalWindowDailyDeleteButton"
@@ -165,12 +169,13 @@ function TotalWindowLabel({
               isClassAdded ? "hiddenTotalWindowActived" : "hiddenTotalWindow"
             }
             id="hiddenTotalWindow"
+            style={{ borderColor: theme.borderColor }}
           >
             {product.productsList.map((list, index) => (
               <div
                 key={list.id}
                 style={{
-                  backgroundColor: "rgb(0, 0, 0, 0.05)",
+                  backgroundColor: theme.backgroundOverall,
                   height: "34px",
                   minHeight: "34px",
                   display: "flex",
@@ -178,9 +183,16 @@ function TotalWindowLabel({
                   alignItems: "center",
                   width: "95%",
                   borderRadius: "10px",
+                  border: `1px solid ${theme.borderColor}`,
                 }}
               >
-                <p style={{ marginLeft: "20px", marginRight: "20px" }}>
+                <p
+                  style={{
+                    marginLeft: "20px",
+                    marginRight: "20px",
+                    color: theme.text,
+                  }}
+                >
                   venta {index + 1} ({list.date}): ${list.total}
                 </p>
               </div>
@@ -195,7 +207,6 @@ function TotalWindowLabel({
               style={{
                 position: "relative",
                 width: "calc(95% - 10px)",
-                backgroundColor: "rgb(236, 239, 242)",
                 borderRadius: "10px",
                 marginTop: "5px",
                 padding: "5px",
@@ -203,6 +214,7 @@ function TotalWindowLabel({
                 justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "20px",
+                border: `1px solid ${theme.borderColor}`,
               }}
             >
               <ChartComponentExpanded chartList={chartList} />
@@ -216,7 +228,7 @@ function TotalWindowLabel({
             style={{
               width: "100%",
               height: "2px",
-              backgroundColor: "#008fd2",
+              backgroundColor: theme.borderColor,
               marginBottom: "10px",
             }}
           ></div>

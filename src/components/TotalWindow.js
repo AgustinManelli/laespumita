@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../stylesheets/TotalWindow.css";
 import { FaX } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import TotalWindowLabel from "./TotalWindowLabel";
 import TotalWindowLabelDaily from "./TotalWindowLabelDaily";
+import { useTheme } from "../context/ThemeProvider";
 function TotalWindow({
   totalModal,
   setTotalModal,
@@ -16,6 +17,8 @@ function TotalWindow({
   setStoredTotal,
   deleteStoredTotal,
 }) {
+  const { theme } = useTheme();
+
   const CancelIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +28,7 @@ function TotalWindow({
       data-src="/icons/cancel-01-stroke-rounded.svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       role="img"
+      style={{ stroke: theme.stroke }}
     >
       <path
         d="M19 5L5 19M5 5L19 19"
@@ -73,6 +77,9 @@ function TotalWindow({
     setIsDaily(false);
   };
 
+  const [selectorHover, setSelectorHover] = useState(false);
+  const [selectorHover2, setSelectorHover2] = useState(false);
+
   return (
     <section
       className={
@@ -89,6 +96,10 @@ function TotalWindow({
             stiffness: 260,
             damping: 30,
           }}
+          style={{
+            backgroundColor: theme.backgroundContainer,
+            boxShadow: theme.boxShadow,
+          }}
         >
           <nav className="totalWindowNavbar">
             <p>Resumen de ventas al día {formattedDate}</p>
@@ -103,7 +114,22 @@ function TotalWindow({
                   ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
                   : "totalWindowContentSelectorButton"
               }
+              style={{
+                backgroundColor: isDaily
+                  ? theme.hover
+                  : selectorHover2
+                  ? theme.hover
+                  : theme.backgroundOverall,
+                borderColor: theme.borderColor,
+                color: theme.secondTitles,
+              }}
               onClick={handleFilterTrue}
+              onMouseEnter={() => {
+                setSelectorHover2(true);
+              }}
+              onMouseLeave={() => {
+                setSelectorHover2(false);
+              }}
             >
               Venta diaria
             </button>
@@ -113,13 +139,31 @@ function TotalWindow({
                   ? "totalWindowContentSelectorButton"
                   : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
               }
+              style={{
+                backgroundColor: isDaily
+                  ? selectorHover
+                    ? theme.hover
+                    : theme.backgroundOverall
+                  : theme.hover,
+                borderColor: theme.borderColor,
+                color: theme.secondTitles,
+              }}
               onClick={handleFilterFalse}
+              onMouseEnter={() => {
+                setSelectorHover(true);
+              }}
+              onMouseLeave={() => {
+                setSelectorHover(false);
+              }}
             >
               Ventas totales
             </button>
           </section>
           {isDaily ? (
-            <div className="totalWindowDailyLabelTop">
+            <div
+              className="totalWindowDailyLabelTop"
+              style={{ color: theme.text, backgroundColor: theme.hover }}
+            >
               <div
                 style={{
                   height: "30px",
@@ -154,6 +198,8 @@ function TotalWindow({
                 className="totalWindowDailyLabelTop"
                 style={{
                   width: "100%",
+                  color: theme.text,
+                  backgroundColor: theme.hover,
                 }}
               >
                 <p>ventas</p>
@@ -161,7 +207,11 @@ function TotalWindow({
               </div>
               <div
                 className="totalWindowDailyLabelTop"
-                style={{ width: "130px" }}
+                style={{
+                  width: "130px",
+                  color: theme.text,
+                  backgroundColor: theme.hover,
+                }}
               >
                 <p>gráfica</p>
               </div>

@@ -1,16 +1,19 @@
 import { ColorType, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import { useTheme } from "../context/ThemeProvider";
 
 function ChartComponentExpanded({ chartList }) {
   const chartContainerRef = useRef();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const chart = createChart(chartContainerRef.current, {
       layout: {
         background: {
           type: ColorType.solid,
-          color: "rgb(236, 239, 242)",
+          color: "transparent",
         },
+        textColor: theme.secondTitles,
         fontSize: 10,
       },
       rightPriceScale: {

@@ -1,13 +1,15 @@
 import { ColorType, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import { useTheme } from "../context/ThemeProvider";
 
 function ChartComponent({ chartList }) {
   const chartContainerRef = useRef();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        background: { type: ColorType.solid, color: "rgb(236, 239, 242)" },
+        background: { type: ColorType.solid, color: "transparent" },
       },
       rightPriceScale: {
         visible: false,
@@ -67,7 +69,7 @@ function ChartComponent({ chartList }) {
         width: "100px",
         height: "24px",
         right: "-120px",
-        backgroundColor: "rgb(236, 239, 242)",
+        backgroundColor: theme.backgroundOverall,
         padding: "5px",
         borderRadius: "10px",
       }}

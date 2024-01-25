@@ -22,7 +22,6 @@
   padding-bottom: 2px;
   height: 30px;
   border-radius: 10px;
-  background-color: rgb(236, 239, 242);
 }
 .totalWindowDailyLabel {
   position: relative;
@@ -34,12 +33,10 @@
   padding-bottom: 2px;
   height: 30px;
   border-radius: 10px;
-  background-color: rgb(236, 239, 242);
   margin-top: 10px;
 }
 .totalWindowDailyLabelTop {
   width: 80%;
-  background-color: rgb(0, 143, 210, 0.5);
   border-radius: 10px;
   height: 30px;
   display: flex;
@@ -62,7 +59,6 @@
 .totalWindowDailyDeleteIcon {
   width: 15px;
   height: auto;
-  stroke: rgb(134, 134, 134);
   stroke-width: 2;
   transition: opacity 0.2s ease-in-out;
   display: flex;
@@ -91,10 +87,12 @@
   align-items: center;
   left: 10px;
 }
+.labelHiddenSwitch:hover .hiddenSwitchIcon {
+  opacity: 1;
+}
 .hiddenSwitchIcon {
   width: 20px;
   height: auto;
-  stroke: rgb(134, 134, 134);
   stroke-width: 2;
   opacity: 0.5;
   cursor: pointer;
@@ -129,7 +127,6 @@
   width: 95%;
   height: fit-content;
   max-height: 150px;
-  background-color: rgb(0, 143, 210, 0.2);
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 0 0 10px 10px;
@@ -137,6 +134,8 @@
   overflow: hidden;
   overflow-y: auto;
   overflow-anchor: none;
+  border: 1px solid;
+  border-top: none;
 }
 
 .hiddenTotalWindowActived::-webkit-scrollbar {

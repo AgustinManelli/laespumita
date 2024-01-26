@@ -56,8 +56,8 @@ function AddButtons({
       <path d="M14.5 16.5L14.5 10.5" strokeLinecap="round"></path>
     </svg>
   );
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter" /*&& inputCalculatorFocus*/) {
+  /*const handleKeyPress = (event) => {
+    if (event.key === "Enter" && inputCalculatorFocus) {
       addProduct();
     }
   };
@@ -66,14 +66,22 @@ function AddButtons({
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [addProduct]);
+  }, [addProduct]);*/
   return (
     <section className="addButtonsContainer">
-      <button id="btnAdd" onClick={addProduct} className="addButtonCircle">
+      <button
+        id="btnAdd"
+        onClick={() => {
+          addProduct();
+        }}
+        className="addButtonCircle"
+      >
         <AddIcon />
       </button>
       <button
-        onClick={deleteAllProduct}
+        onClick={() => {
+          deleteAllProduct();
+        }}
         className={
           productList.length === 0
             ? "addButtonCircle locked"

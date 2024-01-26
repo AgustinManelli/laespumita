@@ -200,6 +200,11 @@ function Home({ totalModal, setTotalModal }) {
     setStoredTotal(filtered);
     window.localStorage.setItem("total", JSON.stringify(filtered));
   };
+  const handleEnterKeyPress = (event) => {
+    if (event.key === "Enter") {
+      addProduct();
+    }
+  };
   return (
     <div
       className="homeContainer"
@@ -230,6 +235,7 @@ function Home({ totalModal, setTotalModal }) {
         isMostPercentCache={isMostPercentCache}
         isPercentStockist={isPercentStockist}
         setInputCalculatorFocus={setInputCalculatorFocus}
+        handleEnterKeyPress={handleEnterKeyPress}
       />
       <AddButtons
         addProduct={addProduct}

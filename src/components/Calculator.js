@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../stylesheets/Calculator.css";
 import StockistDropdown from "./StockistDropdown";
 import { useTheme } from "../context/ThemeProvider";
@@ -17,12 +17,14 @@ function Calculator({
   isMostPercentCache,
   isPercentStockist,
   setInputCalculatorFocus,
+  handleEnterKeyPress,
 }) {
   const [inputHovered, setInputHovered] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
   const [inputHovered2, setInputHovered2] = useState(false);
   const [inputFocus2, setInputFocus2] = useState(false);
   const { theme } = useTheme();
+  const inputNumber = useRef();
 
   const handleMouseEnter = () => {
     setInputHovered(true);
@@ -30,27 +32,11 @@ function Calculator({
   const handleMouseLeave = () => {
     setInputHovered(false);
   };
-  const handleMouseFocus = () => {
-    setInputFocus(true);
-    setInputCalculatorFocus(true);
-  };
-  const handleMouseBlur = () => {
-    setInputFocus(false);
-    setInputCalculatorFocus(false);
-  };
   const handleMouseEnter2 = () => {
     setInputHovered2(true);
   };
   const handleMouseLeave2 = () => {
     setInputHovered2(false);
-  };
-  const handleMouseFocus2 = () => {
-    setInputFocus2(true);
-    setInputCalculatorFocus(true);
-  };
-  const handleMouseBlur2 = () => {
-    setInputFocus2(false);
-    setInputCalculatorFocus(false);
   };
 
   useEffect(() => {
@@ -148,6 +134,7 @@ function Calculator({
           <label className="inputLabel">
             <DollarIcon />
             <input
+              onKeyPress={handleEnterKeyPress}
               type="number"
               className="calcInput calcInput_peso"
               placeholder="Precio"
@@ -164,14 +151,14 @@ function Calculator({
               }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              /*onFocus={handleMouseFocus}
-              onBlur={handleMouseBlur}*/
             ></input>
           </label>
           <label className="inputLabel">
             <PercentIcon />
             <input
+              onKeyPress={handleEnterKeyPress}
               type="number"
+              ref={inputNumber}
               className="calcInput calcInput_pj"
               placeholder="Procentaje"
               id="input__porcentaje"
@@ -187,8 +174,6 @@ function Calculator({
               }}
               onMouseEnter={handleMouseEnter2}
               onMouseLeave={handleMouseLeave2}
-              /*</label>onFocus={handleMouseFocus2}
-              onBlur={handleMouseBlur2}*/
             ></input>
           </label>
           <button className="deleteInputCalculator" onClick={deleteInputs}>

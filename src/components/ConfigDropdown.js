@@ -154,16 +154,28 @@ function ConfigDropdown({
 
   const { theme, setLight, setDark } = useTheme();
 
+  useEffect(()=>{
+    if(window.localStorage.getItem("theme")==="light"){
+      setIsLight(true)
+      setIsDark(false)
+    }else{
+      setIsLight(false)
+      setIsDark(true)
+    }
+  },[])
+
   const handleCheckboxChange1 = () => {
-    setIsLight(!isLight);
+    setIsLight(true);
     setIsDark(false);
     setLight();
+    window.localStorage.setItem("theme", "light")
   };
 
   const handleCheckboxChange2 = () => {
-    setIsDark(!isDark);
+    setIsDark(true);
     setIsLight(false);
     setDark();
+    window.localStorage.setItem("theme", "dark")
   };
 
   const handleAddPercent = () => {

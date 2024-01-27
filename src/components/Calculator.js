@@ -16,7 +16,6 @@ function Calculator({
   isStockist,
   isMostPercentCache,
   isPercentStockist,
-  setInputCalculatorFocus,
   handleEnterKeyPress,
 }) {
   const [inputHovered, setInputHovered] = useState(false);

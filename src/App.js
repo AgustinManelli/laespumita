@@ -1,6 +1,5 @@
 import "./App.css";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import { Toaster } from "sonner";
 import { useEffect, useState } from "react";
 import ThemeProvider from "./context/ThemeProvider";
@@ -19,7 +18,7 @@ function App() {
     if (window.localStorage.getItem("percentStockist") === null) {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
-    if (window.localStorage.getItem("theme") === null ) {
+    if (window.localStorage.getItem("theme") === null) {
       window.localStorage.setItem("theme", "light");
     }
   }, []);

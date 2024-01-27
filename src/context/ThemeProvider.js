@@ -34,7 +34,12 @@ const ThemeContext = createContext();
 
 function ThemeProvider(props) {
   /*const [theme, setTheme] = useState("light");*/
-  const [theme, setTheme] = useState(window.localStorage.getItem('theme') === null || window.localStorage.getItem('theme') === undefined ?"light" :  window.localStorage.getItem('theme'))
+  const [theme, setTheme] = useState(
+    window.localStorage.getItem("theme") === null ||
+      window.localStorage.getItem("theme") === undefined
+      ? "light"
+      : window.localStorage.getItem("theme")
+  );
   const [wTheme, setWTheme] = useState(true);
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");

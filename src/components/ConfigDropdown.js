@@ -154,28 +154,31 @@ function ConfigDropdown({
 
   const { theme, setLight, setDark } = useTheme();
 
-  useEffect(()=>{
-    if(window.localStorage.getItem("theme")==="light"){
-      setIsLight(true)
-      setIsDark(false)
-    }else{
-      setIsLight(false)
-      setIsDark(true)
+  useEffect(() => {
+    if (
+      window.localStorage.getItem("theme") === "light" ||
+      window.localStorage.getItem("theme") === null
+    ) {
+      setIsLight(true);
+      setIsDark(false);
+    } else {
+      setIsLight(false);
+      setIsDark(true);
     }
-  },[])
+  }, []);
 
   const handleCheckboxChange1 = () => {
     setIsLight(true);
     setIsDark(false);
     setLight();
-    window.localStorage.setItem("theme", "light")
+    window.localStorage.setItem("theme", "light");
   };
 
   const handleCheckboxChange2 = () => {
     setIsDark(true);
     setIsLight(false);
     setDark();
-    window.localStorage.setItem("theme", "dark")
+    window.localStorage.setItem("theme", "dark");
   };
 
   const handleAddPercent = () => {

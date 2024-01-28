@@ -30,7 +30,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 15px;
   top: 65px;
   right: 0px;
   width: fit-content;

@@ -1,7 +1,7 @@
 .calculatorContainer {
   width: 400px;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 23px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,7 +95,7 @@ input::-webkit-inner-spin-button {
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 20px;
+  border-radius: 23px;
   display: flex;
   justify-content: center;
   align-items: center;

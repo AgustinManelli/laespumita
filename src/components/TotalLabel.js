@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
 import "../stylesheets/TotalLabel.css";
 import { useTheme } from "../context/ThemeProvider";
 
-function TotalLabel({ totalPrice, setTotalPrice, isCard, setCard }) {
+function TotalLabel({ totalPrice, isCard, setCard }) {
   const { theme } = useTheme();
   const CardIconCheck = () => (
     <svg

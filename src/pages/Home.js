@@ -248,12 +248,7 @@ function Home({ totalModal, setTotalModal }) {
         handleSave={handleSave}
         storedProducts={storedProducts}
       />
-      <TotalLabel
-        totalPrice={totalPrice}
-        setTotalPrice={setTotalPrice}
-        isCard={isCard}
-        setCard={setCard}
-      />
+      <TotalLabel totalPrice={totalPrice} isCard={isCard} setCard={setCard} />
       <TotalWindow
         totalModal={totalModal}
         setTotalModal={setTotalModal}

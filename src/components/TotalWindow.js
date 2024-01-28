@@ -88,8 +88,23 @@ function TotalWindow({
     >
       {totalModal ? (
         <motion.div
+          className="totalWindowBG"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 30,
+          }}
+          style={{ backgroundColor: theme.background }}
+        ></motion.div>
+      ) : (
+        <></>
+      )}
+      {totalModal ? (
+        <motion.div
           className="totalWindowModal"
-          initial={{ scale: 0 }}
+          initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{
             type: "spring",
@@ -102,7 +117,9 @@ function TotalWindow({
           }}
         >
           <nav className="totalWindowNavbar">
-            <p>Resumen de ventas al día {formattedDate}</p>
+            <h2 style={{ color: theme.secondTitles }}>
+              Resumen de ventas al día {formattedDate}
+            </h2>
             <button onClick={handleClose} className="totalWindowNavbarButton">
               <CancelIcon />
             </button>

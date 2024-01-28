@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddButtons from "../components/AddButtons";
 import Calculator from "../components/Calculator";
 import ListProducts from "../components/ListProducts";
@@ -11,7 +11,7 @@ import Navbar from "../components/Navbar";
 import { useTheme } from "../context/ThemeProvider";
 
 function Home({ totalModal, setTotalModal }) {
-  const { theme, toggleTheme, themeName } = useTheme();
+  const { theme } = useTheme();
   const currentDate = new Date();
   const idDay = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
@@ -54,7 +54,6 @@ function Home({ totalModal, setTotalModal }) {
       ? [10.5, 21]
       : JSON.parse(window.localStorage.getItem("percentStockist"))
   );
-  const [inputCalculatorFocus, setInputCalculatorFocus] = useState(false);
 
   const addProduct = (e) => {
     if (total === 0) {
@@ -235,14 +234,12 @@ function Home({ totalModal, setTotalModal }) {
         isStockist={isStockist}
         isMostPercentCache={isMostPercentCache}
         isPercentStockist={isPercentStockist}
-        setInputCalculatorFocus={setInputCalculatorFocus}
         handleEnterKeyPress={handleEnterKeyPress}
       />
       <AddButtons
         addProduct={addProduct}
         deleteAllProduct={deleteAllProduct}
         productList={productList}
-        inputCalculatorFocus={inputCalculatorFocus}
       />
       <ListProducts
         productList={productList}

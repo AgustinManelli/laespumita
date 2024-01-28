@@ -1,11 +1,5 @@
 import "../stylesheets/AddButtons.css";
-import { useEffect } from "react";
-function AddButtons({
-  addProduct,
-  deleteAllProduct,
-  productList,
-  inputCalculatorFocus,
-}) {
+function AddButtons({ addProduct, deleteAllProduct, productList }) {
   const AddIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

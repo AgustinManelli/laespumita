@@ -6,7 +6,6 @@ import "./Home.css";
 import TotalLabel from "../components/TotalLabel";
 import { toast } from "sonner";
 import TotalWindow from "../components/TotalWindow";
-import DeleteAllParameters from "../components/DeleteAllParameters";
 import Navbar from "../components/Navbar";
 import { useTheme } from "../context/ThemeProvider";
 
@@ -204,6 +203,16 @@ function Home({ totalModal, setTotalModal }) {
       addProduct();
     }
   };
+  const handlDeleteAll = () => {
+    if (window.confirm("¿Seguro que quieres resetear todos los datos?")) {
+      localStorage.setItem("total", "[]");
+      localStorage.setItem("products", "[]");
+      setStoredTotal((total) => (total = []));
+      setStoredProducts((prod) => (prod = []));
+      alert("Todos los datos se resetearon correctamente.");
+    } else {
+    }
+  };
   return (
     <div
       className="homeContainer"
@@ -220,6 +229,7 @@ function Home({ totalModal, setTotalModal }) {
         setIsMostPercentCache={setIsMostPercentCache}
         isPercentStockist={isPercentStockist}
         setIsPercentStockist={setIsPercentStockist}
+        handlDeleteAll={handlDeleteAll}
       />
       <Calculator
         percent={percent}
@@ -260,10 +270,6 @@ function Home({ totalModal, setTotalModal }) {
         storedTotal={storedTotal}
         setStoredTotal={setStoredTotal}
         deleteStoredTotal={deleteStoredTotal}
-      />
-      <DeleteAllParameters
-        setStoredTotal={setStoredTotal}
-        setStoredProducts={setStoredProducts}
       />
     </div>
   );

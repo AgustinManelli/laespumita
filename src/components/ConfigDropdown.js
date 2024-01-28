@@ -143,6 +143,7 @@ function ConfigDropdown({
   setIsMostPercentCache,
   isPercentStockist,
   setIsPercentStockist,
+  handlDeleteAll,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -409,6 +410,33 @@ function ConfigDropdown({
                     </span>
                   </label>
                 </div>
+              </div>
+            </div>
+          </section>
+          <div
+            className="confiSeparator"
+            style={{ backgroundColor: theme.borderColor }}
+          ></div>
+          <section className="configSection">
+            <div className="configSectionDeleteContainerTotal">
+              <p
+                className="configSectionPercentP"
+                style={{ color: theme.text }}
+              >
+                control de datos
+              </p>
+              <div className="configSectionDeleteContainer">
+                <button
+                  className="configSectionDeleteButton"
+                  onClick={() => {
+                    handlDeleteAll();
+                  }}
+                >
+                  <p>reset list</p>
+                </button>
+                <button className="configSectionDeleteButton">
+                  <p>delete all</p>
+                </button>
               </div>
             </div>
           </section>

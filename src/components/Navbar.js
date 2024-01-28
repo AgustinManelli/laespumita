@@ -10,6 +10,7 @@ function Navbar({
   setIsMostPercentCache,
   isPercentStockist,
   setIsPercentStockist,
+  handlDeleteAll,
 }) {
   const { theme } = useTheme();
   const AnalyticsIcon = () => (
@@ -80,6 +81,7 @@ function Navbar({
             setIsMostPercentCache={setIsMostPercentCache}
             isPercentStockist={isPercentStockist}
             setIsPercentStockist={setIsPercentStockist}
+            handlDeleteAll={handlDeleteAll}
           />
         </div>
       </nav>

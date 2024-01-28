@@ -19,7 +19,7 @@ const themeStyles = {
   },
   dark: {
     background: "rgb(35, 37, 41)",
-    backgroundContainer: "rgba(43, 46, 53, 0.7)",
+    backgroundContainer: "rgba(43, 46, 53, 0.8)",
     backgroundContainerFull: "rgba(43, 46, 53, 1)",
     backgroundOverall: "rgba(47, 52, 61, 0.5)",
     hover: "rgb(76, 81, 88)",

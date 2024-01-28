@@ -17,7 +17,7 @@ function TotalWindow({
   setStoredTotal,
   deleteStoredTotal,
 }) {
-  const { theme } = useTheme();
+  const { theme, wTheme } = useTheme();
 
   const CancelIcon = () => (
     <svg
@@ -217,7 +217,14 @@ function TotalWindow({
               </div>
             </div>
           )}
-          <div className="totalWindowContent" id="totalWindowContent">
+          <div
+            className={
+              wTheme
+                ? "totalWindowContent totalWindowContentLight"
+                : "totalWindowContent totalWindowContentDark"
+            }
+            id="totalWindowContent"
+          >
             <section className="totalWindowContentProducts">
               {isDaily ? (
                 <>

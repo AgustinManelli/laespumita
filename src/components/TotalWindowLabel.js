@@ -12,7 +12,7 @@ function TotalWindowLabel({
   lastIndex,
   setStoredTotal,
 }) {
-  const { theme } = useTheme();
+  const { theme, wTheme } = useTheme();
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {
     setClassAdded(!isClassAdded);
@@ -185,7 +185,11 @@ function TotalWindowLabel({
             }}
           >
             <div
-              className="hiddenTotalWindowActived"
+              className={
+                wTheme
+                  ? "hiddenTotalWindowActived hiddenTotalWindowActivedLight"
+                  : "hiddenTotalWindowActived hiddenTotalWindowActivedDark"
+              }
               id="hiddenTotalWindow"
               style={{ borderColor: theme.borderColor }}
             >

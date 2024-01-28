@@ -153,16 +153,23 @@
 .hiddenTotalWindowActived::-webkit-scrollbar {
   width: 7px;
 }
-.hiddenTotalWindowActived::-webkit-scrollbar-track {
-  background: rgb(236, 239, 242);
+.hiddenTotalWindowActivedLight::-webkit-scrollbar-track {
+  background: rgba(245, 247, 250, 0.9);
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.hiddenTotalWindowActived::-webkit-scrollbar-thumb {
-  background: rgb(201, 204, 207);
+.hiddenTotalWindowActivedLight::-webkit-scrollbar-thumb {
+  background: rgb(231, 233, 236);
   border-radius: 3px;
 }
-.hiddenTotalWindowActived::-webkit-scrollbar-thumb:hover {
-  background: rgb(142, 183, 202);
+.hiddenTotalWindowActivedDark::-webkit-scrollbar-track {
+  background: rgba(47, 52, 61, 0.5);
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.hiddenTotalWindowActivedDark::-webkit-scrollbar-thumb {
+  background: rgb(76, 81, 88);
+  border-radius: 3px;
 }

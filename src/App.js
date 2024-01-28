@@ -19,7 +19,7 @@ function App() {
     if (window.localStorage.getItem("percentStockist") === null) {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
-    if (window.localStorage.getItem("theme") === null ) {
+    if (window.localStorage.getItem("theme") === null) {
       window.localStorage.setItem("theme", "light");
     }
   }, []);
@@ -28,7 +28,6 @@ function App() {
     <ThemeProvider>
       <div className="App">
         <Toaster position="bottom-center" richColors />
-        <div className="blurredbg"></div>
         <Home totalModal={totalModal} setTotalModal={setTotalModal} />
       </div>
     </ThemeProvider>

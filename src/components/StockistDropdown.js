@@ -140,7 +140,7 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
         {isStockist > 0 ? (
           <div
             className="stockistDDAlertContainer"
-            style={{ backgroundColor: theme.backgroundContainer }}
+            style={{ backgroundColor: theme.backgroundContainerFull }}
           >
             <div className="stockistDDAlert"></div>
           </div>
@@ -201,6 +201,7 @@ function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
             stockistPercent={stockistPercent}
             stockist={stockist}
             setIsOpen={setIsOpen}
+            key={index}
           />
         ))}
       </motion.ul>

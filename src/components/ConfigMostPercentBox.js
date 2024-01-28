@@ -114,7 +114,7 @@ function ConfigMostPercentBox({
       </div>
       <div
         className="configAddButtonContainer"
-        style={{ backgroundColor: theme.backgroundContainer }}
+        style={{ backgroundColor: theme.backgroundContainerFull }}
       >
         <button
           className="ConfigMostPercentBoxDelete"

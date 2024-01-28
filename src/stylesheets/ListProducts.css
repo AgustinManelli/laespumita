@@ -12,6 +12,7 @@
   overflow-y: auto;
   overflow-anchor: none;
   scrollbar-gutter: stable both-edges;
+  z-index: 2;
 }
 .listContainer::-webkit-scrollbar {
   width: 7px;

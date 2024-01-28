@@ -37,6 +37,7 @@
   height: fit-content;
   min-width: 302px;
   overflow: hidden;
+  backdrop-filter: blur(15px) saturate(200%);
 }
 .ConfigIcon {
   width: 24px;

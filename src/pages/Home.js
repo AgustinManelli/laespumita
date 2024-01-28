@@ -71,11 +71,11 @@ function Home({ totalModal, setTotalModal }) {
     setPrice("");
     setPercent("");
     setTotal(0);
-    setTotalPrice(totalPrice + tempTotal);
+    setTotalPrice((total) => total + tempTotal);
   };
   const deleteProduct = (id, product) => {
     setProductList(productList.filter((product) => product.id !== id));
-    setTotalPrice(totalPrice - product.total);
+    setTotalPrice((total) => total - product.total);
   };
   const deleteAllProduct = () => {
     if (productList.length > 0) {
@@ -213,6 +213,7 @@ function Home({ totalModal, setTotalModal }) {
         transition: "background-color 0.3s ease-in-out",
       }}
     >
+      <div className={isCard ? "blurredbg blurredbgact" : "blurredbg"}></div>
       <Navbar
         totalModal={totalModal}
         setTotalModal={setTotalModal}

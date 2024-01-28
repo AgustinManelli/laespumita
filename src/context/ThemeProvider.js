@@ -6,7 +6,8 @@ const { createContext } = require("react");
 const themeStyles = {
   light: {
     background: "#eff2f5",
-    backgroundContainer: "#fff",
+    backgroundContainer: "rgba(255,255,255,0.8)",
+    backgroundContainerFull: "rgba(255,255,255,1)",
     backgroundOverall: "rgba(245, 247, 250, 0.9)",
     hover: "rgb(231, 233, 236)",
     stroke: "rgb(134, 134, 134)",
@@ -18,7 +19,8 @@ const themeStyles = {
   },
   dark: {
     background: "rgb(35, 37, 41)",
-    backgroundContainer: "rgba(43, 46, 53, 1)",
+    backgroundContainer: "rgba(43, 46, 53, 0.7)",
+    backgroundContainerFull: "rgba(43, 46, 53, 1)",
     backgroundOverall: "rgba(47, 52, 61, 0.5)",
     hover: "rgb(76, 81, 88)",
     stroke: "#fff",
@@ -34,7 +36,12 @@ const ThemeContext = createContext();
 
 function ThemeProvider(props) {
   /*const [theme, setTheme] = useState("light");*/
-  const [theme, setTheme] = useState(window.localStorage.getItem('theme') === null || window.localStorage.getItem('theme') === undefined ?"light" :  window.localStorage.getItem('theme'))
+  const [theme, setTheme] = useState(
+    window.localStorage.getItem("theme") === null ||
+      window.localStorage.getItem("theme") === undefined
+      ? "light"
+      : window.localStorage.getItem("theme")
+  );
   const [wTheme, setWTheme] = useState(true);
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");

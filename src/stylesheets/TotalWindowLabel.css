@@ -111,6 +111,18 @@
   transform: rotate(180deg);
 }
 
+.accordionContainer {
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, max-height 0.5s ease-in-out;
+}
+
+.accAct {
+  max-height: 300px;
+  opacity: 1;
+}
+
 .hiddenTotalWindow {
   display: flex;
   flex-direction: column;

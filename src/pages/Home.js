@@ -10,7 +10,7 @@ import Navbar from "../components/Navbar";
 import { useTheme } from "../context/ThemeProvider";
 
 function Home({ totalModal, setTotalModal }) {
-  const { theme } = useTheme();
+  const { theme, setLight } = useTheme();
   const currentDate = new Date();
   const idDay = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
@@ -204,11 +204,27 @@ function Home({ totalModal, setTotalModal }) {
     }
   };
   const handlDeleteAll = () => {
-    if (window.confirm("¿Seguro que quieres resetear todos los datos?")) {
+    if (window.confirm("¿Seguro que quieres resetear las ventas?")) {
       localStorage.setItem("total", "[]");
       localStorage.setItem("products", "[]");
       setStoredTotal((total) => (total = []));
       setStoredProducts((prod) => (prod = []));
+      alert("Las ventas se resetearon correctamente.");
+    } else {
+    }
+  };
+  const handlDeleteTotal = () => {
+    if (window.confirm("¿Seguro que quieres resetear todos los datos?")) {
+      localStorage.setItem("total", "[]");
+      localStorage.setItem("products", "[]");
+      localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
+      localStorage.setItem("percentStockist", "[10.5, 21]");
+      localStorage.setItem("theme", "light");
+      setStoredTotal((total) => (total = []));
+      setStoredProducts((prod) => (prod = []));
+      setIsMostPercentCache((most) => (most = [40, 45, 50, 55, 60, 70]));
+      setIsPercentStockist((percent) => (percent = [10.5, 21]));
+      setLight();
       alert("Todos los datos se resetearon correctamente.");
     } else {
     }
@@ -230,6 +246,7 @@ function Home({ totalModal, setTotalModal }) {
         isPercentStockist={isPercentStockist}
         setIsPercentStockist={setIsPercentStockist}
         handlDeleteAll={handlDeleteAll}
+        handlDeleteTotal={handlDeleteTotal}
       />
       <Calculator
         percent={percent}

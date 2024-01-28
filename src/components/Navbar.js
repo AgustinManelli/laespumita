@@ -11,6 +11,7 @@ function Navbar({
   isPercentStockist,
   setIsPercentStockist,
   handlDeleteAll,
+  handlDeleteTotal,
 }) {
   const { theme } = useTheme();
   const AnalyticsIcon = () => (
@@ -82,6 +83,7 @@ function Navbar({
             isPercentStockist={isPercentStockist}
             setIsPercentStockist={setIsPercentStockist}
             handlDeleteAll={handlDeleteAll}
+            handlDeleteTotal={handlDeleteTotal}
           />
         </div>
       </nav>

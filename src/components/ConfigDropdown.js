@@ -144,6 +144,7 @@ function ConfigDropdown({
   isPercentStockist,
   setIsPercentStockist,
   handlDeleteAll,
+  handlDeleteTotal,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -434,7 +435,12 @@ function ConfigDropdown({
                 >
                   <p>reset list</p>
                 </button>
-                <button className="configSectionDeleteButton">
+                <button
+                  className="configSectionDeleteButton"
+                  onClick={() => {
+                    handlDeleteTotal();
+                  }}
+                >
                   <p>delete all</p>
                 </button>
               </div>

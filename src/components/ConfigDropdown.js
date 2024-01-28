@@ -166,6 +166,7 @@ function ConfigDropdown({
   const [isDark, setIsDark] = useState(false);
 
   const currentDate = new Date();
+  const year = currentDate.getFullYear();
 
   const { theme, setLight, setDark } = useTheme();
 
@@ -436,7 +437,7 @@ function ConfigDropdown({
               style={{ backgroundColor: theme.backgroundOverall }}
             >
               <p style={{ color: theme.secondTitles }}>
-                2024 La espumita · Argentina
+                {year} La espumita · Argentina
               </p>
             </div>
           </footer>

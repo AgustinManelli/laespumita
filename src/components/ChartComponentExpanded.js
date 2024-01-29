@@ -62,6 +62,7 @@ function ChartComponentExpanded({ chartList }) {
       lastValueVisible: false,
       crosshairMarkerVisible: true,
       lineWidth: 2,
+      lineType: 2,
     });
 
     newSeries.setData(chartList);

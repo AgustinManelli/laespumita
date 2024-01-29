@@ -55,6 +55,7 @@ function ChartComponent({ chartList }) {
       lastValueVisible: false,
       crosshairMarkerVisible: false,
       lineWidth: 2,
+      lineType: 2,
     });
 
     newSeries.setData(chartList);

@@ -19,7 +19,7 @@ function ChartComponentExpanded({ chartList }) {
       rightPriceScale: {
         visible: true,
         borderVisible: true,
-        autoScale: true,
+        autoScale: false,
         borderColor: "#008fd2",
       },
       crosshair: {
@@ -51,6 +51,10 @@ function ChartComponentExpanded({ chartList }) {
         borderColor: "#008fd2",
       },
       handleScroll: true,
+      handleScroll: {
+        pressedMouseMove: true,
+        mouseWheel: false,
+      },
       handleScale: false,
       autoSize: true,
     });
@@ -63,6 +67,7 @@ function ChartComponentExpanded({ chartList }) {
       crosshairMarkerVisible: true,
       lineWidth: 2,
       lineType: 2,
+      lastPriceAnimation: 1,
     });
 
     newSeries.setData(chartList);

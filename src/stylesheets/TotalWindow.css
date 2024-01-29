@@ -44,16 +44,23 @@
   z-index: -1;
 }
 .totalWindowNavbar {
-  width: 95%;
-  height: 100px;
+  width: 100%;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .totalWindowNavbar h2 {
-  margin-left: 20px;
   font-size: 15px;
   font-family: inherit;
+  margin-left: 35px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .totalWindowNavbarButton {
   background: none;
@@ -62,8 +69,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin-right: 20px;
   padding: 0;
+  margin-right: 35px;
 }
 .totalWindowNavbarX {
   width: 18px;

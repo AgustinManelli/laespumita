@@ -39,7 +39,7 @@ function ThemeProvider(props) {
   const [theme, setTheme] = useState(
     window.localStorage.getItem("theme") === null ||
       window.localStorage.getItem("theme") === undefined
-      ? "light"
+      ? "dark"
       : window.localStorage.getItem("theme")
   );
   const [wTheme, setWTheme] = useState(true);

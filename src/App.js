@@ -19,7 +19,7 @@ function App() {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
     if (window.localStorage.getItem("theme") === null) {
-      window.localStorage.setItem("theme", "light");
+      window.localStorage.setItem("theme", "dark");
     }
   }, []);
   const [totalModal, setTotalModal] = useState(false);

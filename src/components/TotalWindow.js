@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/TotalWindow.css";
-import { FaX } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import TotalWindowLabel from "./TotalWindowLabel";
 import TotalWindowLabelDaily from "./TotalWindowLabelDaily";

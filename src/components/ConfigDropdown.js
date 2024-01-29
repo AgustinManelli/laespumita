@@ -433,7 +433,7 @@ function ConfigDropdown({
                     handlDeleteAll();
                   }}
                 >
-                  <p>reset list</p>
+                  <p>reiniciar listas</p>
                 </button>
                 <button
                   className="configSectionDeleteButton"
@@ -441,7 +441,7 @@ function ConfigDropdown({
                     handlDeleteTotal();
                   }}
                 >
-                  <p>delete all</p>
+                  <p>reiniciar todo</p>
                 </button>
               </div>
             </div>

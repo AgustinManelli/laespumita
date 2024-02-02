@@ -44,13 +44,14 @@ function ChartComponentExpanded({ chartList }) {
       },
       timeScale: {
         visible: true,
-        barSpacing: 50,
+        /*barSpacing: 21,*/
         borderVisible: true,
         secondsVisible: false,
         timeVisible: true,
         borderColor: "#008fd2",
+        fixRightEdge: true,
+        fixLeftEdge: true,
       },
-      handleScroll: true,
       handleScroll: {
         pressedMouseMove: true,
         mouseWheel: false,

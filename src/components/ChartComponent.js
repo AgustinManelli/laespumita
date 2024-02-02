@@ -36,7 +36,7 @@ function ChartComponent({ chartList }) {
       },
       timeScale: {
         visible: false,
-        barSpacing: 10,
+        barSpacing: 6.5,
         borderVisible: false,
       },
       handleScroll: false,

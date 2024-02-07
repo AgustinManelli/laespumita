@@ -83,7 +83,7 @@ const SunIcon = ({ theme, isLight }) => (
         fill: isLight ? theme.hover : theme.backgroundContainer,
         animation: isLight ? "cloudMove 20s linear infinite 3s" : "none",
       }}
-      class="SunIconCloud"
+      className="SunIconCloud"
       strokeLinecap="round"
       strokeLinejoin="round"
     ></path>

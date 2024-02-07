@@ -144,6 +144,7 @@ function Home({ totalModal, setTotalModal }) {
             ),
             date: formattedDay,
             productsList: total,
+            chartList: [],
           });
           window.localStorage.setItem("total", JSON.stringify(totalall));
           setStoredTotal(JSON.parse(localStorage.total));

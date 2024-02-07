@@ -58,7 +58,7 @@ function TotalWindow({
       }
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isDaily, totalModal]);
   const currentDate = new Date();
   const formattedDate = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
@@ -261,7 +261,9 @@ function TotalWindow({
                       deleteStoredProduct={deleteStoredTotal}
                       totalModal={totalModal}
                       lastIndex={index !== storedTotal.length - 1}
+                      index={index}
                       setStoredTotal={setStoredTotal}
+                      isDaily={isDaily}
                     />
                   ))}
                 </>

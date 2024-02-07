@@ -77,7 +77,7 @@ function ListProducts({ productList, deleteProduct, handleSave }) {
         style={{
           backgroundColor: theme.backgroundContainer,
           boxShadow: theme.boxShadow,
-          "&::-webkit-scrollbar-track": {
+          "&::WebkitScrollbarTrack": {
             background: theme.backgroundOverall,
           },
         }}

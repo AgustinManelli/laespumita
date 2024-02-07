@@ -6,7 +6,7 @@ const { createContext } = require("react");
 const themeStyles = {
   light: {
     background: "#eff2f5",
-    backgroundContainer: "rgba(255,255,255,0.8)",
+    backgroundContainer: "rgba(255,255,255,0.6)",
     backgroundContainerFull: "rgba(255,255,255,1)",
     backgroundOverall: "rgba(245, 247, 250, 0.9)",
     hover: "rgb(231, 233, 236)",
@@ -19,7 +19,7 @@ const themeStyles = {
   },
   dark: {
     background: "rgb(35, 37, 41)",
-    backgroundContainer: "rgba(43, 46, 53, 0.8)",
+    backgroundContainer: "rgba(43, 46, 53, 0.6)",
     backgroundContainerFull: "rgba(43, 46, 53, 1)",
     backgroundOverall: "rgba(47, 52, 61, 0.5)",
     hover: "rgb(76, 81, 88)",
@@ -42,7 +42,7 @@ function ThemeProvider(props) {
       ? "dark"
       : window.localStorage.getItem("theme")
   );
-  const [wTheme, setWTheme] = useState(true);
+  const [wTheme, setWTheme] = useState(theme === "white" ? true : false);
   const toggleTheme = () =>
     theme === "light" ? setTheme("dark") : setTheme("light");
   const setLight = () => {

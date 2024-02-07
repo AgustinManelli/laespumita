@@ -187,103 +187,106 @@ function TotalWindowLabel({
             </div>
           </label>
         </div>
-        {isClassAdded ? (
-          <motion.div
-            initial={{ transform: "translateY(0px)" }}
-            animate={{ transform: "translateY(0px)" }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 30,
-            }}
-            className={
-              isClassAdded ? "accordionContainer accAct" : "accordionContainer"
-            }
-          >
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                className={
-                  wTheme
-                    ? "hiddenTotalWindowActived hiddenTotalWindowActivedLight"
-                    : "hiddenTotalWindowActived hiddenTotalWindowActivedDark"
-                }
-                id="hiddenTotalWindow"
-                style={{ borderColor: theme.borderColor }}
-              >
-                {product.productsList.map((list, index) => (
-                  <div
-                    key={list.id}
-                    style={{
-                      backgroundColor: theme.backgroundOverall,
-                      height: "34px",
-                      minHeight: "34px",
-                      display: "flex",
-                      justifyContent: "start",
-                      alignItems: "center",
-                      width: "95%",
-                      borderRadius: "10px",
-                      border: `1px solid ${theme.borderColor}`,
-                    }}
-                  >
-                    <p
-                      style={{
-                        marginLeft: "20px",
-                        marginRight: "20px",
-                        color: theme.text,
-                      }}
-                    >
-                      venta {index + 1} ({list.date}): ${list.total}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: "calc(95% - 10px)",
-                  borderRadius: "10px",
-                  marginTop: "5px",
-                  padding: "5px",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "20px",
-                  border: `1px solid ${theme.borderColor}`,
-                }}
-              >
-                <ChartComponentExpanded chartList={chartList} />
-              </div>
-            </div>
-            {lastIndex ? (
+
+        <motion.div
+          initial={{ transform: "translateY(0px)" }}
+          animate={{ transform: "translateY(0px)" }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 30,
+          }}
+          className={
+            isClassAdded ? "accordionContainer accAct" : "accordionContainer"
+          }
+        >
+          {isClassAdded ? (
+            <>
               <div
                 style={{
                   width: "100%",
-                  height: "2px",
-                  backgroundColor: theme.borderColor,
-                  marginBottom: "10px",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
-              ></div>
-            ) : (
-              <div></div>
-            )}
-          </motion.div>
-        ) : (
-          <></>
-        )}
+              >
+                <div
+                  className={
+                    wTheme
+                      ? "hiddenTotalWindowActived hiddenTotalWindowActivedLight"
+                      : "hiddenTotalWindowActived hiddenTotalWindowActivedDark"
+                  }
+                  id="hiddenTotalWindow"
+                  style={{ borderColor: theme.borderColor }}
+                >
+                  {product.productsList.map((list, index) => (
+                    <div
+                      key={list.id}
+                      style={{
+                        backgroundColor: theme.backgroundOverall,
+                        height: "34px",
+                        minHeight: "34px",
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "center",
+                        width: "95%",
+                        borderRadius: "10px",
+                        border: `1px solid ${theme.borderColor}`,
+                      }}
+                    >
+                      <p
+                        style={{
+                          marginLeft: "20px",
+                          marginRight: "20px",
+                          color: theme.text,
+                        }}
+                      >
+                        venta {index + 1} ({list.date}): ${list.total}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    width: "calc(95% - 10px)",
+                    borderRadius: "10px",
+                    marginTop: "5px",
+                    padding: "5px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                    border: `1px solid ${theme.borderColor}`,
+                  }}
+                >
+                  <ChartComponentExpanded chartList={chartList} />
+                </div>
+              </div>
+              {lastIndex ? (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "2px",
+                    backgroundColor: theme.borderColor,
+                    marginBottom: "10px",
+                  }}
+                ></div>
+              ) : (
+                <div></div>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
+        </motion.div>
       </div>
       <ChartComponent chartList={chartList} />
     </div>

@@ -21,35 +21,52 @@ function TotalWindow({
   deleteStoredMonthly,
 }) {
   const { theme, wTheme } = useTheme();
+  const [isAsc, setIsAsc] = useState(false);
+  const [isDesc, setIsDesc] = useState(false);
 
-  const FilterAsc = () => (
+  const sortByDesc = () => {
+    const sortedData = [...storedTotal].sort((a, b) => b.total - a.total);
+    setStoredTotal(sortedData);
+    setIsAsc(true);
+    setIsDesc(false);
+  };
+
+  const sortByAsc = () => {
+    const sortedData = [...storedTotal].sort((a, b) => a.total - b.total);
+    setStoredTotal(sortedData);
+    setIsDesc(true);
+    setIsAsc(false);
+  };
+
+  const FilterDesc = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
       viewBox="0 0 24 24"
       fill="none"
+      className="FilterDesc"
+      style={{
+        stroke: isAsc || isDesc ? theme.stroke : theme.hover,
+      }}
     >
       <path
-        d="M7 10.0003V3.94909C7 3.37458 7 3.08732 6.76959 3.01583C6.26306 2.85867 5.5 4 5.5 4M7 10.0003H5.5M7 10.0003H8.5"
-        stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        d="M7 21.0003V14.9491C7 14.3746 7 14.0873 6.76959 14.0158C6.26306 13.8587 5.5 15 5.5 15M7 21.0003H5.5M7 21.0003H8.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={isAsc ? "ascOne" : "ascOne ascOneAct"}
       />
       <path
-        d="M9 17.5V15.75C9 14.925 9 14.5126 8.70711 14.2563C8.41421 14 7.94281 14 7 14C6.05719 14 5.58579 14 5.29289 14.2563C5 14.5126 5 14.925 5 15.75C5 16.575 5 16.9874 5.29289 17.2437C5.58579 17.5 6.05719 17.5 7 17.5H9ZM9 17.5V18.375C9 19.6124 9 20.2312 8.56066 20.6156C8.12132 21 7.41421 21 6 21H5"
-        stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        d="M9 6.50098V4.75098C9 3.92602 9 3.51354 8.70711 3.25726C8.41421 3.00098 7.94281 3.00098 7 3.00098C6.05719 3.00098 5.58579 3.00098 5.29289 3.25726C5 3.51354 5 3.92602 5 4.75098C5 5.57593 5 5.98841 5.29289 6.2447C5.58579 6.50098 6.05719 6.50098 7 6.50098H9ZM9 6.50098V7.37598C9 8.61341 9 9.23213 8.56066 9.61655C8.12132 10.001 7.41421 10.001 6 10.001H5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={isAsc ? "ascNine" : "ascNine ascNineAct"}
       />
       <path
         d="M16.5 20V4M16.5 20C15.7998 20 14.4915 18.0057 14 17.5M16.5 20C17.2002 20 18.5085 18.0057 19 17.5"
-        stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={isAsc ? "ascArrow" : "ascArrow ascArrowAct"}
       />
     </svg>
   );
@@ -110,9 +127,13 @@ function TotalWindow({
   const handleClose = () => {
     setTotalModal(false);
     setIsDaily("sales");
+    setIsAsc(false);
+    setIsDesc(false);
   };
   const handleFilterSelector = (e) => {
     setIsDaily(e);
+    setIsAsc(false);
+    setIsDesc(false);
   };
   const handleFilterTrue = () => {
     setIsDaily(true);
@@ -254,17 +275,41 @@ function TotalWindow({
             >
               Ventas mensuales
             </button>
-            {/*<button
-              style={{
-                position: "absolute",
-                left: "0px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              <FilterAsc />
-            </button>*/}
+            {isDaily === "daily" ? (
+              isDesc ? (
+                <button
+                  style={{
+                    position: "absolute",
+                    left: "0px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    sortByDesc();
+                  }}
+                >
+                  <FilterDesc />
+                </button>
+              ) : (
+                <button
+                  style={{
+                    position: "absolute",
+                    left: "0px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    sortByAsc();
+                  }}
+                >
+                  <FilterDesc />
+                </button>
+              )
+            ) : (
+              <></>
+            )}
           </section>
           {isDaily === "sales" ? (
             <div

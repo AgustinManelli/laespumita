@@ -144,3 +144,28 @@
   transition: background-color 0.2s ease-in-out;
   border: 1px solid;
 }
+.FilterDesc {
+  stroke-width: 2;
+  animation: stroke 0.2s ease-in-out;
+}
+.ascOne {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.ascOneAct {
+  transform: translateY(-11.5px);
+}
+.ascNine {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+.ascNineAct {
+  transform: translateY(11.5px);
+}
+.ascArrow {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: 70% 50%;
+}
+.ascArrowAct {
+  transform: rotate(-180deg);
+}

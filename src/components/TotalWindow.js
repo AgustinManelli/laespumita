@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import TotalWindowLabel from "./TotalWindowLabel";
 import TotalWindowLabelDaily from "./TotalWindowLabelDaily";
 import { useTheme } from "../context/ThemeProvider";
+import TotalWindowMonthly from "./TotalWindowMonthly";
 function TotalWindow({
   totalModal,
   setTotalModal,
@@ -13,8 +14,11 @@ function TotalWindow({
   isDaily,
   setIsDaily,
   storedTotal,
+  storedMonthly,
+  setStoredMonthly,
   setStoredTotal,
   deleteStoredTotal,
+  deleteStoredMonthly,
 }) {
   const { theme, wTheme } = useTheme();
 
@@ -88,6 +92,12 @@ function TotalWindow({
       } else {
         setStoredTotal(JSON.parse(localStorage.total));
       }
+      if (window.localStorage.getItem("monthly") === "[null]") {
+        setStoredMonthly([]);
+        window.localStorage.setItem("monthly", JSON.stringify(storedMonthly));
+      } else {
+        setStoredMonthly(JSON.parse(window.localStorage.getItem("monthly")));
+      }
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDaily, totalModal]);
@@ -99,7 +109,10 @@ function TotalWindow({
   }/${currentDate.getFullYear()}`;
   const handleClose = () => {
     setTotalModal(false);
-    setIsDaily(true);
+    setIsDaily("sales");
+  };
+  const handleFilterSelector = (e) => {
+    setIsDaily(e);
   };
   const handleFilterTrue = () => {
     setIsDaily(true);
@@ -110,6 +123,7 @@ function TotalWindow({
 
   const [selectorHover, setSelectorHover] = useState(false);
   const [selectorHover2, setSelectorHover2] = useState(false);
+  const [selectorHover3, setSelectorHover3] = useState(false);
 
   return (
     <section
@@ -158,20 +172,23 @@ function TotalWindow({
           <section className="totalWindowContentSelector">
             <button
               className={
-                isDaily
+                isDaily === "sales"
                   ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
                   : "totalWindowContentSelectorButton"
               }
               style={{
-                backgroundColor: isDaily
-                  ? theme.hover
-                  : selectorHover2
-                  ? theme.hover
-                  : theme.backgroundOverall,
+                backgroundColor:
+                  isDaily === "sales"
+                    ? theme.hover
+                    : selectorHover2
+                    ? theme.hover
+                    : theme.backgroundOverall,
                 borderColor: theme.borderColor,
                 color: theme.text,
               }}
-              onClick={handleFilterTrue}
+              onClick={() => {
+                handleFilterSelector("sales");
+              }}
               onMouseEnter={() => {
                 setSelectorHover2(true);
               }}
@@ -179,24 +196,27 @@ function TotalWindow({
                 setSelectorHover2(false);
               }}
             >
-              Venta diaria
+              Ventas
             </button>
             <button
               className={
-                isDaily
-                  ? "totalWindowContentSelectorButton"
-                  : "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                isDaily === "daily"
+                  ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                  : "totalWindowContentSelectorButton"
               }
               style={{
-                backgroundColor: isDaily
-                  ? selectorHover
+                backgroundColor:
+                  isDaily === "daily"
                     ? theme.hover
-                    : theme.backgroundOverall
-                  : theme.hover,
+                    : selectorHover
+                    ? theme.hover
+                    : theme.backgroundOverall,
                 borderColor: theme.borderColor,
                 color: theme.text,
               }}
-              onClick={handleFilterFalse}
+              onClick={() => {
+                handleFilterSelector("daily");
+              }}
               onMouseEnter={() => {
                 setSelectorHover(true);
               }}
@@ -204,7 +224,35 @@ function TotalWindow({
                 setSelectorHover(false);
               }}
             >
-              Ventas totales
+              Ventas diarias
+            </button>
+            <button
+              className={
+                isDaily === "monthly"
+                  ? "totalWindowContentSelectorButton totalWindowContentSelectorButtonSelected"
+                  : "totalWindowContentSelectorButton"
+              }
+              style={{
+                backgroundColor:
+                  isDaily === "monthly"
+                    ? theme.hover
+                    : selectorHover3
+                    ? theme.hover
+                    : theme.backgroundOverall,
+                borderColor: theme.borderColor,
+                color: theme.text,
+              }}
+              onClick={() => {
+                handleFilterSelector("monthly");
+              }}
+              onMouseEnter={() => {
+                setSelectorHover3(true);
+              }}
+              onMouseLeave={() => {
+                setSelectorHover3(false);
+              }}
+            >
+              Ventas mensuales
             </button>
             {/*<button
               style={{
@@ -218,7 +266,7 @@ function TotalWindow({
               <FilterAsc />
             </button>*/}
           </section>
-          {isDaily ? (
+          {isDaily === "sales" ? (
             <div
               className="totalWindowDailyLabelTop"
               style={{ color: theme.text, backgroundColor: theme.hover }}
@@ -244,7 +292,7 @@ function TotalWindow({
                 <p>hora</p>
               </div>
             </div>
-          ) : (
+          ) : isDaily === "daily" ? (
             <div
               style={{
                 display: "flex",
@@ -275,6 +323,32 @@ function TotalWindow({
                 <p>gráfica</p>
               </div>
             </div>
+          ) : (
+            <div
+              className="totalWindowDailyLabelTop"
+              style={{ color: theme.text, backgroundColor: theme.hover }}
+            >
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p>venta</p>
+              </div>
+              <div
+                style={{
+                  height: "30px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p>mes</p>
+              </div>
+            </div>
           )}
           <div
             className={
@@ -285,7 +359,7 @@ function TotalWindow({
             id="totalWindowContent"
           >
             <section className="totalWindowContentProducts">
-              {isDaily ? (
+              {isDaily === "sales" ? (
                 <>
                   {storedProducts.map((product, index) => (
                     <TotalWindowLabelDaily
@@ -295,7 +369,7 @@ function TotalWindow({
                     />
                   ))}
                 </>
-              ) : (
+              ) : isDaily === "daily" ? (
                 <>
                   {storedTotal.map((product, index) => (
                     <TotalWindowLabel
@@ -307,6 +381,16 @@ function TotalWindow({
                       index={index}
                       setStoredTotal={setStoredTotal}
                       isDaily={isDaily}
+                    />
+                  ))}
+                </>
+              ) : (
+                <>
+                  {storedMonthly.map((product, index) => (
+                    <TotalWindowMonthly
+                      product={product}
+                      index={index}
+                      deleteStoredMonthly={deleteStoredMonthly}
                     />
                   ))}
                 </>

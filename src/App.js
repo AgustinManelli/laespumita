@@ -21,6 +21,9 @@ function App() {
     if (window.localStorage.getItem("theme") === null) {
       window.localStorage.setItem("theme", "dark");
     }
+    if (window.localStorage.getItem("monthly") === null) {
+      window.localStorage.setItem("monthly", "[]");
+    }
   }, []);
   const [totalModal, setTotalModal] = useState(false);
   return (

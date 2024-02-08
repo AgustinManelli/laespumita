@@ -10,11 +10,14 @@ import Navbar from "../components/Navbar";
 import { useTheme } from "../context/ThemeProvider";
 
 function Home({ totalModal, setTotalModal }) {
-  const { theme, setLight } = useTheme();
+  const { theme, setDark } = useTheme();
   const currentDate = new Date();
   const idDay = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
   }${
+    (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
+  }${currentDate.getFullYear()}`;
+  const idMonth = `${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }${currentDate.getFullYear()}`;
   const formattedDateProduct = `${
@@ -23,6 +26,9 @@ function Home({ totalModal, setTotalModal }) {
   const formattedDay = `${
     (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
   }/${
+    (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
+  }/${currentDate.getFullYear()}`;
+  const formattedMonth = `${
     (currentDate.getMonth() + 1 < 10 ? "0" : "") + (currentDate.getMonth() + 1)
   }/${currentDate.getFullYear()}`;
   const chartFormattedDay = `${currentDate.getFullYear()}-${
@@ -40,7 +46,8 @@ function Home({ totalModal, setTotalModal }) {
   const [isCard, setIsCard] = useState(false);
   const [storedProducts, setStoredProducts] = useState([]);
   const [storedTotal, setStoredTotal] = useState([]);
-  const [isDaily, setIsDaily] = useState(true);
+  const [storedMonthly, setStoredMonthly] = useState([]);
+  const [isDaily, setIsDaily] = useState("sales");
   const [isMostPercentCache, setIsMostPercentCache] = useState(
     window.localStorage.getItem("mostPercent") === null ||
       window.localStorage.getItem("mostPercent") === undefined
@@ -101,17 +108,31 @@ function Home({ totalModal, setTotalModal }) {
   const handleSave = () => {
     if (totalPrice > 0) {
       try {
-        const storedTotal = JSON.parse(localStorage.total);
+        const storedMonth = JSON.parse(window.localStorage.monthly);
+        const totalIndexMonth = storedMonth.length;
+        const nuevoArrayMonth = [...storedMonth];
+        if (totalIndexMonth > 0) {
+          const monthId = nuevoArrayMonth[totalIndexMonth - 1].id;
+          if (idMonth !== monthId) {
+            window.localStorage.setItem("total", "[]");
+            setStoredTotal(JSON.parse(window.localStorage.total));
+            window.localStorage.setItem("products", "[]");
+            setStoredProducts(JSON.parse(window.localStorage.products));
+          }
+        }
+        const storedTotal = JSON.parse(window.localStorage.total);
         const totalIndex = storedTotal.length;
         const nuevoArray = [...storedTotal];
 
         if (totalIndex > 0) {
           const totalId = nuevoArray[totalIndex - 1].id;
+
           if (idDay !== totalId) {
             window.localStorage.setItem("products", "[]");
-            setStoredProducts(JSON.parse(localStorage.products));
+            setStoredProducts(JSON.parse(window.localStorage.products));
           }
         }
+
         const storedProduct = JSON.parse(localStorage.products);
         const total = storedProduct.concat({
           id: Date.now(),
@@ -139,6 +160,7 @@ function Home({ totalModal, setTotalModal }) {
         } else {
           const totalall = storedTotal.concat({
             id: idDay,
+            month: idMonth,
             total: parseFloat(
               (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
             ),
@@ -148,6 +170,26 @@ function Home({ totalModal, setTotalModal }) {
           });
           window.localStorage.setItem("total", JSON.stringify(totalall));
           setStoredTotal(JSON.parse(localStorage.total));
+        }
+        if (storedMonth.filter((all) => all.id === idMonth).length > 0) {
+          nuevoArrayMonth[totalIndexMonth - 1].total += parseFloat(
+            (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+          );
+          localStorage.setItem("monthly", JSON.stringify(nuevoArrayMonth));
+          setStoredMonthly(JSON.parse(localStorage.monthly));
+        } else {
+          if (storedMonth.length >= 12) {
+            storedMonth.shift();
+          }
+          const totalall = storedMonth.concat({
+            id: idMonth,
+            total: parseFloat(
+              (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+            ),
+            date: formattedMonth,
+          });
+          window.localStorage.setItem("monthly", JSON.stringify(totalall));
+          setStoredMonthly(JSON.parse(localStorage.monthly));
         }
 
         setProductList([]);
@@ -175,8 +217,13 @@ function Home({ totalModal, setTotalModal }) {
     ].productsList.filter((list) => list.id !== id);
     localStorage.setItem("total", JSON.stringify(nuevoArray));
     setStoredTotal(JSON.parse(localStorage.total));
+    const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
+    const monthIndex = storedMonth.length;
+    const nuevoMonthArray = [...storedMonth];
 
     if (totalIndex > 0) {
+      nuevoMonthArray[monthIndex - 1].total -= product.total;
+      window.localStorage.setItem("monthly", JSON.stringify(nuevoMonthArray));
       nuevoArray[totalIndex - 1].total -= product.total;
       const supArray = nuevoArray.filter((product) => product.total > 0);
       localStorage.setItem("total", JSON.stringify(supArray));
@@ -198,36 +245,90 @@ function Home({ totalModal, setTotalModal }) {
     );
     setStoredTotal(filtered);
     window.localStorage.setItem("total", JSON.stringify(filtered));
+    const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
+    const monthIndex = storedMonth.length;
+    const nuevoMonthArray = [...storedMonth];
+    if (monthIndex > 0) {
+      nuevoMonthArray[monthIndex - 1].total -= product.total;
+      const supArray = nuevoMonthArray.filter((product) => product.total > 0);
+      window.localStorage.setItem("monthly", JSON.stringify(supArray));
+    }
   };
   const handleEnterKeyPress = (event) => {
     if (event.key === "Enter") {
       addProduct();
     }
   };
+  const deleteStoredMonthly = (id, product) => {
+    const filteredTotal = JSON.parse(localStorage.monthly);
+    const filtered = filteredTotal.filter((product) => product.id !== id);
+    const flagDay = product.id;
+    const filteredTotal2 = JSON.parse(localStorage.total);
+    const filteredDailyProduct = filteredTotal2.filter(
+      (product) => product.month !== flagDay
+    );
+    setStoredTotal(filteredDailyProduct);
+    window.localStorage.setItem("total", JSON.stringify(filteredDailyProduct));
+    if (id === idMonth) {
+      setStoredProducts([]);
+      window.localStorage.setItem("products", "[]");
+    }
+    setStoredMonthly(filtered);
+    window.localStorage.setItem("monthly", JSON.stringify(filtered));
+  };
   const handlDeleteAll = () => {
-    if (window.confirm("¿Seguro que quieres resetear las ventas?")) {
-      localStorage.setItem("total", "[]");
-      localStorage.setItem("products", "[]");
-      setStoredTotal((total) => (total = []));
-      setStoredProducts((prod) => (prod = []));
-      alert("Las ventas se resetearon correctamente.");
+    if (
+      JSON.parse(window.localStorage.getItem("total")).length > 0 ||
+      JSON.parse(window.localStorage.getItem("products")).length > 0 ||
+      JSON.parse(window.localStorage.getItem("monthly")).length > 0
+    ) {
+      if (window.confirm("¿Seguro que quieres resetear las ventas?")) {
+        localStorage.setItem("total", "[]");
+        localStorage.setItem("products", "[]");
+        localStorage.setItem("monthly", "[]");
+        setStoredTotal((total) => (total = []));
+        setStoredProducts((prod) => (prod = []));
+        setStoredMonthly((month) => (month = []));
+        toast("Las ventas se resetearon correctamente.", {
+          duration: 3000,
+        });
+      }
     } else {
+      toast("Las ventas ya están vacías.", {
+        duration: 3000,
+      });
     }
   };
   const handlDeleteTotal = () => {
-    if (window.confirm("¿Seguro que quieres resetear todos los datos?")) {
-      localStorage.setItem("total", "[]");
-      localStorage.setItem("products", "[]");
-      localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
-      localStorage.setItem("percentStockist", "[10.5, 21]");
-      localStorage.setItem("theme", "light");
-      setStoredTotal((total) => (total = []));
-      setStoredProducts((prod) => (prod = []));
-      setIsMostPercentCache((most) => (most = [40, 45, 50, 55, 60, 70]));
-      setIsPercentStockist((percent) => (percent = [10.5, 21]));
-      setLight();
-      alert("Todos los datos se resetearon correctamente.");
+    if (
+      JSON.parse(window.localStorage.getItem("total")).length > 0 ||
+      JSON.parse(window.localStorage.getItem("products")).length > 0 ||
+      JSON.parse(window.localStorage.getItem("monthly")).length > 0 ||
+      window.localStorage.getItem("percentStockist") !== "[10.5, 21]" ||
+      window.localStorage.getItem("mostPercent") !== "[40,45,50,55,60,70]" ||
+      window.localStorage.getItem("theme") !== "dark"
+    ) {
+      if (window.confirm("¿Seguro que quieres resetear todos los datos?")) {
+        localStorage.setItem("total", "[]");
+        localStorage.setItem("products", "[]");
+        localStorage.setItem("monthly", "[]");
+        localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
+        localStorage.setItem("percentStockist", "[10.5, 21]");
+        localStorage.setItem("theme", "dark");
+        setStoredTotal((total) => (total = []));
+        setStoredProducts((prod) => (prod = []));
+        setStoredMonthly((month) => (month = []));
+        setIsMostPercentCache((most) => (most = [40, 45, 50, 55, 60, 70]));
+        setIsPercentStockist((percent) => (percent = [10.5, 21]));
+        setDark();
+        toast("Todos los datos se resetearon correctamente.", {
+          duration: 3000,
+        });
+      }
     } else {
+      toast("Los datos ya están por defecto.", {
+        duration: 3000,
+      });
     }
   };
   return (
@@ -286,8 +387,11 @@ function Home({ totalModal, setTotalModal }) {
         isDaily={isDaily}
         setIsDaily={setIsDaily}
         storedTotal={storedTotal}
+        storedMonthly={storedMonthly}
+        setStoredMonthly={setStoredMonthly}
         setStoredTotal={setStoredTotal}
         deleteStoredTotal={deleteStoredTotal}
+        deleteStoredMonthly={deleteStoredMonthly}
       />
     </div>
   );

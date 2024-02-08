@@ -149,8 +149,8 @@ function ConfigDropdown({
   const [isOpen, setIsOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isFocusedStockist, setIsFocusedStockist] = useState(false);
-  const [isLight, setIsLight] = useState(true);
-  const [isDark, setIsDark] = useState(false);
+  const [isLight, setIsLight] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -159,14 +159,14 @@ function ConfigDropdown({
 
   useEffect(() => {
     if (
-      window.localStorage.getItem("theme") === "light" ||
+      window.localStorage.getItem("theme") === "dark" ||
       window.localStorage.getItem("theme") === null
     ) {
-      setIsLight(true);
-      setIsDark(false);
-    } else {
       setIsLight(false);
       setIsDark(true);
+    } else {
+      setIsLight(true);
+      setIsDark(false);
     }
   }, []);
 

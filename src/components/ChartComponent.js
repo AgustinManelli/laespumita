@@ -16,7 +16,6 @@ function ChartComponent({ chartList }) {
         borderVisible: false,
         autoScale: true,
       },
-      OverlayPriceScaleOptions: {},
       crosshair: {
         mode: 2,
         vertLine: {
@@ -36,7 +35,7 @@ function ChartComponent({ chartList }) {
       },
       timeScale: {
         visible: false,
-        barSpacing: 6.5,
+        //barSpacing: 6.5,
         borderVisible: false,
       },
       handleScroll: false,
@@ -59,6 +58,7 @@ function ChartComponent({ chartList }) {
     });
 
     newSeries.setData(chartList);
+    chart.timeScale().fitContent();
     return () => [chart.remove()];
   }, [chartList]);
 
@@ -68,11 +68,12 @@ function ChartComponent({ chartList }) {
       style={{
         marginTop: "10px",
         width: "100px",
-        height: "24px",
+        height: "34px",
         right: "-120px",
         backgroundColor: theme.backgroundOverall,
-        padding: "5px",
+        padding: "0px",
         borderRadius: "10px",
+        overflow: "hidden",
       }}
     ></div>
   );

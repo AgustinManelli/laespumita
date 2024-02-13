@@ -72,6 +72,7 @@ function ChartComponentExpanded({ chartList }) {
     });
 
     newSeries.setData(chartList);
+    chart.timeScale().fitContent();
     return () => [chart.remove()];
   }, [chartList]);
 

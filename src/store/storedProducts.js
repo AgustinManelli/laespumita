@@ -17,10 +17,65 @@ export const useStoredProducts = create((set, get) => ({
     ? JSON.parse(window.localStorage.getItem("monthly"))
     : tempInitialValue,
 
+  InitialSale: () => {
+    if (window.localStorage.getItem("products") === null) {
+      window.localStorage.setItem("products", "[]");
+    }
+    if (window.localStorage.getItem("total") === null) {
+      window.localStorage.setItem("total", "[]");
+    }
+    if (window.localStorage.getItem("mostPercent") === null) {
+      window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
+    }
+    if (window.localStorage.getItem("percentStockist") === null) {
+      window.localStorage.setItem("percentStockist", "[10.5,21]");
+    }
+    if (window.localStorage.getItem("theme") === null) {
+      window.localStorage.setItem("theme", "dark");
+    }
+    if (window.localStorage.getItem("monthly") === null) {
+      window.localStorage.setItem("monthly", "[]");
+    }
+    const currentDate = new Date();
+    const idDay = `${
+      (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
+    }${
+      (currentDate.getMonth() + 1 < 10 ? "0" : "") +
+      (currentDate.getMonth() + 1)
+    }${currentDate.getFullYear()}`;
+    const idMonth = `${
+      (currentDate.getMonth() + 1 < 10 ? "0" : "") +
+      (currentDate.getMonth() + 1)
+    }${currentDate.getFullYear()}`;
+    const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
+    const totalIndexMonth = storedMonth.length;
+
+    if (totalIndexMonth > 0) {
+      const monthId = storedMonth[totalIndexMonth - 1].id;
+      if (idMonth !== monthId) {
+        window.localStorage.setItem("total", "[]");
+        set({ storedTotal: [] });
+        window.localStorage.setItem("products", "[]");
+        set({ storedProducts: [] });
+      }
+    }
+
+    const storedTotal = JSON.parse(window.localStorage.getItem("total"));
+    const totalIndex = storedTotal.length;
+
+    if (totalIndex > 0) {
+      const totalId = storedTotal[totalIndex - 1].id;
+      if (idDay !== totalId) {
+        window.localStorage.setItem("products", "[]");
+        set({ storedProducts: [] });
+      }
+    }
+  },
+
   HandleSave: () => {
     const currentDate = new Date();
     const idDay = `${
-      (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate() + 1
+      (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
     }${
       (currentDate.getMonth() + 1 < 10 ? "0" : "") +
       (currentDate.getMonth() + 1)
@@ -46,10 +101,10 @@ export const useStoredProducts = create((set, get) => ({
       (currentDate.getMonth() + 1 < 10 ? "0" : "") +
       (currentDate.getMonth() + 1)
     }-${(currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()}`;
+
     const chartFormattedTime = `${
       (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()
     }`;
-
     const totalPrice = useProduct.getState().totalPrice;
     const handleSetProductList = useProduct.getState().handleSetProductList;
     const handleSetTotalPrice = useProduct.getState().handleSetTotalPrice;
@@ -59,26 +114,8 @@ export const useStoredProducts = create((set, get) => ({
         const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
         const totalIndexMonth = storedMonth.length;
 
-        if (totalIndexMonth > 0) {
-          const monthId = storedMonth[totalIndexMonth - 1].id;
-          if (idMonth !== monthId) {
-            window.localStorage.setItem("total", "[]");
-            set({ storedTotal: [] });
-            window.localStorage.setItem("products", "[]");
-            set({ storedProducts: [] });
-          }
-        }
-
         const storedTotal = JSON.parse(window.localStorage.getItem("total"));
         const totalIndex = storedTotal.length;
-
-        if (totalIndex > 0) {
-          const totalId = storedTotal[totalIndex - 1].id;
-          if (idDay !== totalId) {
-            window.localStorage.setItem("products", "[]");
-            set({ storedProducts: [] });
-          }
-        }
 
         const storedProduct = JSON.parse(localStorage.getItem("products"));
         storedProduct.push({
@@ -104,11 +141,60 @@ export const useStoredProducts = create((set, get) => ({
           storedTotal[totalIndex - 1].productsList = storedTotal[
             totalIndex - 1
           ].productsList = storedProduct;
-          localStorage.setItem("total", JSON.stringify(storedTotal));
+          /////////////////////////////////////////
+          /////////////////////////////////////////
+          const flagStored = storedProduct.length;
+          if (
+            storedProduct.length > 1 &&
+            parseInt(storedProduct[flagStored - 1].chartTime) -
+              parseInt(storedProduct[flagStored - 2].chartTime) !==
+              1
+          ) {
+            for (
+              let j = parseInt(storedProduct[flagStored - 2].chartTime) + 1;
+              j < parseInt(storedProduct[flagStored - 1].chartTime);
+              j++
+            ) {
+              console.log(j);
+              const chartFormattedTime = `${(j < 10 ? "0" : "") + j}`;
+              console.log(chartFormattedTime);
+              storedTotal[totalIndex - 1].chartList.push({
+                time:
+                  Date.parse(
+                    `${
+                      storedProduct[flagStored - 1].chartDate
+                    }T${chartFormattedTime}:00:00Z`
+                  ) / 1000,
+                value: 0,
+              });
+            }
+          }
+          const currentTime =
+            Date.parse(
+              `${storedProduct[flagStored - 1].chartDate}T${
+                storedProduct[flagStored - 1].chartTime
+              }:00:00Z`
+            ) / 1000;
+          const existingSale = storedTotal[totalIndex - 1].chartList.find(
+            (item) => item.time === currentTime
+          );
+          if (existingSale) {
+            existingSale.value += storedProduct[flagStored - 1].total;
+          } else {
+            storedTotal[totalIndex - 1].chartList.push({
+              time: currentTime,
+              value: storedProduct[flagStored - 1].total,
+            });
+          }
+          //////////////////////////////////////////
+          //////////////////////////////////////////
+
+          window.localStorage.setItem("total", JSON.stringify(storedTotal));
           set({
             storedTotal: JSON.parse(window.localStorage.getItem("total")),
           });
         } else {
+          const productLenght = storedProduct.length;
           storedTotal.push({
             id: idDay,
             month: idMonth,
@@ -117,8 +203,42 @@ export const useStoredProducts = create((set, get) => ({
             ),
             date: formattedDay,
             productsList: storedProduct,
-            chartList: [],
+            chartList:
+              storedProduct[0].chartTime === "00"
+                ? [
+                    {
+                      time:
+                        Date.parse(
+                          `${storedProduct[0].chartDate}T${storedProduct[0].chartTime}:00:00Z`
+                        ) / 1000,
+
+                      value: 0,
+                    },
+                  ]
+                : [
+                    {
+                      time:
+                        Date.parse(
+                          `${storedProduct[0].chartDate}T${
+                            storedProduct[0].chartTime - 1
+                          }:00:00Z`
+                        ) / 1000,
+
+                      value: 0,
+                    },
+                    {
+                      time:
+                        Date.parse(
+                          `${storedProduct[0].chartDate}T${storedProduct[0].chartTime}:00:00Z`
+                        ) / 1000,
+
+                      value: parseFloat(
+                        (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
+                      ),
+                    },
+                  ],
           });
+
           window.localStorage.setItem("total", JSON.stringify(storedTotal));
           set({
             storedTotal: JSON.parse(window.localStorage.getItem("total")),
@@ -172,6 +292,27 @@ export const useStoredProducts = create((set, get) => ({
     storedTotal[totalIndex - 1].productsList = storedTotal[
       totalIndex - 1
     ].productsList.filter((list) => list.id !== id);
+    /////////////////////////////////
+    ////////////////////////////////
+    const indexFlagChart = storedTotal[totalIndex - 1].chartList.length;
+    const existingChartData = storedTotal[totalIndex - 1].chartList.find(
+      (item) =>
+        item.time ===
+        Date.parse(`${product.chartDate}T${product.chartTime}:00:00Z`) / 1000
+    );
+    if (existingChartData) {
+      existingChartData.value -= product.total;
+      if (
+        storedTotal[totalIndex - 1].chartList[indexFlagChart - 1].time ===
+          Date.parse(`${product.chartDate}T${product.chartTime}:00:00Z`) /
+            1000 &&
+        storedTotal[totalIndex - 1].chartList[indexFlagChart - 1].value === 0
+      ) {
+        storedTotal[totalIndex - 1].chartList.pop();
+      }
+    }
+    ////////////////////////////////
+    ////////////////////////////////
     window.localStorage.setItem("total", JSON.stringify(storedTotal));
     set({ storedTotal: JSON.parse(window.localStorage.getItem("total")) });
     const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));

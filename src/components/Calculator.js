@@ -5,13 +5,22 @@ import { useTheme } from "../context/ThemeProvider";
 import { useInputs } from "../store/inputs.js";
 import { useProduct } from "../store/product";
 
-function Calculator({ handleEnterKeyPress }) {
+const useInputEffect = () => {
   const [inputHovered, setInputHovered] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
-  const [inputHovered2, setInputHovered2] = useState(false);
-  const [inputFocus2, setInputFocus2] = useState(false);
+  const handleSetHover = (e) => {
+    setInputHovered(e);
+  };
+  const handleSetFocus = (e) => {
+    setInputFocus(e);
+  };
+  return { inputHovered, inputFocus, handleSetHover, handleSetFocus };
+};
+
+function Calculator({ handleEnterKeyPress }) {
   const { theme } = useTheme();
   const inputNumber = useRef();
+
   const percent = useInputs((state) => state.percent);
   const handleSetPercent = useInputs((state) => state.handleSetPercent);
   const price = useInputs((state) => state.price);
@@ -23,18 +32,8 @@ function Calculator({ handleEnterKeyPress }) {
   const total = useProduct((state) => state.total);
   const handleSetTotal = useProduct((state) => state.handleSetTotal);
 
-  const handleMouseEnter = () => {
-    setInputHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setInputHovered(false);
-  };
-  const handleMouseEnter2 = () => {
-    setInputHovered2(true);
-  };
-  const handleMouseLeave2 = () => {
-    setInputHovered2(false);
-  };
+  const inputOne = useInputEffect();
+  const inputTwo = useInputEffect();
 
   useEffect(() => {
     handleSetTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
@@ -140,14 +139,18 @@ function Calculator({ handleEnterKeyPress }) {
               onInput={priceSetter}
               style={{
                 backgroundColor:
-                  inputHovered || inputFocus
+                  inputOne.inputHovered || inputOne.inputFocus
                     ? theme.hover
                     : theme.backgroundOverall,
-                boxShadow: inputHovered ? theme.boxShadow : "none",
+                boxShadow: inputOne.inputHovered ? theme.boxShadow : "none",
                 color: theme.secondTitles,
               }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={() => {
+                inputOne.handleSetHover(true);
+              }}
+              onMouseLeave={() => {
+                inputOne.handleSetHover(false);
+              }}
             ></input>
           </label>
           <label className="inputLabel">
@@ -163,14 +166,18 @@ function Calculator({ handleEnterKeyPress }) {
               onInput={percentSetter}
               style={{
                 backgroundColor:
-                  inputHovered2 || inputFocus2
+                  inputTwo.inputHovered || inputTwo.inputFocus
                     ? theme.hover
                     : theme.backgroundOverall,
-                boxShadow: inputHovered2 ? theme.boxShadow : "none",
+                boxShadow: inputTwo.inputHovered ? theme.boxShadow : "none",
                 color: theme.secondTitles,
               }}
-              onMouseEnter={handleMouseEnter2}
-              onMouseLeave={handleMouseLeave2}
+              onMouseEnter={() => {
+                inputTwo.handleSetHover(true);
+              }}
+              onMouseLeave={() => {
+                inputTwo.handleSetHover(false);
+              }}
             ></input>
           </label>
           <button className="deleteInputCalculator" onClick={deleteInputs}>

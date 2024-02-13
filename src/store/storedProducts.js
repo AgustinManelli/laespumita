@@ -20,7 +20,7 @@ export const useStoredProducts = create((set, get) => ({
   HandleSave: () => {
     const currentDate = new Date();
     const idDay = `${
-      (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate()
+      (currentDate.getDate() < 10 ? "0" : "") + currentDate.getDate() + 1
     }${
       (currentDate.getMonth() + 1 < 10 ? "0" : "") +
       (currentDate.getMonth() + 1)

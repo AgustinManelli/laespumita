@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import "../stylesheets/StockistDropdown.css";
+import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
 import { useInputs } from "../store/inputs.js";
 
@@ -8,12 +8,6 @@ function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
   const { theme } = useTheme();
   const [boxesHovered, setBoxesHoveres] = useState(false);
 
-  const handleMouseEnter = () => {
-    setBoxesHoveres(true);
-  };
-  const handleMouseLeave = () => {
-    setBoxesHoveres(false);
-  };
   return (
     <>
       <motion.li
@@ -29,8 +23,12 @@ function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
             ? theme.hover
             : theme.backgroundContainer,
         }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => {
+          setBoxesHoveres(true);
+        }}
+        onMouseLeave={() => {
+          setBoxesHoveres(false);
+        }}
       >
         <motion.div>
           <p className="stockistDDSelected">{stockist}</p>
@@ -95,19 +93,13 @@ const StockistIcon = () => (
 );
 
 function SrockistDropdown() {
+  const { theme } = useTheme();
   const isStockist = useInputs((state) => state.isStockist);
   const stockistPercent = useInputs((state) => state.stockistPercent);
   const isPercentStockist = useInputs((state) => state.isPercentStockist);
   const [isOpen, setIsOpen] = useState(false);
-  const { theme } = useTheme();
 
-  const [boxesHovered, setBoxesHoveres] = useState(false);
-  const handleMouseEnter = () => {
-    setBoxesHoveres(true);
-  };
-  const handleMouseLeave = () => {
-    setBoxesHoveres(false);
-  };
+  const [boxesHovered, setBoxesHovered] = useState(false);
 
   const closeStockistDropdown = () => {
     window.addEventListener("click", function (e) {
@@ -191,8 +183,12 @@ function SrockistDropdown() {
               ? theme.hover
               : theme.backgroundContainer,
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => {
+            setBoxesHovered(true);
+          }}
+          onMouseLeave={() => {
+            setBoxesHovered(false);
+          }}
         >
           <motion.div>
             <p className="stockistDDSelected">0</p>

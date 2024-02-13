@@ -100,11 +100,9 @@ function TotalWindow() {
   const totalModal = useModal((state) => state.totalModal);
   const setTotalModal = useModal((state) => state.setTotalModal);
 
-  const [sortedData, setSortedData] = useState(storedTotal);
-
   const sortByDesc = () => {
     const sortedData = [...storedTotal].sort((a, b) => b.total - a.total);
-    setSortedData(sortedData);
+    setStoredTotal(sortedData);
     //setStoredTotal(sortedData);
     ascend.handleSetFilter(true);
     descend.handleSetFilter(false);
@@ -112,7 +110,7 @@ function TotalWindow() {
 
   const sortByAsc = () => {
     const sortedData = [...storedTotal].sort((a, b) => a.total - b.total);
-    setSortedData(sortedData);
+    setStoredTotal(sortedData);
     //setStoredTotal(sortedData);
     ascend.handleSetFilter(false);
     descend.handleSetFilter(true);
@@ -137,7 +135,7 @@ function TotalWindow() {
     setIsDaily("sales");
     ascend.handleSetFilter(false);
     descend.handleSetFilter(false);
-    setSortedData(storedTotal);
+    setStoredTotal(JSON.parse(window.localStorage.getItem("total")));
   };
 
   const handleFilterSelector = (e) => {
@@ -410,11 +408,11 @@ function TotalWindow() {
                 </>
               ) : isDaily === "daily" ? (
                 <>
-                  {sortedData.map((product, index) => (
+                  {storedTotal.map((product, index) => (
                     <TotalWindowLabel
                       key={product.id}
                       product={product}
-                      lastIndex={index !== sortedData.length - 1}
+                      lastIndex={index !== storedTotal.length - 1}
                       index={index}
                     />
                   ))}

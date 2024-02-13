@@ -2,28 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import "../stylesheets/Calculator.css";
 import StockistDropdown from "./StockistDropdown";
 import { useTheme } from "../context/ThemeProvider";
+import { useInputs } from "../store/inputs.js";
+import { useProduct } from "../store/product";
 
-function Calculator({
-  percent,
-  setPercent,
-  price,
-  setPrice,
-  total,
-  setTotal,
-  deleteInputs,
-  mostPercent,
-  stockistPercent,
-  isStockist,
-  isMostPercentCache,
-  isPercentStockist,
-  handleEnterKeyPress,
-}) {
+function Calculator({ handleEnterKeyPress }) {
   const [inputHovered, setInputHovered] = useState(false);
   const [inputFocus, setInputFocus] = useState(false);
   const [inputHovered2, setInputHovered2] = useState(false);
   const [inputFocus2, setInputFocus2] = useState(false);
   const { theme } = useTheme();
   const inputNumber = useRef();
+  const percent = useInputs((state) => state.percent);
+  const handleSetPercent = useInputs((state) => state.handleSetPercent);
+  const price = useInputs((state) => state.price);
+  const handleSetPrice = useInputs((state) => state.handleSetPrice);
+  const deleteInputs = useInputs((state) => state.deleteInputs);
+  const mostPercent = useInputs((state) => state.mostPercent);
+  const isStockist = useInputs((state) => state.isStockist);
+  const isMostPercentCache = useInputs((state) => state.isMostPercentCache);
+  const total = useProduct((state) => state.total);
+  const handleSetTotal = useProduct((state) => state.handleSetTotal);
 
   const handleMouseEnter = () => {
     setInputHovered(true);
@@ -39,14 +37,14 @@ function Calculator({
   };
 
   useEffect(() => {
-    setTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
+    handleSetTotal(+parseFloat(price * (percent / 100 + 1)).toFixed(2));
   });
 
   const percentSetter = (e) => {
-    setPercent(e.target.value);
+    handleSetPercent(e.target.value);
   };
   const priceSetter = (e) => {
-    setPrice(e.target.value);
+    handleSetPrice(e.target.value);
   };
 
   const EraserIcon = () => (
@@ -231,46 +229,10 @@ function Calculator({
               marginRight: "22px",
             }}
           ></div>
-          <StockistDropdown
-            isStockist={isStockist}
-            stockistPercent={stockistPercent}
-            isPercentStockist={isPercentStockist}
-          />
+          <StockistDropdown />
           <div></div>
         </div>
       </section>
-      {/*<section className="stockistPercentContainerSection">
-        <h2>Porcentaje viajante</h2>
-        <div
-          className="stockistPercentContainer"
-          style={{ justifyContent: "center", gap: "10px" }}
-        >
-          <div>
-            <button
-              className={
-                isStockist === "10.5"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => stockistPercent("10.5")}
-            >
-              <p>10.5</p>
-            </button>
-          </div>
-          <div>
-            <button
-              className={
-                isStockist === "21"
-                  ? "mostPercentBox percentSelected"
-                  : "mostPercentBox"
-              }
-              onClick={() => stockistPercent("21")}
-            >
-              <p>21</p>
-            </button>
-          </div>
-        </div>
-            </section>*/}
     </div>
   );
 }

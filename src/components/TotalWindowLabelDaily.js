@@ -1,5 +1,9 @@
 import { useTheme } from "../context/ThemeProvider";
-function TotalWindowLabel({ product, deleteStoredProduct }) {
+import { useStoredProducts } from "../store/storedProducts";
+function TotalWindowLabel({ product }) {
+  const deleteStoredProduct = useStoredProducts(
+    (state) => state.DeleteStoredProduct
+  );
   const { theme } = useTheme();
   const DeleteIcon = () => (
     <svg

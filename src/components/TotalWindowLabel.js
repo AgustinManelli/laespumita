@@ -4,16 +4,12 @@ import ChartComponent from "./ChartComponent";
 import ChartComponentExpanded from "./ChartComponentExpanded";
 import { useTheme } from "../context/ThemeProvider";
 import { motion } from "framer-motion";
+import { useStoredProducts } from "../store/storedProducts";
 
-function TotalWindowLabel({
-  product,
-  deleteStoredProduct,
-  totalModal,
-  lastIndex,
-  index,
-  setStoredTotal,
-  isDaily,
-}) {
+function TotalWindowLabel({ product, lastIndex, index }) {
+  const deleteStoredProduct = useStoredProducts(
+    (state) => state.DeleteStoredTotal
+  );
   const { theme, wTheme } = useTheme();
   const [isClassAdded, setClassAdded] = useState(false);
   const handleCheckboxClick = () => {

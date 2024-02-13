@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import "../stylesheets/StockistDropdown.css";
 import { useTheme } from "../context/ThemeProvider";
+import { useInputs } from "../store/inputs.js";
 
 function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
   const { theme } = useTheme();
@@ -93,7 +94,10 @@ const StockistIcon = () => (
   </svg>
 );
 
-function SrockistDropdown({ isStockist, stockistPercent, isPercentStockist }) {
+function SrockistDropdown() {
+  const isStockist = useInputs((state) => state.isStockist);
+  const stockistPercent = useInputs((state) => state.stockistPercent);
+  const isPercentStockist = useInputs((state) => state.isPercentStockist);
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useTheme();
 

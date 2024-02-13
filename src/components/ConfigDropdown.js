@@ -1,17 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import "../stylesheets/ConfigDropdown.css";
-import ConfigMostPercentBox from "./ConfigMostPercentBox";
+import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
-
-const itemVariants = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
-  },
-  closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
-};
+import { useInputs } from "../store/inputs";
+import { useStoredProducts } from "../store/storedProducts";
+import ConfigPercentBox from "./ConfigPercentBox";
 
 const MoonIcon = ({ theme, isDark }) => (
   <svg
@@ -89,7 +82,6 @@ const SunIcon = ({ theme, isLight }) => (
     ></path>
   </svg>
 );
-
 const PlusConfig = ({ theme }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +106,6 @@ const PlusConfig = ({ theme }) => (
     ></path>
   </svg>
 );
-
 const ConfigIcon = ({ theme, isOpen }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -138,88 +129,108 @@ const ConfigIcon = ({ theme, isOpen }) => (
   </svg>
 );
 
-function ConfigDropdown({
-  isMostPercentCache,
-  setIsMostPercentCache,
-  isPercentStockist,
-  setIsPercentStockist,
-  handlDeleteAll,
-  handlDeleteTotal,
-}) {
+const useFocused = () => {
+  const [focused, setFocused] = useState(false);
+  const handleFocused = (e) => {
+    setFocused(e);
+  };
+  return { focused, handleFocused };
+};
+
+const useLight = (initial) => {
+  const [light, setLight] = useState(initial);
+
+  const handleLight = (e) => {
+    setLight(e);
+  };
+  return { light, handleLight };
+};
+
+function ConfigDropdown() {
+  const { theme, setLight, setDark } = useTheme();
+
+  const isMostPercentCache = useInputs((state) => state.isMostPercentCache);
+  const handleSetIsMostPercentCache = useInputs(
+    (state) => state.handleSetIsMostPercentCache
+  );
+  const isPercentStockist = useInputs((state) => state.isPercentStockist);
+  const handleSetIsPercentStockist = useInputs(
+    (state) => state.handleSetIsPercentStockist
+  );
+  const handleDeleteAll = useStoredProducts((state) => state.HandleDeleteAll);
+  const handleDeleteTotal = useStoredProducts(
+    (state) => state.HandleDeleteTotal
+  );
+
   const [isOpen, setIsOpen] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-  const [isFocusedStockist, setIsFocusedStockist] = useState(false);
-  const [isLight, setIsLight] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const focusedPercent = useFocused();
+  const focusedStockist = useFocused();
+  const lightLight = useLight(
+    window.localStorage.getItem("theme") &&
+      window.localStorage.getItem("theme") === "light"
+      ? true
+      : false
+  );
+  const lightDark = useLight(
+    window.localStorage.getItem("theme") &&
+      window.localStorage.getItem("theme") === "dark"
+      ? true
+      : false
+  );
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
 
-  const { theme, setLight, setDark } = useTheme();
-
-  useEffect(() => {
-    if (
-      window.localStorage.getItem("theme") === "dark" ||
-      window.localStorage.getItem("theme") === null
-    ) {
-      setIsLight(false);
-      setIsDark(true);
-    } else {
-      setIsLight(true);
-      setIsDark(false);
-    }
-  }, []);
-
-  const handleCheckboxChange1 = () => {
-    setIsLight(true);
-    setIsDark(false);
-    setLight();
+  const handleCheckboxChangeLight = () => {
     window.localStorage.setItem("theme", "light");
+    lightLight.handleLight(true);
+    lightDark.handleLight(false);
+    setLight();
   };
 
-  const handleCheckboxChange2 = () => {
-    setIsDark(true);
-    setIsLight(false);
-    setDark();
+  const handleCheckboxChangeDark = () => {
     window.localStorage.setItem("theme", "dark");
+    lightLight.handleLight(false);
+    lightDark.handleLight(true);
+    setDark();
   };
 
   const handleAddPercent = () => {
     const mostPercent = [...isMostPercentCache];
     mostPercent.splice(isMostPercentCache.length, 0, "");
-    setIsMostPercentCache(mostPercent);
     window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
-    setIsFocused(true);
+    handleSetIsMostPercentCache(mostPercent);
+    focusedPercent.handleFocused(true);
   };
 
   const handleBoxDelete = (index) => {
-    setIsFocused(false);
+    focusedPercent.handleFocused(false);
     const mostPercent = [...isMostPercentCache];
     mostPercent.splice(index, 1);
     window.localStorage.setItem("mostPercent", JSON.stringify(mostPercent));
-    setIsMostPercentCache(mostPercent);
+    handleSetIsMostPercentCache(mostPercent);
   };
 
   const handleAddPercentStockist = () => {
     const percentStockist = [...isPercentStockist];
     percentStockist.splice(isPercentStockist.length, 0, "");
-    setIsPercentStockist(percentStockist);
+    handleSetIsPercentStockist(percentStockist);
     window.localStorage.setItem(
       "percentStockist",
       JSON.stringify(percentStockist)
     );
-    setIsFocusedStockist(true);
+    focusedStockist.handleFocused(true);
   };
 
   const handleBoxDeleteStockist = (index) => {
-    setIsFocusedStockist(false);
+    focusedStockist.handleFocused(false);
     const percentStockist = [...isPercentStockist];
     percentStockist.splice(index, 1);
     window.localStorage.setItem(
       "percentStockist",
       JSON.stringify(percentStockist)
     );
-    setIsPercentStockist(percentStockist);
+    handleSetIsPercentStockist(percentStockist);
   };
 
   let configRef = useRef();
@@ -299,13 +310,13 @@ function ConfigDropdown({
                 style={{ borderColor: theme.borderColor }}
               >
                 {isMostPercentCache.map((percent, index) => (
-                  <ConfigMostPercentBox
+                  <ConfigPercentBox
                     percent={percent}
                     index={index}
-                    isMostPercentCache={isMostPercentCache}
-                    setIsMostPercentCache={setIsMostPercentCache}
-                    isFocused={isFocused}
-                    setIsFocused={setIsFocused}
+                    getData={isMostPercentCache}
+                    setData={handleSetIsMostPercentCache}
+                    isFocused={focusedPercent.focused}
+                    setIsFocused={focusedPercent.handleFocused}
                     handleBoxDelete={handleBoxDelete}
                     name="mostPercent"
                     key={`${index}${currentDate}`}
@@ -335,13 +346,13 @@ function ConfigDropdown({
                 style={{ borderColor: theme.borderColor }}
               >
                 {isPercentStockist.map((percent, index) => (
-                  <ConfigMostPercentBox
+                  <ConfigPercentBox
                     percent={percent}
                     index={index}
-                    isMostPercentCache={isPercentStockist}
-                    setIsMostPercentCache={setIsPercentStockist}
-                    isFocused={isFocusedStockist}
-                    setIsFocused={setIsFocusedStockist}
+                    getData={isPercentStockist}
+                    setData={handleSetIsPercentStockist}
+                    isFocused={focusedStockist.focused}
+                    setIsFocused={focusedStockist.handleFocused}
                     handleBoxDelete={handleBoxDeleteStockist}
                     name="percentStockist"
                     key={`-${index + 1}${currentDate}`}
@@ -378,17 +389,19 @@ function ConfigDropdown({
                     <input
                       type="radio"
                       name="radio"
-                      checked={isLight}
-                      onChange={handleCheckboxChange1}
+                      checked={lightLight.light}
+                      onChange={handleCheckboxChangeLight}
                     />
                     <span
                       className="name"
                       style={{
-                        backgroundColor: isLight ? theme.hover : "transparent",
+                        backgroundColor: lightLight.light
+                          ? theme.hover
+                          : "transparent",
                         color: theme.secondTitles,
                       }}
                     >
-                      <SunIcon theme={theme} isLight={isLight} />
+                      <SunIcon theme={theme} isLight={lightLight.light} />
                       claro
                     </span>
                   </label>
@@ -396,17 +409,19 @@ function ConfigDropdown({
                     <input
                       type="radio"
                       name="radio"
-                      checked={isDark}
-                      onChange={handleCheckboxChange2}
+                      checked={lightDark.light}
+                      onChange={handleCheckboxChangeDark}
                     />
                     <span
                       className="name"
                       style={{
-                        backgroundColor: isDark ? theme.hover : "transparent",
+                        backgroundColor: lightDark.light
+                          ? theme.hover
+                          : "transparent",
                         color: theme.secondTitles,
                       }}
                     >
-                      <MoonIcon theme={theme} isDark={isDark} />
+                      <MoonIcon theme={theme} isDark={lightDark.light} />
                       oscuro
                     </span>
                   </label>
@@ -430,7 +445,7 @@ function ConfigDropdown({
                 <button
                   className="configSectionDeleteButton"
                   onClick={() => {
-                    handlDeleteAll();
+                    handleDeleteAll();
                   }}
                 >
                   <p>reiniciar listas</p>
@@ -438,7 +453,7 @@ function ConfigDropdown({
                 <button
                   className="configSectionDeleteButton"
                   onClick={() => {
-                    handlDeleteTotal();
+                    handleDeleteTotal();
                   }}
                 >
                   <p>reiniciar todo</p>

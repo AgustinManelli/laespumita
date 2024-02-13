@@ -1,7 +1,12 @@
 import "../stylesheets/TotalLabel.css";
 import { useTheme } from "../context/ThemeProvider";
+import { useProduct } from "../store/product.js";
+import { useInputs } from "../store/inputs.js";
 
-function TotalLabel({ totalPrice, isCard, setCard }) {
+function TotalLabel() {
+  const totalPrice = useProduct((state) => state.totalPrice);
+  const isCard = useInputs((state) => state.isCard);
+  const setCard = useInputs((state) => state.setCard);
   const { theme } = useTheme();
   const CardIconCheck = () => (
     <svg

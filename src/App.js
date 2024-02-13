@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 import { Toaster } from "sonner";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ThemeProvider from "./context/ThemeProvider";
 
 function App() {
@@ -25,12 +25,11 @@ function App() {
       window.localStorage.setItem("monthly", "[]");
     }
   }, []);
-  const [totalModal, setTotalModal] = useState(false);
   return (
     <ThemeProvider>
       <div className="App">
         <Toaster position="bottom-center" richColors />
-        <Home totalModal={totalModal} setTotalModal={setTotalModal} />
+        <Home />
       </div>
     </ThemeProvider>
   );

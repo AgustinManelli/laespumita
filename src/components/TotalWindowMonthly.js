@@ -1,5 +1,10 @@
 import { useTheme } from "../context/ThemeProvider";
-function TotalWindowMonthly({ product, index, deleteStoredMonthly }) {
+import { useStoredProducts } from "../store/storedProducts";
+
+function TotalWindowMonthly({ product }) {
+  const deleteStoredMonthly = useStoredProducts(
+    (state) => state.DeleteStoredMonthly
+  );
   const { theme } = useTheme();
   const DeleteIcon = () => (
     <svg

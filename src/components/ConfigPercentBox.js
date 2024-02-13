@@ -2,46 +2,78 @@ import { useEffect, useRef, useState } from "react";
 import "../stylesheets/ConfigMostPercentBox.css";
 import { useTheme } from "../context/ThemeProvider";
 
-function ConfigMostPercentBox({
+const CancelIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    className="ConfigMostPercentBoxX"
+    data-src="/icons/cancel-01-stroke-rounded.svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    role="img"
+  >
+    <path
+      d="M19 5L5 19M5 5L19 19"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    ></path>
+  </svg>
+);
+
+const useBoxes = (percent) => {
+  const [number, setNumber] = useState(percent);
+  const [isEditing, setIsEditing] = useState(false);
+  const [boxesHovered, setBoxesHovered] = useState(false);
+
+  const handleSetNumber = (e) => {
+    setNumber(e);
+  };
+  const handleSetIsEditing = (e) => {
+    setIsEditing(e);
+  };
+  const handleSetBoxesHovered = (e) => {
+    setBoxesHovered(e);
+  };
+
+  return {
+    number,
+    isEditing,
+    boxesHovered,
+    handleSetNumber,
+    handleSetIsEditing,
+    handleSetBoxesHovered,
+  };
+};
+
+function ConfigPercentBox({
   percent,
   index,
-  isMostPercentCache,
-  setIsMostPercentCache,
+  getData,
+  setData,
   isFocused,
   setIsFocused,
   handleBoxDelete,
   name,
 }) {
-  const CancelIcon = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      className="ConfigMostPercentBoxX"
-      data-src="/icons/cancel-01-stroke-rounded.svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      role="img"
-    >
-      <path
-        d="M19 5L5 19M5 5L19 19"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      ></path>
-    </svg>
-  );
-  const [number, setNumber] = useState(percent);
-  const [isEditing, setIsEditing] = useState(false);
+  const { theme } = useTheme();
   const inputRef = useRef(null);
-  const [boxesHovered, setBoxesHoveres] = useState(false);
+
+  const {
+    number,
+    isEditing,
+    boxesHovered,
+    handleSetNumber,
+    handleSetIsEditing,
+    handleSetBoxesHovered,
+  } = useBoxes(percent);
 
   const handleMouseEnter = () => {
-    setBoxesHoveres(true);
-  };
-  const handleMouseLeave = () => {
-    setBoxesHoveres(false);
+    handleSetBoxesHovered(true);
   };
 
-  const { theme } = useTheme();
+  const handleMouseLeave = () => {
+    handleSetBoxesHovered(false);
+  };
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -50,36 +82,32 @@ function ConfigMostPercentBox({
   }, [isEditing]);
 
   useEffect(() => {
-    if (
-      isFocused &&
-      inputRef.current &&
-      index === isMostPercentCache.length - 1
-    ) {
+    if (isFocused && inputRef.current && index === getData.length - 1) {
       inputRef.current.focus();
     }
-  }, [isFocused, isMostPercentCache]);
+  }, [isFocused, getData]);
 
   const handleBoxClick = () => {
-    setIsEditing(true);
+    handleSetIsEditing(true);
   };
 
   const handleInputChange = (event) => {
-    setNumber(event.target.value);
+    handleSetNumber(event.target.value);
   };
 
   const handleInputBlur = () => {
-    setIsEditing(false);
+    handleSetIsEditing(false);
   };
 
   const handleInputKeyPress = (event) => {
     if (event.key === "Enter") {
-      setIsEditing(false);
+      handleSetIsEditing(false);
       setIsFocused(false);
-      const mostPercent = [...isMostPercentCache];
+      const mostPercent = [...getData];
       mostPercent[index] = parseInt(number);
       mostPercent.sort((a, b) => a - b);
-      setIsMostPercentCache(mostPercent);
       window.localStorage.setItem(name, JSON.stringify(mostPercent));
+      setData(mostPercent);
     }
   };
 
@@ -95,7 +123,7 @@ function ConfigMostPercentBox({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {isEditing || (isFocused && index + 1 === isMostPercentCache.length) ? (
+        {isEditing || (isFocused && index + 1 === getData.length) ? (
           <input
             type="number"
             value={number}
@@ -128,4 +156,4 @@ function ConfigMostPercentBox({
     </div>
   );
 }
-export default ConfigMostPercentBox;
+export default ConfigPercentBox;

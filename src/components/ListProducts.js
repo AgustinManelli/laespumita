@@ -3,8 +3,13 @@ import { useEffect } from "react";
 import ProductLabel from "./ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeProvider";
+import { useProduct } from "../store/product.js";
+import { useStoredProducts } from "../store/storedProducts.js";
 
-function ListProducts({ productList, deleteProduct, handleSave }) {
+function ListProducts() {
+  const productList = useProduct((state) => state.productList);
+  const deleteProduct = useProduct((state) => state.DeleteProduct);
+  const handleSave = useStoredProducts((state) => state.HandleSave);
   const { theme, wTheme } = useTheme();
   const EmptyListIcon = () => (
     <svg

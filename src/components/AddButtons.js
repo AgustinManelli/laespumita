@@ -1,5 +1,10 @@
 import "../stylesheets/AddButtons.css";
-function AddButtons({ addProduct, deleteAllProduct, productList }) {
+import { useProduct } from "../store/product.js";
+function AddButtons() {
+  const addProduct = useProduct((state) => state.AddProduct);
+  const deleteAllProduct = useProduct((state) => state.DeleteAllProduct);
+  const productList = useProduct((state) => state.productList);
+
   const AddIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -50,17 +55,6 @@ function AddButtons({ addProduct, deleteAllProduct, productList }) {
       <path d="M14.5 16.5L14.5 10.5" strokeLinecap="round"></path>
     </svg>
   );
-  /*const handleKeyPress = (event) => {
-    if (event.key === "Enter" && inputCalculatorFocus) {
-      addProduct();
-    }
-  };
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [addProduct]);*/
   return (
     <section className="addButtonsContainer">
       <button

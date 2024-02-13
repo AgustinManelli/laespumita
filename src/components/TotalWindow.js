@@ -5,24 +5,25 @@ import TotalWindowLabel from "./TotalWindowLabel";
 import TotalWindowLabelDaily from "./TotalWindowLabelDaily";
 import { useTheme } from "../context/ThemeProvider";
 import TotalWindowMonthly from "./TotalWindowMonthly";
-function TotalWindow({
-  totalModal,
-  setTotalModal,
-  storedProducts,
-  setStoredProducts,
-  deleteStoredProduct,
-  isDaily,
-  setIsDaily,
-  storedTotal,
-  storedMonthly,
-  setStoredMonthly,
-  setStoredTotal,
-  deleteStoredTotal,
-  deleteStoredMonthly,
-}) {
+import { useStoredProducts } from "../store/storedProducts.js";
+import { useInputs } from "../store/inputs.js";
+import { useModal } from "../store/modal";
+
+function TotalWindow() {
   const { theme, wTheme } = useTheme();
   const [isAsc, setIsAsc] = useState(false);
   const [isDesc, setIsDesc] = useState(false);
+
+  const storedProducts = useStoredProducts((state) => state.storedProducts);
+  const storedTotal = useStoredProducts((state) => state.storedTotal);
+  const storedMonthly = useStoredProducts((state) => state.storedMonthly);
+  const setStoredTotal = useStoredProducts(
+    (state) => state.handleSetStoredTotal
+  );
+  const isDaily = useInputs((state) => state.isDaily);
+  const setIsDaily = useInputs((state) => state.handleSetIsDaily);
+  const totalModal = useModal((state) => state.totalModal);
+  const setTotalModal = useModal((state) => state.setTotalModal);
 
   const sortByDesc = () => {
     const sortedData = [...storedTotal].sort((a, b) => b.total - a.total);
@@ -94,29 +95,6 @@ function TotalWindow({
       var totalWindowDiv = document.getElementById("totalWindowContent");
       totalWindowDiv.scrollTop = totalWindowDiv.scrollHeight;
     } catch {}
-  }, [isDaily, totalModal]);
-  useEffect(() => {
-    try {
-      if (window.localStorage.getItem("products") === "[null]") {
-        setStoredProducts([]);
-        window.localStorage.setItem("products", JSON.stringify(storedProducts));
-      } else {
-        setStoredProducts(JSON.parse(localStorage.products));
-      }
-      if (window.localStorage.getItem("total") === "[null]") {
-        setStoredTotal([]);
-        window.localStorage.setItem("total", JSON.stringify(storedTotal));
-      } else {
-        setStoredTotal(JSON.parse(localStorage.total));
-      }
-      if (window.localStorage.getItem("monthly") === "[null]") {
-        setStoredMonthly([]);
-        window.localStorage.setItem("monthly", JSON.stringify(storedMonthly));
-      } else {
-        setStoredMonthly(JSON.parse(window.localStorage.getItem("monthly")));
-      }
-    } catch {}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDaily, totalModal]);
   const currentDate = new Date();
   const formattedDate = `${
@@ -406,12 +384,8 @@ function TotalWindow({
             <section className="totalWindowContentProducts">
               {isDaily === "sales" ? (
                 <>
-                  {storedProducts.map((product, index) => (
-                    <TotalWindowLabelDaily
-                      key={product.id}
-                      product={product}
-                      deleteStoredProduct={deleteStoredProduct}
-                    />
+                  {storedProducts.map((product) => (
+                    <TotalWindowLabelDaily key={product.id} product={product} />
                   ))}
                 </>
               ) : isDaily === "daily" ? (
@@ -420,23 +394,15 @@ function TotalWindow({
                     <TotalWindowLabel
                       key={product.id}
                       product={product}
-                      deleteStoredProduct={deleteStoredTotal}
-                      totalModal={totalModal}
                       lastIndex={index !== storedTotal.length - 1}
                       index={index}
-                      setStoredTotal={setStoredTotal}
-                      isDaily={isDaily}
                     />
                   ))}
                 </>
               ) : (
                 <>
-                  {storedMonthly.map((product, index) => (
-                    <TotalWindowMonthly
-                      product={product}
-                      index={index}
-                      deleteStoredMonthly={deleteStoredMonthly}
-                    />
+                  {storedMonthly.map((product) => (
+                    <TotalWindowMonthly key={product.id} product={product} />
                   ))}
                 </>
               )}

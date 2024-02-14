@@ -1,7 +1,9 @@
 import "../stylesheets/TotalLabel.css";
 import { useTheme } from "../context/ThemeProvider";
+import { useSpring, animated, to } from "@react-spring/web";
 import { useProduct } from "../store/product";
 import { useInputs } from "../store/inputs";
+import { useState } from "react";
 
 const CardIconCheck = ({ isCard }) => (
   <svg
@@ -44,13 +46,28 @@ function TotalLabel() {
   const isCard = useInputs((state) => state.isCard);
   const setCard = useInputs((state) => state.setCard);
 
+  const flag = isCard ? totalPrice * 1.15 : totalPrice;
+
+  const { number } = useSpring({
+    from: { number: 0 },
+    number: isCard ? totalPrice * 1.15 : totalPrice,
+    delay: 0,
+    config: { mass: 1, tension: 280, friction: 60 },
+  });
+
   return (
     <div className="totalLabelContainer">
       <section
         className="totalLabelPrice"
         style={{ backgroundColor: theme.backgroundContainer }}
       >
-        <p style={{ color: theme.secondTitles }}>
+        <p style={{ color: theme.secondTitles }}>Total:</p>
+        <animated.p style={{ color: theme.secondTitles, marginLeft: "10px" }}>
+          {flag % 1 === 0
+            ? number.to((n) => n.toFixed(0))
+            : number.to((n) => n.toFixed(2))}
+        </animated.p>
+        {/*<p style={{ color: theme.secondTitles }}>
           TOTAL:{" "}
           {isCard
             ? parseFloat(totalPrice * 1.15).toLocaleString("es-ES", {
@@ -61,7 +78,7 @@ function TotalLabel() {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 2,
               })}
-        </p>
+            </p>*/}
       </section>
       <button
         className={isCard ? "totalCardAct" : "totalCard"}

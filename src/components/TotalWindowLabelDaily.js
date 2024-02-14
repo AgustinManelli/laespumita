@@ -38,7 +38,7 @@ function TotalWindowLabel({ product }) {
       className="totalWindowDailyLabel"
       style={{ backgroundColor: theme.backgroundOverall }}
     >
-      <p style={{ width: "50%", color: theme.text }}>$ {product.total}</p>
+      <p style={{ width: "50%", color: theme.text }}>${product.total}</p>
       <p style={{ width: "50%", color: theme.text }}>{product.date}</p>
       <button
         onClick={() => deleteStoredProduct(product.id, product)}

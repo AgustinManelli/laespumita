@@ -52,7 +52,7 @@ function TotalLabel() {
     from: { number: 0 },
     number: isCard ? totalPrice * 1.15 : totalPrice,
     delay: 0,
-    config: { mass: 1, tension: 280, friction: 60 },
+    config: { mass: 1, tension: 300, friction: 35 },
   });
 
   return (

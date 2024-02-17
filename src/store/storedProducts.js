@@ -203,6 +203,11 @@ export const useStoredProducts = create((set, get) => ({
           });
         } else {
           const productLenght = storedProduct.length;
+          const flagTime = storedProduct[0].chartTime - 1;
+          const tempTime = `${
+            (parseInt(storedProduct[0].chartTime) - 1 < 10 ? "0" : "") +
+            flagTime
+          }`;
           storedTotal.push({
             id: idDay,
             month: idMonth,
@@ -227,11 +232,8 @@ export const useStoredProducts = create((set, get) => ({
                     {
                       time:
                         Date.parse(
-                          `${storedProduct[0].chartDate}T${
-                            storedProduct[0].chartTime - 1
-                          }:00:00Z`
+                          `${storedProduct[0].chartDate}T${tempTime}:00:00Z`
                         ) / 1000,
-
                       value: 0,
                     },
                     {

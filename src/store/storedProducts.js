@@ -7,50 +7,56 @@ import { useInputs } from "./inputs.js";
 const tempInitialValue = [];
 
 export const useStoredProducts = create((set, get) => ({
-  storedProducts: window.localStorage.getItem("products")
-    ? JSON.parse(window.localStorage.getItem("products"))
-    : tempInitialValue,
-  storedTotal: window.localStorage.getItem("total")
-    ? JSON.parse(window.localStorage.getItem("total"))
-    : tempInitialValue,
-  storedMonthly: window.localStorage.getItem("monthly")
-    ? JSON.parse(window.localStorage.getItem("monthly"))
-    : tempInitialValue,
+  storedProducts:
+    window.localStorage.getItem("products") === undefined ||
+    window.localStorage.getItem("products") === null
+      ? JSON.parse(window.localStorage.getItem("products"))
+      : tempInitialValue,
+  storedTotal:
+    window.localStorage.getItem("total") === undefined ||
+    window.localStorage.getItem("total") === null
+      ? JSON.parse(window.localStorage.getItem("total"))
+      : tempInitialValue,
+  storedMonthly:
+    window.localStorage.getItem("monthly") === undefined ||
+    window.localStorage.getItem("monthly") === null
+      ? JSON.parse(window.localStorage.getItem("monthly"))
+      : tempInitialValue,
 
   InitialSale: () => {
     if (
-      window.localStorage.getItem("products") === null ||
-      window.localStorage.getItem("products") === undefined
+      window.localStorage.getItem("products") === "null" ||
+      window.localStorage.getItem("products") === "undefined"
     ) {
       window.localStorage.setItem("products", "[]");
     }
     if (
-      window.localStorage.getItem("total") === null ||
-      window.localStorage.getItem("total") === undefined
+      window.localStorage.getItem("total") === "null" ||
+      window.localStorage.getItem("total") === "undefined"
     ) {
       window.localStorage.setItem("total", "[]");
     }
     if (
-      window.localStorage.getItem("mostPercent") === null ||
-      window.localStorage.getItem("mostPercent") === undefined
+      window.localStorage.getItem("mostPercent") === "null" ||
+      window.localStorage.getItem("mostPercent") === "undefined"
     ) {
       window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
     }
     if (
-      window.localStorage.getItem("percentStockist") === null ||
-      window.localStorage.getItem("percentStockist") === undefined
+      window.localStorage.getItem("percentStockist") === "null" ||
+      window.localStorage.getItem("percentStockist") === "undefined"
     ) {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
     if (
-      window.localStorage.getItem("theme") === null ||
-      window.localStorage.getItem("theme") === undefined
+      window.localStorage.getItem("theme") === "null" ||
+      window.localStorage.getItem("theme") === "undefined"
     ) {
       window.localStorage.setItem("theme", "dark");
     }
     if (
-      window.localStorage.getItem("monthly") === null ||
-      window.localStorage.getItem("monthly") === undefined
+      window.localStorage.getItem("monthly") === "null" ||
+      window.localStorage.getItem("monthly") === "undefined"
     ) {
       window.localStorage.setItem("monthly", "[]");
     }
@@ -65,28 +71,43 @@ export const useStoredProducts = create((set, get) => ({
       (currentDate.getMonth() + 1 < 10 ? "0" : "") +
       (currentDate.getMonth() + 1)
     }${currentDate.getFullYear()}`;
-    const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
-    const totalIndexMonth = storedMonth.length;
-
-    if (totalIndexMonth > 0) {
-      const monthId = storedMonth[totalIndexMonth - 1].id;
-      if (idMonth !== monthId) {
-        window.localStorage.setItem("total", "[]");
-        set({ storedTotal: [] });
-        window.localStorage.setItem("products", "[]");
-        set({ storedProducts: [] });
+    try {
+      const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
+      const totalIndexMonth = storedMonth.length;
+      if (totalIndexMonth > 0) {
+        const monthId = storedMonth[totalIndexMonth - 1].id;
+        if (idMonth !== monthId) {
+          window.localStorage.setItem("total", "[]");
+          set({ storedTotal: [] });
+          window.localStorage.setItem("products", "[]");
+          set({ storedProducts: [] });
+        }
       }
+    } catch {
+      window.localStorage.setItem("products", "[]");
+      set({ storedProducts: [] });
+      window.localStorage.setItem("total", "[]");
+      set({ storedTotal: [] });
+      window.localStorage.setItem("monthly", "[]");
+      set({ storedMonthly: [] });
     }
-
-    const storedTotal = JSON.parse(window.localStorage.getItem("total"));
-    const totalIndex = storedTotal.length;
-
-    if (totalIndex > 0) {
-      const totalId = storedTotal[totalIndex - 1].id;
-      if (idDay !== totalId) {
-        window.localStorage.setItem("products", "[]");
-        set({ storedProducts: [] });
+    try {
+      const storedTotal = JSON.parse(window.localStorage.getItem("total"));
+      const totalIndex = storedTotal.length;
+      if (totalIndex > 0) {
+        const totalId = storedTotal[totalIndex - 1].id;
+        if (idDay !== totalId) {
+          window.localStorage.setItem("products", "[]");
+          set({ storedProducts: [] });
+        }
       }
+    } catch {
+      window.localStorage.setItem("products", "[]");
+      set({ storedProducts: [] });
+      window.localStorage.setItem("total", "[]");
+      set({ storedTotal: [] });
+      window.localStorage.setItem("monthly", "[]");
+      set({ storedMonthly: [] });
     }
   },
 

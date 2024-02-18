@@ -9,12 +9,16 @@ export const useInputs = create((set) => ({
   price: "",
   isCard: false,
   isDaily: "sales",
-  isMostPercentCache: window.localStorage.getItem("mostPercent")
-    ? JSON.parse(window.localStorage.getItem("mostPercent"))
-    : initialPercentValue,
-  isPercentStockist: window.localStorage.getItem("percentStockist")
-    ? JSON.parse(window.localStorage.getItem("percentStockist"))
-    : initialStockistValue,
+  isMostPercentCache:
+    window.localStorage.getItem("mostPercent") === undefined ||
+    window.localStorage.getItem("mostPercent") === null
+      ? JSON.parse(window.localStorage.getItem("mostPercent"))
+      : initialPercentValue,
+  isPercentStockist:
+    window.localStorage.getItem("percentStockist") === undefined ||
+    window.localStorage.getItem("percentStockist") === null
+      ? JSON.parse(window.localStorage.getItem("percentStockist"))
+      : initialStockistValue,
 
   handleSetIsMostPercentCache: (e) => set(() => ({ isMostPercentCache: e })),
   handleSetIsPercentStockist: (e) => set(() => ({ isPercentStockist: e })),

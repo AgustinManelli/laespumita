@@ -34,7 +34,6 @@ const UploadFile = ({ theme, hover }) => (
 
 function ImportData() {
   const { theme } = useTheme();
-  const [fileContent, setFileContent] = useState("");
   const [hover, setHover] = useState(false);
 
   const handleSetStoredProducts = useStoredProducts(
@@ -65,7 +64,6 @@ function ImportData() {
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      setFileContent(reader.result);
       const value = JSON.parse(`[${reader.result}]`);
       window.localStorage.setItem("products", JSON.stringify(value[0]));
       window.localStorage.setItem("total", JSON.stringify(value[1]));

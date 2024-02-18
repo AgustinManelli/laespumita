@@ -65,8 +65,6 @@ function DownloadData() {
         : []
     );
 
-    console.log(dataInfoTotal);
-
     const file = new File([dataInfoTotal], `data-laespumita-${timeNow}.txt`, {
       type: "text/plain",
     });

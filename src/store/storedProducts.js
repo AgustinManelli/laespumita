@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { toast } from "sonner";
 import { useProduct } from "./product";
 import { useInputs } from "./inputs.js";
-import { useTheme } from "../context/ThemeProvider.js";
+//import { useTheme } from "../context/ThemeProvider.js";
 
 const tempInitialValue = [];
 
@@ -18,22 +18,40 @@ export const useStoredProducts = create((set, get) => ({
     : tempInitialValue,
 
   InitialSale: () => {
-    if (window.localStorage.getItem("products") === null) {
+    if (
+      window.localStorage.getItem("products") === null ||
+      window.localStorage.getItem("products") === undefined
+    ) {
       window.localStorage.setItem("products", "[]");
     }
-    if (window.localStorage.getItem("total") === null) {
+    if (
+      window.localStorage.getItem("total") === null ||
+      window.localStorage.getItem("total") === undefined
+    ) {
       window.localStorage.setItem("total", "[]");
     }
-    if (window.localStorage.getItem("mostPercent") === null) {
+    if (
+      window.localStorage.getItem("mostPercent") === null ||
+      window.localStorage.getItem("mostPercent") === undefined
+    ) {
       window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
     }
-    if (window.localStorage.getItem("percentStockist") === null) {
+    if (
+      window.localStorage.getItem("percentStockist") === null ||
+      window.localStorage.getItem("percentStockist") === undefined
+    ) {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
-    if (window.localStorage.getItem("theme") === null) {
+    if (
+      window.localStorage.getItem("theme") === null ||
+      window.localStorage.getItem("theme") === undefined
+    ) {
       window.localStorage.setItem("theme", "dark");
     }
-    if (window.localStorage.getItem("monthly") === null) {
+    if (
+      window.localStorage.getItem("monthly") === null ||
+      window.localStorage.getItem("monthly") === undefined
+    ) {
       window.localStorage.setItem("monthly", "[]");
     }
     const currentDate = new Date();

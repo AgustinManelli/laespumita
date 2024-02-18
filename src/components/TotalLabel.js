@@ -1,9 +1,8 @@
 import "../stylesheets/TotalLabel.css";
 import { useTheme } from "../context/ThemeProvider";
-import { useSpring, animated, to } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 import { useProduct } from "../store/product";
 import { useInputs } from "../store/inputs";
-import { useState } from "react";
 
 const CardIconCheck = ({ isCard }) => (
   <svg

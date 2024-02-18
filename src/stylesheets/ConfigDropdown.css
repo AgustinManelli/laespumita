@@ -79,6 +79,7 @@
   flex-direction: column;
 }
 .configHeader {
+  position: relative;
   height: 20%;
   display: flex;
   justify-content: start;

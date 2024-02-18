@@ -5,6 +5,7 @@ import { useTheme } from "../context/ThemeProvider";
 import { useInputs } from "../store/inputs";
 import { useStoredProducts } from "../store/storedProducts";
 import ConfigPercentBox from "./ConfigPercentBox";
+import DownloadData from "./DownloadData";
 
 const MoonIcon = ({ theme, isDark }) => (
   <svg
@@ -292,6 +293,7 @@ function ConfigDropdown() {
         <div className="configContainer">
           <header className="configHeader">
             <h2 style={{ color: theme.secondTitles }}>configuración</h2>
+            <DownloadData />
           </header>
           <div
             className="confiSeparator"

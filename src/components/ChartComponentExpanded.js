@@ -44,7 +44,6 @@ function ChartComponentExpanded({ chartList }) {
       },
       timeScale: {
         visible: true,
-        /*barSpacing: 21,*/
         borderVisible: true,
         secondsVisible: false,
         timeVisible: true,

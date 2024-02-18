@@ -1,0 +1,7 @@
+input[type="file"] {
+  display: none;
+}
+.UploadFile {
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out;
+}

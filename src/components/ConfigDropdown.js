@@ -6,6 +6,7 @@ import { useInputs } from "../store/inputs";
 import { useStoredProducts } from "../store/storedProducts";
 import ConfigPercentBox from "./ConfigPercentBox";
 import DownloadData from "./DownloadData";
+import ImportData from "./ImportData";
 
 const MoonIcon = ({ theme, isDark }) => (
   <svg
@@ -293,7 +294,18 @@ function ConfigDropdown() {
         <div className="configContainer">
           <header className="configHeader">
             <h2 style={{ color: theme.secondTitles }}>configuración</h2>
-            <DownloadData />
+            <div
+              style={{
+                position: "absolute",
+                right: "13px",
+                display: "flex",
+                flexDirection: "row",
+                gap: "7px",
+              }}
+            >
+              <DownloadData />
+              <ImportData />
+            </div>
           </header>
           <div
             className="confiSeparator"

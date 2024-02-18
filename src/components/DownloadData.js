@@ -38,30 +38,38 @@ function DownloadData() {
     }${currentDate.getFullYear()}${
       (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()
     }`;
-    const dataInfoTotal = window.localStorage.getItem("total")
-      ? window.localStorage.getItem("total")
-      : [];
-    const dataInfoProducts = window.localStorage.getItem("products")
-      ? window.localStorage.getItem("products")
-      : [];
-    const dataInfoMonthly = window.localStorage.getItem("monthly")
-      ? window.localStorage.getItem("monthly")
-      : [];
-
-    const file = new File(
-      [
-        "Información de ventas por cliente\n",
-        dataInfoProducts,
-        "\n\n\nInformación de ventas diarias\n",
-        dataInfoTotal,
-        "\n\n\nInformación de ventas mensuales\n",
-        dataInfoMonthly,
-      ],
-      `data-laespumita-${timeNow}.txt`,
-      {
-        type: "text/plain",
-      }
+    const dataInfoTotal = [];
+    dataInfoTotal.push(
+      window.localStorage.getItem("products")
+        ? window.localStorage.getItem("products")
+        : []
     );
+    dataInfoTotal.push(
+      window.localStorage.getItem("total")
+        ? window.localStorage.getItem("total")
+        : []
+    );
+    dataInfoTotal.push(
+      window.localStorage.getItem("monthly")
+        ? window.localStorage.getItem("monthly")
+        : []
+    );
+    dataInfoTotal.push(
+      window.localStorage.getItem("mostPercent")
+        ? window.localStorage.getItem("mostPercent")
+        : []
+    );
+    dataInfoTotal.push(
+      window.localStorage.getItem("percentStockist")
+        ? window.localStorage.getItem("percentStockist")
+        : []
+    );
+
+    console.log(dataInfoTotal);
+
+    const file = new File([dataInfoTotal], `data-laespumita-${timeNow}.txt`, {
+      type: "text/plain",
+    });
     const url = window.URL.createObjectURL(file);
     const a = document.createElement("a");
     a.href = url;
@@ -73,8 +81,6 @@ function DownloadData() {
   return (
     <div
       style={{
-        position: "absolute",
-        right: "13px",
         width: "24px",
         height: "24px",
       }}

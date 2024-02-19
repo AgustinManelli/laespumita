@@ -12,13 +12,13 @@ export const useInputs = create((set) => ({
   isMostPercentCache:
     window.localStorage.getItem("mostPercent") === undefined ||
     window.localStorage.getItem("mostPercent") === null
-      ? JSON.parse(window.localStorage.getItem("mostPercent"))
-      : initialPercentValue,
+      ? initialPercentValue
+      : JSON.parse(window.localStorage.getItem("mostPercent")),
   isPercentStockist:
     window.localStorage.getItem("percentStockist") === undefined ||
     window.localStorage.getItem("percentStockist") === null
-      ? JSON.parse(window.localStorage.getItem("percentStockist"))
-      : initialStockistValue,
+      ? initialStockistValue
+      : JSON.parse(window.localStorage.getItem("percentStockist")),
 
   handleSetIsMostPercentCache: (e) => set(() => ({ isMostPercentCache: e })),
   handleSetIsPercentStockist: (e) => set(() => ({ isPercentStockist: e })),

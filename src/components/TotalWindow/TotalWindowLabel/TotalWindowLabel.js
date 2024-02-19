@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "../stylesheets/TotalWindowLabel.css";
-import { useTheme } from "../context/ThemeProvider";
+import "./TotalWindowLabel.css";
+import { useTheme } from "../../../context/ThemeProvider";
 import { motion } from "framer-motion";
-import { useStoredProducts } from "../store/storedProducts";
-import ChartComponent from "./ChartComponent";
-import ChartComponentExpanded from "./ChartComponentExpanded";
+import { useStoredProducts } from "../../../store/storedProducts";
+import ChartComponent from "../../ChartComponent/ChartComponent";
+import ChartComponentExpanded from "../../ChartComponentExpanded/ChartComponentExpanded";
 
 const ArrowIcon = ({ theme }) => (
   <svg

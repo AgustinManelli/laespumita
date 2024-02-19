@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import "../stylesheets/ConfigMostPercentBox.css";
-import { useTheme } from "../context/ThemeProvider";
+import "./ConfigPercentBox.css";
+import { useTheme } from "../../../context/ThemeProvider";
 
 const CancelIcon = () => (
   <svg

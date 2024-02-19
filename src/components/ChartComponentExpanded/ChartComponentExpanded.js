@@ -1,28 +1,37 @@
 import { ColorType, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../context/ThemeProvider";
 
-function ChartComponent({ chartList }) {
+function ChartComponentExpanded({ chartList }) {
   const chartContainerRef = useRef();
   const { theme } = useTheme();
 
   useEffect(() => {
     const chart = createChart(chartContainerRef.current, {
       layout: {
-        background: { type: ColorType.solid, color: "transparent" },
+        background: {
+          type: ColorType.solid,
+          color: "transparent",
+        },
+        textColor: theme.secondTitles,
+        fontSize: 10,
       },
       rightPriceScale: {
-        visible: false,
-        borderVisible: false,
-        autoScale: true,
+        visible: true,
+        borderVisible: true,
+        autoScale: false,
+        borderColor: "#008fd2",
       },
       crosshair: {
-        mode: 2,
+        mode: 1,
         vertLine: {
           visible: false,
+          labelBackgroundColor: "#008fd2",
         },
         horzLine: {
-          visible: false,
+          visible: true,
+          labelBackgroundColor: "#008fd2",
+          style: 4,
         },
       },
       grid: {
@@ -34,17 +43,20 @@ function ChartComponent({ chartList }) {
         },
       },
       timeScale: {
-        visible: false,
-        //barSpacing: 6.5,
-        borderVisible: false,
+        visible: true,
+        borderVisible: true,
+        secondsVisible: false,
+        timeVisible: true,
+        borderColor: "#008fd2",
+        fixRightEdge: true,
+        fixLeftEdge: true,
       },
-      handleScroll: false,
+      handleScroll: {
+        pressedMouseMove: true,
+        mouseWheel: false,
+      },
       handleScale: false,
       autoSize: true,
-      localization: {
-        dateFormat: "hh-mm",
-        locale: "en-US",
-      },
     });
     const newSeries = chart.addAreaSeries({
       lineColor: "#008fd2",
@@ -52,9 +64,10 @@ function ChartComponent({ chartList }) {
       bottomColor: "rgba(41, 98, 255, 0)",
       priceLineVisible: false,
       lastValueVisible: false,
-      crosshairMarkerVisible: false,
+      crosshairMarkerVisible: true,
       lineWidth: 2,
       lineType: 2,
+      lastPriceAnimation: 1,
     });
 
     newSeries.setData(chartList);
@@ -66,17 +79,11 @@ function ChartComponent({ chartList }) {
     <div
       ref={chartContainerRef}
       style={{
-        marginTop: "10px",
-        width: "100px",
-        height: "34px",
-        right: "-120px",
-        backgroundColor: theme.backgroundOverall,
-        padding: "0px",
-        borderRadius: "10px",
-        overflow: "hidden",
+        width: "calc(100% - 10px)",
+        height: "100px",
       }}
     ></div>
   );
 }
 
-export default ChartComponent;
+export default ChartComponentExpanded;

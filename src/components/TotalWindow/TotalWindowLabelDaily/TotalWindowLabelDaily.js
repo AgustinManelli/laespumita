@@ -1,5 +1,5 @@
-import { useTheme } from "../context/ThemeProvider";
-import { useStoredProducts } from "../store/storedProducts";
+import { useTheme } from "../../../context/ThemeProvider";
+import { useStoredProducts } from "../../../store/storedProducts";
 
 const DeleteIcon = ({ theme }) => (
   <svg

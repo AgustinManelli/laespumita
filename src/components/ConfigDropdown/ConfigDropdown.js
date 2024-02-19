@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import "../stylesheets/ConfigDropdown.css";
+import "./ConfigDropdown.css";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeProvider";
-import { useInputs } from "../store/inputs";
-import { useStoredProducts } from "../store/storedProducts";
-import ConfigPercentBox from "./ConfigPercentBox";
-import DownloadData from "./DownloadData";
-import ImportData from "./ImportData";
+import { useTheme } from "../../context/ThemeProvider";
+import { useInputs } from "../../store/inputs";
+import { useStoredProducts } from "../../store/storedProducts";
+import ConfigPercentBox from "./ConfigPercentBox/ConfigPercentBox";
+import DownloadData from "./DownloadData/DownloadData";
+import ImportData from "./ImportData/ImportData";
 
 const MoonIcon = ({ theme, isDark }) => (
   <svg

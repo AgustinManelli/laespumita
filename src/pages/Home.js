@@ -2,12 +2,12 @@ import "./Home.css";
 import { useTheme } from "../context/ThemeProvider";
 import { useInputs } from "../store/inputs";
 import { useProduct } from "../store/product";
-import AddButtons from "../components/AddButtons";
-import Calculator from "../components/Calculator";
-import ListProducts from "../components/ListProducts";
-import TotalLabel from "../components/TotalLabel";
-import TotalWindow from "../components/TotalWindow";
-import Navbar from "../components/Navbar";
+import AddButtons from "../components/AddButtons/AddButtons";
+import Calculator from "../components/Calculator/Calculator";
+import ListProducts from "../components/ListProduct/ListProducts";
+import TotalLabel from "../components/TotalLabel/TotalLabel";
+import TotalWindow from "../components/TotalWindow/TotalWindow";
+import Navbar from "../components/Navbar/Navbar";
 
 function Home() {
   const { theme } = useTheme();

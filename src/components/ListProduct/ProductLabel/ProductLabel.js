@@ -1,7 +1,7 @@
-import "../stylesheets/ProductLabel.css";
+import "./ProductLabel.css";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeProvider";
-import { useProduct } from "../store/product";
+import { useTheme } from "../../../context/ThemeProvider";
+import { useProduct } from "../../../store/product";
 
 const DeleteIcon = () => (
   <svg

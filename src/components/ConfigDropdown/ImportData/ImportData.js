@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../stylesheets/ImportData.css";
-import { useTheme } from "../context/ThemeProvider";
-import { useInputs } from "../store/inputs.js";
-import { useStoredProducts } from "../store/storedProducts.js";
+import "./ImportData.css";
+import { useTheme } from "../../../context/ThemeProvider.js";
+import { useInputs } from "../../../store/inputs.js";
+import { useStoredProducts } from "../../../store/storedProducts.js";
 
 const UploadFile = ({ theme, hover }) => (
   <svg
@@ -89,6 +89,7 @@ function ImportData() {
       }}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
+      className="importDataContainer"
     >
       <label
         style={{ width: "24px", height: "24px", cursor: "pointer" }}

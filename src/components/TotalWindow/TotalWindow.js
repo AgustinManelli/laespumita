@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import "../stylesheets/TotalWindow.css";
+import "./TotalWindow.css";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeProvider";
-import { useStoredProducts } from "../store/storedProducts.js";
-import { useInputs } from "../store/inputs.js";
-import { useModal } from "../store/modal";
-import TotalWindowLabel from "./TotalWindowLabel";
-import TotalWindowLabelDaily from "./TotalWindowLabelDaily";
-import TotalWindowMonthly from "./TotalWindowMonthly";
+import { useTheme } from "../../context/ThemeProvider.js";
+import { useStoredProducts } from "../../store/storedProducts.js";
+import { useInputs } from "../../store/inputs.js";
+import { useModal } from "../../store/modal.js";
+import TotalWindowLabel from "./TotalWindowLabel/TotalWindowLabel.js";
+import TotalWindowLabelDaily from "./TotalWindowLabelDaily/TotalWindowLabelDaily.js";
+import TotalWindowMonthly from "./TotalWindowMonthly/TotalWindowMonthly.js";
 
 const FilterDesc = ({ ascend, descend, theme }) => (
   <svg

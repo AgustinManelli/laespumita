@@ -10,18 +10,18 @@ export const useStoredProducts = create((set, get) => ({
   storedProducts:
     window.localStorage.getItem("products") === undefined ||
     window.localStorage.getItem("products") === null
-      ? JSON.parse(window.localStorage.getItem("products"))
-      : tempInitialValue,
+      ? tempInitialValue
+      : JSON.parse(window.localStorage.getItem("products")),
   storedTotal:
     window.localStorage.getItem("total") === undefined ||
     window.localStorage.getItem("total") === null
-      ? JSON.parse(window.localStorage.getItem("total"))
-      : tempInitialValue,
+      ? tempInitialValue
+      : JSON.parse(window.localStorage.getItem("total")),
   storedMonthly:
     window.localStorage.getItem("monthly") === undefined ||
     window.localStorage.getItem("monthly") === null
-      ? JSON.parse(window.localStorage.getItem("monthly"))
-      : tempInitialValue,
+      ? tempInitialValue
+      : JSON.parse(window.localStorage.getItem("total")),
 
   InitialSale: () => {
     if (

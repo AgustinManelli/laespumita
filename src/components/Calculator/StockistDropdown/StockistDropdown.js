@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "../stylesheets/StockistDropdown.css";
+import "./StockistDropdown.css";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeProvider";
-import { useInputs } from "../store/inputs.js";
+import { useTheme } from "../../../context/ThemeProvider.js";
+import { useInputs } from "../../../store/inputs.js";
 
 function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
   const { theme } = useTheme();

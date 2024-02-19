@@ -1,5 +1,5 @@
-import "../stylesheets/AddButtons.css";
-import { useProduct } from "../store/product";
+import "./AddButtons.css";
+import { useProduct } from "../../store/product";
 
 const AddIcon = () => (
   <svg

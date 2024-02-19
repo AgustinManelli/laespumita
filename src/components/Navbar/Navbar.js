@@ -1,8 +1,8 @@
-import "../stylesheets/Navbar.css";
-import logo from "../assets/logo.svg";
-import ConfigDropdown from "./ConfigDropdown";
-import { useTheme } from "../context/ThemeProvider";
-import { useModal } from "../store/modal";
+import "./Navbar.css";
+import logo from "../../assets/logo.svg";
+import ConfigDropdown from "../ConfigDropdown/ConfigDropdown";
+import { useTheme } from "../../context/ThemeProvider";
+import { useModal } from "../../store/modal";
 
 const AnalyticsIcon = ({ theme, totalModal }) => (
   <svg

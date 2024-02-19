@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import "../stylesheets/Calculator.css";
-import StockistDropdown from "./StockistDropdown";
-import { useTheme } from "../context/ThemeProvider";
-import { useInputs } from "../store/inputs.js";
-import { useProduct } from "../store/product";
+import "./Calculator.css";
+import StockistDropdown from "./StockistDropdown/StockistDropdown.js";
+import { useTheme } from "../../context/ThemeProvider.js";
+import { useInputs } from "../../store/inputs.js";
+import { useProduct } from "../../store/product.js";
 
 const useInputEffect = () => {
   const [inputHovered, setInputHovered] = useState(false);

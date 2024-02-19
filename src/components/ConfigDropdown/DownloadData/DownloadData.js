@@ -1,5 +1,5 @@
-import "../stylesheets/DownloadData.css";
-import { useTheme } from "../context/ThemeProvider";
+import "./DownloadData.css";
+import { useTheme } from "../../../context/ThemeProvider";
 import { useState } from "react";
 
 const DonwloadIcon = ({ theme, hover }) => (

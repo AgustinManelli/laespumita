@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import "../stylesheets/ListProducts.css";
-import ProductLabel from "./ProductLabel";
+import "./ListProducts.css";
+import ProductLabel from "./ProductLabel/ProductLabel";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../context/ThemeProvider";
-import { useProduct } from "../store/product";
-import { useStoredProducts } from "../store/storedProducts";
+import { useTheme } from "../../context/ThemeProvider";
+import { useProduct } from "../../store/product";
+import { useStoredProducts } from "../../store/storedProducts";
 
 const EmptyListIcon = ({ theme }) => (
   <svg

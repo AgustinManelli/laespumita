@@ -39,8 +39,8 @@ function ThemeProvider(props) {
   const [theme, setTheme] = useState(
     window.localStorage.getItem("theme") === null ||
       window.localStorage.getItem("theme") === undefined
-      ? window.localStorage.getItem("theme")
-      : "dark"
+      ? "dark"
+      : window.localStorage.getItem("theme")
   );
   const [wTheme, setWTheme] = useState(theme === "white" ? true : false);
   const toggleTheme = () =>

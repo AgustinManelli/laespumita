@@ -10,13 +10,13 @@ export const useInputs = create((set) => ({
   isCard: false,
   isDaily: "sales",
   isMostPercentCache:
-    window.localStorage.getItem("mostPercent") === undefined ||
-    window.localStorage.getItem("mostPercent") === null
+    window.localStorage.getItem("mostPercent") === "undefined" ||
+    window.localStorage.getItem("mostPercent") === "null"
       ? initialPercentValue
       : JSON.parse(window.localStorage.getItem("mostPercent")),
   isPercentStockist:
-    window.localStorage.getItem("percentStockist") === undefined ||
-    window.localStorage.getItem("percentStockist") === null
+    window.localStorage.getItem("percentStockist") === "undefined" ||
+    window.localStorage.getItem("percentStockist") === "null"
       ? initialStockistValue
       : JSON.parse(window.localStorage.getItem("percentStockist")),
 

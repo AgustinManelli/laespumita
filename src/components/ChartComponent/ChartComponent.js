@@ -67,10 +67,9 @@ function ChartComponent({ chartList }) {
       ref={chartContainerRef}
       style={{
         marginTop: "10px",
-        width: "100px",
+        width: "122px",
         height: "34px",
-        right: "-120px",
-        backgroundColor: theme.backgroundOverall,
+        backgroundColor: theme.button,
         padding: "0px",
         borderRadius: "10px",
         overflow: "hidden",

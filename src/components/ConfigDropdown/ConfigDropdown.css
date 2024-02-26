@@ -1,10 +1,14 @@
-.configDDContainer {
+.DDContainer {
   width: fit-content;
   position: relative;
   display: flex;
   justify-content: center;
 }
-.configDDButton {
+.configSectionPercentP {
+  font-size: 14px;
+  font-weight: 400;
+}
+.DDButton {
   appearance: button;
   -webkit-appearance: button;
   border: none;
@@ -14,7 +18,7 @@
   cursor: pointer;
   text-align: left;
   transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-  background: none;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,10 +27,13 @@
   height: 43px;
   z-index: 1;
 }
-.configDDSelected {
-  z-index: 0;
+.MoreIcon {
+  transition: stroke 0.3s ease-in-out;
 }
-.configDDContent {
+.DDButton:hover .MoreIcon {
+  stroke: #008fd2 !important;
+}
+.DDContent {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -38,8 +45,9 @@
   min-width: 302px;
   overflow: hidden;
   backdrop-filter: blur(15px) saturate(200%);
+  transition: background-color 0.3s ease-in-out;
 }
-.configDDContent::before {
+.DDContent::before {
   content: "";
   background-color: transparent;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 257 257' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -53,24 +61,10 @@
   height: 100%;
   z-index: -1;
 }
-.ConfigIcon {
-  width: 24px;
-  height: auto;
-  stroke-width: 2;
-  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out;
+.configDDSelected {
+  z-index: 0;
 }
-.configDDButton:hover .ConfigIcon {
-  stroke: #008fd2 !important;
-  transform: scale(110%);
-}
-.ConfigIconGear {
-  transform-origin: 50% 50%;
-  transition: transform 1s ease-in-out;
-}
-.configDDButton:hover .ConfigIconGear {
-  transform: rotate(-360deg);
-}
-.configContainer {
+.DDContainerData {
   position: relative;
   width: fit-content;
   min-width: 302px;
@@ -78,104 +72,26 @@
   display: flex;
   flex-direction: column;
 }
-.configHeader {
-  position: relative;
-  height: 20%;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  padding-left: 13px;
-  padding-right: 13px;
-}
-.configHeader h2 {
-  font-size: 12px;
-  margin-left: 5px;
-}
-.configSection {
+.DDSection {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
   height: 100%;
+  margin: 13px;
 }
-.configSectionPercent {
-  position: relative;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  gap: 7px;
-  padding: 13px;
-  padding-bottom: 0;
-}
-.configSectionPercentP {
-  font-size: 14px;
-  margin-left: 5px;
-}
-.configSectionBoxes {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
-  width: fit-content;
-  border: solid 1px;
-  padding: 7px;
-  border-radius: 10px;
-}
-.configAddButton {
-  border: none;
-  background: none;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
-  min-height: 0;
-  min-width: 0;
-  justify-content: center;
-  align-items: center;
-}
-.configAddButton:hover .PlusConfig {
-  stroke: #008fd2 !important;
-}
-.PlusConfigBox {
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
-  transform-origin: 50% 50%;
-}
-.configAddButton:hover .PlusConfigBox {
-  transform: scale(0%);
-  filter: blur(3px);
-}
-.PlusConfigPlus {
-  transition: transform 0.2s ease-in-out;
-  transform-origin: 50% 50%;
-}
-.configAddButton:hover .PlusConfigPlus {
-  transform: scale(170%);
-}
-.PlusConfig {
-  width: 35px;
-  height: 25px;
-  stroke-width: 2;
-  transition: stroke 0.2s ease-in-out;
-}
-
-.configSectionThemeRadioContainerTotal {
+.DDSectionThemeRadioContainerTotal {
   text-align: left;
   display: flex;
   flex-direction: column;
   gap: 7px;
-  padding: 13px;
 }
-
-.configSectionThemeRadioContainer {
+.DDSectionThemeRadioContainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.configSectionThemeRadio {
+.DDSectionThemeRadio {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -184,34 +100,35 @@
   border: solid 1px;
   width: 100%;
   font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
 }
-
-.configSectionThemeRadio .radio {
+.DDSectionThemeRadio .DDradio {
   flex: 1 1 auto;
   text-align: center;
 }
-
-.configSectionThemeRadio .radio input {
+.DDSectionThemeRadio .DDradio input {
   display: none;
 }
-
-.configSectionThemeRadio .radio .name {
+.DDSectionThemeRadio .DDradio .DDname {
   display: flex;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   padding: 0.5rem 0;
-  color: rgba(51, 65, 85, 1);
   transition: all 0.15s ease-in-out;
-  gap: 5px;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 .ThemeIcon {
   width: 20px;
   height: 20px;
   stroke-width: 2;
   overflow-y: visible;
+  transition: stroke 0.3s ease-in-out;
 }
 .SunIconRay {
   transform-origin: 50% 50%;
@@ -263,41 +180,31 @@
   transform: scale(80%) !important;
   stroke-width: 2.5 !important;
 }
-.confiSeparator {
-  height: 1px;
-}
-.configSectionDeleteContainerTotal {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  margin: 13px;
-  gap: 7px;
-}
-.configSectionDeleteContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
-.configSectionDeleteButton {
-  width: 100%;
-  border: none;
-  background: none;
-  border: 1px solid #ff0000;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.configSectionDeleteButton p {
-  padding: 5px;
-  color: #ff0000;
-}
-.configFooter {
+.DDFooter {
   font-size: 12px;
   padding-top: 13px;
   padding-bottom: 13px;
   padding-left: 18px;
   text-align: left;
+  transition: background-color 0.3s ease-in-out;
+}
+.DDSeparator {
+  height: 1px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.DDSectionButton {
+  border: none;
+  cursor: pointer;
+  height: 35px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s ease-in-out;
 }

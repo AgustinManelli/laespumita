@@ -15,7 +15,7 @@ const EmptyListIcon = ({ theme }) => (
     data-src="/icons/file-sync-stroke-rounded.svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     role="img"
-    style={{ stroke: theme.secondTitles }}
+    style={{ stroke: theme.placeholder }}
   >
     <path
       d="M20 12.1818V7.81818C20 6.12494 20 5.27832 19.732 4.60214C19.3012 3.5151 18.3902 2.65765 17.2352 2.2522C16.5168 2 15.6173 2 13.8182 2C10.6698 2 9.09563 2 7.83836 2.44135C5.81714 3.15089 4.22281 4.65142 3.46894 6.55375C3 7.73706 3 9.21865 3 12.1818V14.7273C3 17.7966 3 19.3313 3.8477 20.3971C4.09058 20.7025 4.37862 20.9736 4.70307 21.2022C5.74797 21.9384 7.21706 21.9952 10 21.9996"
@@ -83,9 +83,6 @@ function ListProducts() {
         style={{
           backgroundColor: theme.backgroundContainer,
           boxShadow: theme.boxShadow,
-          "&::WebkitScrollbarTrack": {
-            background: theme.backgroundOverall,
-          },
         }}
       >
         <AnimatePresence mode={"popLayout"}>
@@ -116,7 +113,7 @@ function ListProducts() {
                 damping: 30,
               }}
               style={{
-                color: theme.secondTitles,
+                color: theme.placeholder,
                 position: "absolute",
                 top: "45%",
                 margin: "0",
@@ -124,6 +121,8 @@ function ListProducts() {
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "10px",
+                fontSize: "14px",
+                fontWeight: "400",
               }}
             >
               <EmptyListIcon theme={theme} />

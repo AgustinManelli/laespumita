@@ -13,6 +13,7 @@
   overflow-anchor: none;
   scrollbar-gutter: stable both-edges;
   z-index: 2;
+  transition: background-color 0.3s ease-in-out;
 }
 .listContainer::-webkit-scrollbar {
   width: 7px;
@@ -38,9 +39,10 @@
   border-radius: 3px;
 }
 .EmptyListIcon {
-  stroke-width: 2;
-  width: 30px;
+  stroke-width: 1;
+  width: 24px;
   height: auto;
+  transition: stroke 0.3s ease-in-out;
 }
 .EmptyListIconArrow {
   transform-origin: 69% 77%;
@@ -69,15 +71,15 @@
   cursor: pointer;
 }
 .listButtonIcon {
-  stroke: rgb(57, 99, 25);
+  stroke: rgb(111, 255, 0);
   stroke-width: 2;
   width: 30px;
   height: auto;
-  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out,
-    stroke-width 0.2s ease-in-out;
+  transition: stroke 0.3s ease-in-out, transform 0.3s ease-in-out,
+    stroke-width 0.3s ease-in-out;
 }
 .listButton:hover .listButtonIcon {
-  stroke: rgb(87, 173, 22);
+  stroke: rgb(166, 255, 98);
   stroke-width: 1.5;
   transform: scale(110%);
 }

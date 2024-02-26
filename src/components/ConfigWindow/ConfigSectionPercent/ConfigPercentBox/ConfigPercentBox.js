@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./ConfigPercentBox.css";
-import { useTheme } from "../../../context/ThemeProvider";
+import { useTheme } from "../../../../context/ThemeProvider";
 
 const CancelIcon = () => (
   <svg
@@ -117,8 +117,9 @@ function ConfigPercentBox({
         onClick={handleBoxClick}
         className="ConfigMostPercentBoxContainer"
         style={{
-          backgroundColor: boxesHovered ? theme.hover : theme.backgroundOverall,
-          color: theme.secondTitles,
+          backgroundColor: boxesHovered ? theme.hover : theme.button,
+          color: theme.placeholder,
+          opacity: boxesHovered ? "1" : "0.7",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

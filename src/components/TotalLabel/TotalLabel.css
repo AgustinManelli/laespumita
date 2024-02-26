@@ -19,6 +19,7 @@
   height: 70px;
   justify-content: left;
   align-items: center;
+  transition: background-color 0.3s ease-in-out;
 }
 .totalLabelContainer p {
   margin: 0;
@@ -56,7 +57,7 @@
   height: auto;
   stroke: #008fd2;
   stroke-width: 2;
-  transition: stroke 0.2s ease-in-out;
+  transition: stroke 0.3s ease-in-out;
 }
 .totalCard:hover .cardIcon {
   stroke: #fff;

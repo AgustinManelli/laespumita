@@ -143,6 +143,8 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   border: 1px solid;
+  font-size: 14px;
+  font-weight: 400;
 }
 .FilterDesc {
   stroke-width: 2;

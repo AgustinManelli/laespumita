@@ -13,7 +13,7 @@ function ChartComponentExpanded({ chartList }) {
           type: ColorType.solid,
           color: "transparent",
         },
-        textColor: theme.secondTitles,
+        textColor: theme.placeholder,
         fontSize: 10,
       },
       rightPriceScale: {

@@ -14,7 +14,7 @@
   font-weight: 700;
   cursor: pointer;
   text-align: left;
-  transition: background-color 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
   width: 43px;
   height: 43px;
   display: flex;
@@ -25,9 +25,8 @@
   color: #fff;
 }
 .stockistDDSelected {
-  font-weight: 600;
-  font-size: 13px;
-  font-size: 600;
+  font-weight: 400;
+  font-size: 14px;
   font-family: "montserrat";
 }
 .stockistDDContainer button:hover {
@@ -87,7 +86,7 @@
   overflow: visible;
   stroke: #008fd2;
   stroke-width: 2;
-  transition: stroke 0.2s ease-in-out;
+  transition: stroke 0.3s ease-in-out;
 }
 .stockistDDContainer ul {
   position: absolute;
@@ -100,7 +99,7 @@
 .stockistDDContainer li {
   display: block;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
   width: 25px;
   height: 25px;
   display: flex;

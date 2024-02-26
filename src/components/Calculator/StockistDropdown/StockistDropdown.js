@@ -18,9 +18,9 @@ function StockistDDLi({ index, stockistPercent, stockist, setIsOpen }) {
           setIsOpen(false);
         }}
         style={{
-          color: theme.secondTitles,
+          color: theme.placeholder,
           backgroundColor: boxesHovered
-            ? theme.hover
+            ? theme.button
             : theme.backgroundContainer,
         }}
         onMouseEnter={() => {
@@ -124,7 +124,7 @@ function SrockistDropdown() {
         style={
           isStockist > 0
             ? { backgroundColor: "#008fd2" }
-            : { backgroundColor: theme.backgroundOverall }
+            : { backgroundColor: theme.button }
         }
       >
         <motion.div
@@ -178,9 +178,9 @@ function SrockistDropdown() {
             setIsOpen(false);
           }}
           style={{
-            color: theme.secondTitles,
+            color: theme.placeholder,
             backgroundColor: boxesHovered
-              ? theme.hover
+              ? theme.button
               : theme.backgroundContainer,
           }}
           onMouseEnter={() => {

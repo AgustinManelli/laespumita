@@ -11,13 +11,11 @@
   position: absolute;
   width: 60%;
   height: 260px;
-  top: 0px;
-  right: 30%;
   pointer-events: none;
-  border-radius: 120px 20px;
+  border-radius: 100px 100px 100px 100px;
   opacity: 0.3;
-  box-shadow: #008fd2 20px 250px 300px;
-  transform: rotate(15deg) translateY(-175%) translateZ(0px);
+  top: -420px;
+  box-shadow: #008fd2 0px 260px 300px;
   transition: opacity 1.5s cubic-bezier(0.17, 0.17, 0, 1) 0s,
     box-shadow 3s ease-in-out;
   z-index: 0;

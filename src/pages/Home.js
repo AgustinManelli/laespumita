@@ -8,6 +8,8 @@ import ListProducts from "../components/ListProduct/ListProducts";
 import TotalLabel from "../components/TotalLabel/TotalLabel";
 import TotalWindow from "../components/TotalWindow/TotalWindow";
 import Navbar from "../components/Navbar/Navbar";
+import ConfigWindow from "../components/ConfigWindow/ConfigWindow";
+import AboutWindow from "../components/AboutWindow/AboutWindow";
 
 function Home() {
   const { theme } = useTheme();
@@ -36,6 +38,8 @@ function Home() {
       <ListProducts />
       <TotalLabel />
       <TotalWindow />
+      <ConfigWindow />
+      <AboutWindow />
     </div>
   );
 }

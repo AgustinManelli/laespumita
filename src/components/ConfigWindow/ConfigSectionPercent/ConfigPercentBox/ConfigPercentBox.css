@@ -8,8 +8,8 @@
   align-items: center;
   cursor: pointer;
   font-size: 14px;
-  font-family: "montserrat";
-  transition: background-color 0.2s ease-in-out;
+  font-weight: 400;
+  transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .ConfigMostPercentBoxContainer input {

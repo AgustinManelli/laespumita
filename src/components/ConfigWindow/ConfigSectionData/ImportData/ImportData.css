@@ -1,0 +1,28 @@
+.importDataContainer {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 7px;
+  height: 43px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+.importDataContainer label {
+  width: 24px;
+  height: 24px;
+}
+.importDataContainer p {
+  text-wrap: nowrap;
+}
+input[type="file"] {
+  display: none;
+}
+.UploadFile {
+  stroke-width: 2;
+  transition: stroke 0.2s ease-in-out;
+}

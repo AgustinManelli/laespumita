@@ -58,10 +58,12 @@ function TotalLabel() {
     <div className="totalLabelContainer">
       <section
         className="totalLabelPrice"
-        style={{ backgroundColor: theme.backgroundContainer }}
+        style={{
+          backgroundColor: theme.backgroundContainer,
+        }}
       >
-        <p style={{ color: theme.secondTitles }}>Total:</p>
-        <animated.p style={{ color: theme.secondTitles, marginLeft: "10px" }}>
+        <p style={{ color: theme.placeholder }}>Total:</p>
+        <animated.p style={{ color: theme.placeholder, marginLeft: "10px" }}>
           {flag % 1 === 0
             ? number.to((n) => n.toFixed(0))
             : number.to((n) => n.toFixed(2))}

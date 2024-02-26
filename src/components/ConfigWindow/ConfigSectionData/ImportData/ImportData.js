@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./ImportData.css";
-import { useTheme } from "../../../context/ThemeProvider.js";
-import { useInputs } from "../../../store/inputs.js";
-import { useStoredProducts } from "../../../store/storedProducts.js";
+import { useTheme } from "../../../../context/ThemeProvider";
+import { useInputs } from "../../../../store/inputs.js";
+import { useStoredProducts } from "../../../../store/storedProducts.js";
 
 const UploadFile = ({ theme, hover }) => (
   <svg
@@ -12,7 +12,7 @@ const UploadFile = ({ theme, hover }) => (
     viewBox="0 0 24 24"
     fill="none"
     className="UploadFile"
-    style={{ stroke: hover ? theme.stroke : theme.secondTitles }}
+    style={{ stroke: theme.placeholder }}
   >
     <path
       d="M12.5 2H12.7727C16.0339 2 17.6645 2 18.7969 2.79784C19.1214 3.02643 19.4094 3.29752 19.6523 3.60289C20.5 4.66867 20.5 6.20336 20.5 9.27273V11.8182C20.5 14.7814 20.5 16.2629 20.0311 17.4462C19.2772 19.3486 17.6829 20.8491 15.6616 21.5586C14.4044 22 12.8302 22 9.68182 22C7.88275 22 6.98322 22 6.26478 21.7478C5.10979 21.3424 4.19875 20.4849 3.76796 19.3979C3.5 18.7217 3.5 17.8751 3.5 16.1818V12"
@@ -80,25 +80,22 @@ function ImportData() {
   };
 
   return (
-    <div
-      style={{
-        width: "24px",
-        height: "24px",
-        position: "relative",
-        cursor: "pointer",
-      }}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-      className="importDataContainer"
-    >
-      <label
-        style={{ width: "24px", height: "24px", cursor: "pointer" }}
-        htmlFor="file"
+    <label htmlFor="file" style={{ height: "45px" }}>
+      <div
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        className="importDataContainer"
+        style={{
+          backgroundColor: hover ? theme.hover : "transparent",
+          border: "solid 1px",
+          borderColor: theme.borderColor,
+        }}
       >
         <input id="file" type="file" accept=".txt" onChange={handleChange} />
         <UploadFile theme={theme} hover={hover} />
-      </label>
-    </div>
+        <p style={{ color: theme.placeholder }}>exportar datos</p>
+      </div>
+    </label>
   );
 }
 

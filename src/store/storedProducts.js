@@ -9,52 +9,61 @@ const tempInitialValue = [];
 export const useStoredProducts = create((set, get) => ({
   storedProducts:
     window.localStorage.getItem("products") === "undefined" ||
+    window.localStorage.getItem("products") === null ||
     window.localStorage.getItem("products") === "null"
       ? tempInitialValue
       : JSON.parse(window.localStorage.getItem("products")),
   storedTotal:
     window.localStorage.getItem("total") === "undefined" ||
+    window.localStorage.getItem("total") === null ||
     window.localStorage.getItem("total") === "null"
       ? tempInitialValue
       : JSON.parse(window.localStorage.getItem("total")),
   storedMonthly:
     window.localStorage.getItem("monthly") === "undefined" ||
+    window.localStorage.getItem("monthly") === null ||
     window.localStorage.getItem("monthly") === "null"
       ? tempInitialValue
       : JSON.parse(window.localStorage.getItem("total")),
 
   InitialSale: () => {
     if (
+      window.localStorage.getItem("products") === null ||
       window.localStorage.getItem("products") === "null" ||
       window.localStorage.getItem("products") === "undefined"
     ) {
       window.localStorage.setItem("products", "[]");
     }
     if (
+      window.localStorage.getItem("total") === null ||
       window.localStorage.getItem("total") === "null" ||
       window.localStorage.getItem("total") === "undefined"
     ) {
       window.localStorage.setItem("total", "[]");
     }
     if (
+      window.localStorage.getItem("mostPercent") === null ||
       window.localStorage.getItem("mostPercent") === "null" ||
       window.localStorage.getItem("mostPercent") === "undefined"
     ) {
       window.localStorage.setItem("mostPercent", "[40,45,50,55,60,70]");
     }
     if (
+      window.localStorage.getItem("percentStockist") === null ||
       window.localStorage.getItem("percentStockist") === "null" ||
       window.localStorage.getItem("percentStockist") === "undefined"
     ) {
       window.localStorage.setItem("percentStockist", "[10.5,21]");
     }
     if (
+      window.localStorage.getItem("theme") === null ||
       window.localStorage.getItem("theme") === "null" ||
       window.localStorage.getItem("theme") === "undefined"
     ) {
       window.localStorage.setItem("theme", "dark");
     }
     if (
+      window.localStorage.getItem("monthly") === null ||
       window.localStorage.getItem("monthly") === "null" ||
       window.localStorage.getItem("monthly") === "undefined"
     ) {

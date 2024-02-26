@@ -1,0 +1,79 @@
+.WindowContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.WindowContainerHidden {
+  display: none;
+}
+.WindowBG {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.WindowModal {
+  width: calc(60% - 80px);
+  height: calc(80% - 64px);
+  max-width: 1280px;
+  max-height: 720px;
+  border-radius: 23px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(15px) saturate(200%);
+  z-index: 2;
+  padding: 32px 40px 32px 40px;
+}
+.WindowModal::before {
+  content: "";
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 257 257' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 182px;
+  opacity: 0.05;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.WindowNavbar {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+  margin-left: 0;
+  margin-right: 0;
+}
+.WindowNavbar p {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.WindowNavbarButton {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+.WindowNavbarX {
+  width: 18px;
+  height: 15px;
+  stroke-width: 2;
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}

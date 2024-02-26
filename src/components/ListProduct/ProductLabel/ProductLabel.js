@@ -57,11 +57,11 @@ function ProductLabel({ total, number, id, product }) {
       <div
         className="labelDataContainer"
         style={{
-          backgroundColor: theme.backgroundOverall,
+          backgroundColor: theme.button,
           borderColor: theme.borderColor,
         }}
       >
-        <div className="labelData" style={{ color: theme.secondTitles }}>
+        <div className="labelData" style={{ color: theme.placeholder }}>
           <p>Producto {number}</p>
           <p>${total}</p>
         </div>

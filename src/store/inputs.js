@@ -8,21 +8,21 @@ export const useInputs = create((set) => ({
   isStockist: "",
   price: "",
   isCard: false,
-  isDaily: "sales",
   isMostPercentCache:
     window.localStorage.getItem("mostPercent") === "undefined" ||
+    window.localStorage.getItem("mostPercent") === null ||
     window.localStorage.getItem("mostPercent") === "null"
       ? initialPercentValue
       : JSON.parse(window.localStorage.getItem("mostPercent")),
   isPercentStockist:
     window.localStorage.getItem("percentStockist") === "undefined" ||
+    window.localStorage.getItem("percentStockist") === null ||
     window.localStorage.getItem("percentStockist") === "null"
       ? initialStockistValue
       : JSON.parse(window.localStorage.getItem("percentStockist")),
 
   handleSetIsMostPercentCache: (e) => set(() => ({ isMostPercentCache: e })),
   handleSetIsPercentStockist: (e) => set(() => ({ isPercentStockist: e })),
-  handleSetIsDaily: (e) => set(() => ({ isDaily: e })),
   deleteInputs: () => set(() => ({ price: "", percent: "", isStockist: "" })),
   mostPercent: (num) => set(() => ({ percent: num })),
   stockistPercent: (num) => set(() => ({ isStockist: num })),

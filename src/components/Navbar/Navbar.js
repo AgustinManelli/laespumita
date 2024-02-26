@@ -14,8 +14,7 @@ const AnalyticsIcon = ({ theme, totalModal }) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     role="img"
     style={{
-      stroke: totalModal ? "#008fd2" : theme.stroke,
-      transform: totalModal ? "scale(110%)" : "none",
+      stroke: totalModal ? "#008fd2" : theme.placeholder,
     }}
   >
     <path

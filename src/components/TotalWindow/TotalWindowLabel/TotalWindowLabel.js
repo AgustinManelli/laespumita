@@ -17,7 +17,7 @@ const ArrowIcon = ({ theme }) => (
     data-src="/icons/arrow-down-01-stroke-rounded.svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     role="img"
-    style={{ stroke: theme.stroke }}
+    style={{ stroke: theme.placeholder }}
   >
     <path
       d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
@@ -35,7 +35,7 @@ const DeleteIcon = ({ theme }) => (
     data-src="/icons/delete-01-stroke-rounded.svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     role="img"
-    style={{ stroke: theme.stroke }}
+    style={{ stroke: theme.placeholder }}
   >
     <path
       d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
@@ -76,7 +76,7 @@ function TotalWindowLabel({ product, lastIndex, index }) {
       <div className="totalWindowLabelContainer">
         <div
           className="totalWindowLabel"
-          style={{ backgroundColor: theme.backgroundOverall }}
+          style={{ backgroundColor: theme.button }}
         >
           <p style={{ width: "50%", color: theme.text }}>$ {product.total}</p>
           <p style={{ width: "50%", color: theme.text }}>{product.date}</p>
@@ -139,7 +139,7 @@ function TotalWindowLabel({ product, lastIndex, index }) {
                     <div
                       key={list.id}
                       style={{
-                        backgroundColor: theme.backgroundOverall,
+                        backgroundColor: theme.button,
                         height: "34px",
                         minHeight: "34px",
                         display: "flex",

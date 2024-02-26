@@ -14,6 +14,7 @@
   flex-direction: column;
   border-radius: 20px;
   border: 1px solid;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 .labelData {
   width: 100%;
@@ -49,7 +50,7 @@
 .labelIcon {
   width: 20px;
   height: auto;
-  stroke: rgb(121, 8, 8);
+  stroke: rgb(255, 0, 0);
   transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
   stroke-width: 2;
   overflow: visible;

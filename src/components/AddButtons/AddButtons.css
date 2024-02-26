@@ -10,16 +10,16 @@
   cursor: pointer;
 }
 .addCircle {
-  stroke: rgb(57, 99, 25);
+  stroke: rgb(111, 255, 0);
   width: 30px;
   height: auto;
-  transition: stroke 0.2s ease-in-out, transform 0.2s ease-in-out,
-    stroke-width 0.2s ease-in-out;
+  transition: stroke 0.3s ease-in-out, transform 0.3s ease-in-out,
+    stroke-width 0.3s ease-in-out;
   stroke-width: 2;
   overflow: visible;
 }
 .addButtonCircle:hover .addCircle {
-  stroke: rgb(87, 173, 22);
+  stroke: rgb(166, 255, 98);
   transform: scale(110%);
   stroke-width: 1.5;
 }
@@ -33,7 +33,7 @@
 }
 
 .deleteCircle {
-  stroke: rgb(121, 8, 8);
+  stroke: rgb(255, 0, 0);
   width: 30px;
   height: auto;
   cursor: pointer;

@@ -71,25 +71,26 @@ function ThemeProvider(props) {
       window.localStorage.getItem("theme") === "null" ||
       window.localStorage.getItem("theme") === undefined
       ? "dark"
+      : window.localStorage.getItem("theme") === "system"
+      ? window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark"
       : window.localStorage.getItem("theme")
   );
-  const [wTheme, setWTheme] = useState(theme === "white" ? true : false);
-  const toggleTheme = () =>
-    theme === "light" ? setTheme("dark") : setTheme("light");
-  const setLight = () => {
-    setTheme("light");
-    setWTheme(true);
-  };
-  const setDark = () => {
-    setTheme("dark");
-    setWTheme(false);
+  const toggleTheme = (e) => {
+    if (e === "system") {
+      if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+        setTheme("light");
+      } else {
+        setTheme("dark");
+      }
+    } else {
+      setTheme(e);
+    }
   };
   const value = {
     theme: themeStyles[theme],
     toggleTheme,
-    setLight,
-    setDark,
-    wTheme,
   };
   return <ThemeContext.Provider value={value} {...props} />;
 }

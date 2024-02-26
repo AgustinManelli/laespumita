@@ -4,6 +4,38 @@ import { motion } from "framer-motion";
 import { useTheme } from "../../context/ThemeProvider";
 import { useModal } from "../../store/modal";
 
+const ComputerIcon = ({ theme }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="none"
+    className="ThemeIcon"
+    style={{
+      stroke: theme.text,
+    }}
+  >
+    <path
+      d="M14 2H10C6.72077 2 5.08116 2 3.91891 2.81382C3.48891 3.1149 3.1149 3.48891 2.81382 3.91891C2 5.08116 2 6.72077 2 10C2 13.2792 2 14.9188 2.81382 16.0811C3.1149 16.5111 3.48891 16.8851 3.91891 17.1862C5.08116 18 6.72077 18 10 18H14C17.2792 18 18.9188 18 20.0811 17.1862C20.5111 16.8851 20.8851 16.5111 21.1862 16.0811C22 14.9188 22 13.2792 22 10C22 6.72077 22 5.08116 21.1862 3.91891C20.8851 3.48891 20.5111 3.1149 20.0811 2.81382C18.9188 2 17.2792 2 14 2Z"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M11 15H13"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14.5 22L14.1845 21.5811C13.4733 20.6369 13.2969 19.1944 13.7468 18M9.5 22L9.8155 21.5811C10.5267 20.6369 10.7031 19.1944 10.2532 18"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path d="M7 22H17" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
 const InfoIcon = ({ theme }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +192,6 @@ const ConfigIcon = ({ theme }) => (
     }}
   >
     <path
-      class="st0"
       d="M2.5,12c0-4.5,0-6.7,1.4-8.1C5.3,2.5,7.5,2.5,12,2.5c4.5,0,6.7,0,8.1,1.4c1.4,1.4,1.4,3.6,1.4,8.1
 	c0,4.5,0,6.7-1.4,8.1c-1.4,1.4-3.6,1.4-8.1,1.4c-4.5,0-6.7,0-8.1-1.4C2.5,18.7,2.5,16.5,2.5,12z"
       strokeWidth="2"
@@ -179,7 +210,6 @@ const ConfigIcon = ({ theme }) => (
       style={{ transition: "fill 0.3s ease-in-out", fill: theme.text }}
     />
     <path
-      class="st1"
       d="M14.1,12.2c0,1.2-1,2.1-2.1,2.1c-1.2,0-2.1-1-2.1-2.1c0-1.2,1-2.1,2.1-2.1C13.2,10,14.1,11,14.1,12.2z"
       style={{
         display: "none",
@@ -188,7 +218,6 @@ const ConfigIcon = ({ theme }) => (
       }}
     />
     <path
-      class="st1"
       d="M14.1,12.2c0,1.2-1,2.1-2.1,2.1c-1.2,0-2.1-1-2.1-2.1c0-1.2,1-2.1,2.1-2.1C13.2,10,14.1,11,14.1,12.2z"
       stroke={theme.text}
       style={{
@@ -219,7 +248,7 @@ const useHover = () => {
 };
 
 function ConfigDropdown() {
-  const { theme, setLight, setDark } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   const setConfigModal = useModal((state) => state.setConfigModal);
   const setAboutModal = useModal((state) => state.setAboutModal);
@@ -229,35 +258,19 @@ function ConfigDropdown() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const lightLight = useLight(
-    window.localStorage.getItem("theme") &&
-      window.localStorage.getItem("theme") === "light"
-      ? true
-      : false
-  );
-
-  const lightDark = useLight(
-    window.localStorage.getItem("theme") &&
-      window.localStorage.getItem("theme") === "dark"
-      ? true
-      : false
+  const themeType = useLight(
+    window.localStorage.getItem("theme")
+      ? window.localStorage.getItem("theme")
+      : "dark"
   );
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
 
-  const handleCheckboxChangeLight = () => {
-    window.localStorage.setItem("theme", "light");
-    lightLight.handleLight(true);
-    lightDark.handleLight(false);
-    setLight();
-  };
-
-  const handleCheckboxChangeDark = () => {
-    window.localStorage.setItem("theme", "dark");
-    lightLight.handleLight(false);
-    lightDark.handleLight(true);
-    setDark();
+  const handleCheckboxChangeLight = (e) => {
+    themeType.handleLight(e);
+    window.localStorage.setItem("theme", e);
+    toggleTheme(e);
   };
 
   let configRef = useRef();
@@ -339,19 +352,25 @@ function ConfigDropdown() {
                     <input
                       type="radio"
                       name="DDradio"
-                      checked={lightLight.light}
-                      onChange={handleCheckboxChangeLight}
+                      checked={themeType.light === "light" ? true : false}
+                      onChange={() => {
+                        handleCheckboxChangeLight("light");
+                      }}
                     />
                     <span
                       className="DDname"
                       style={{
-                        backgroundColor: lightLight.light
-                          ? theme.borderColor
-                          : "transparent",
+                        backgroundColor:
+                          themeType.light === "light"
+                            ? theme.borderColor
+                            : "transparent",
                         color: theme.text,
                       }}
                     >
-                      <SunIcon theme={theme} isLight={lightLight.light} />
+                      <SunIcon
+                        theme={theme}
+                        isLight={themeType.light === "light" ? true : false}
+                      />
                       claro
                     </span>
                   </label>
@@ -359,20 +378,52 @@ function ConfigDropdown() {
                     <input
                       type="radio"
                       name="DDradio"
-                      checked={lightDark.light}
-                      onChange={handleCheckboxChangeDark}
+                      checked={themeType.light === "dark" ? true : false}
+                      onChange={() => {
+                        handleCheckboxChangeLight("dark");
+                      }}
                     />
                     <span
                       className="DDname"
                       style={{
-                        backgroundColor: lightDark.light
-                          ? theme.borderColor
-                          : "transparent",
+                        backgroundColor:
+                          themeType.light === "dark"
+                            ? theme.borderColor
+                            : "transparent",
                         color: theme.text,
                       }}
                     >
-                      <MoonIcon theme={theme} isDark={lightDark.light} />
+                      <MoonIcon
+                        theme={theme}
+                        isDark={themeType.light === "dark" ? true : false}
+                      />
                       oscuro
+                    </span>
+                  </label>
+                  <label className="DDradio">
+                    <input
+                      type="radio"
+                      name="DDradio"
+                      checked={themeType.light === "system" ? true : false}
+                      onChange={() => {
+                        handleCheckboxChangeLight("system");
+                      }}
+                    />
+                    <span
+                      className="DDname"
+                      style={{
+                        backgroundColor:
+                          themeType.light === "system"
+                            ? theme.borderColor
+                            : "transparent",
+                        color: theme.text,
+                      }}
+                    >
+                      <ComputerIcon
+                        theme={theme}
+                        isLight={themeType.light === "system" ? true : false}
+                      />
+                      sistema
                     </span>
                   </label>
                 </div>

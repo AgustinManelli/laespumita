@@ -65,10 +65,12 @@ function TotalWindowData() {
   const setStoredTotal = useStoredProducts(
     (state) => state.handleSetStoredTotal
   );
+
   const [tempData, setTempData] = useState(storedTotal);
+
   const storedProducts = useStoredProducts((state) => state.storedProducts);
   const storedMonthly = useStoredProducts((state) => state.storedMonthly);
-  const { theme, wTheme } = useTheme();
+  const { theme } = useTheme();
   const selector1 = useSelectorHover();
   const selector2 = useSelectorHover();
   const selector3 = useSelectorHover();
@@ -181,7 +183,7 @@ function TotalWindowData() {
         >
           Ventas mensuales
         </button>
-        {isDaily === "daily" ? (
+        {/*isDaily === "daily" ? (
           descend.filter ? (
             <button
               style={{
@@ -215,7 +217,7 @@ function TotalWindowData() {
           )
         ) : (
           <></>
-        )}
+        )*/}
       </section>
       {isDaily === "sales" ? (
         <div
@@ -303,7 +305,7 @@ function TotalWindowData() {
       )}
       <div
         className={
-          wTheme
+          theme === "light"
             ? "totalWindowContent totalWindowContentLight"
             : "totalWindowContent totalWindowContentDark"
         }
@@ -318,11 +320,11 @@ function TotalWindowData() {
             </>
           ) : isDaily === "daily" ? (
             <>
-              {tempData.map((product, index) => (
+              {storedTotal.map((product, index) => (
                 <TotalWindowLabel
                   key={product.id}
                   product={product}
-                  lastIndex={index !== tempData.length - 1}
+                  lastIndex={index !== storedTotal.length - 1}
                   index={index}
                 />
               ))}

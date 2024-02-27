@@ -24,7 +24,7 @@ export const useStoredProducts = create((set, get) => ({
     window.localStorage.getItem("monthly") === null ||
     window.localStorage.getItem("monthly") === "null"
       ? tempInitialValue
-      : JSON.parse(window.localStorage.getItem("total")),
+      : JSON.parse(window.localStorage.getItem("monthly")),
 
   InitialSale: () => {
     if (

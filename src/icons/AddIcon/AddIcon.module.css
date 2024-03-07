@@ -1,0 +1,20 @@
+.addCircle {
+  stroke: rgb(111, 255, 0);
+  width: 30px;
+  height: auto;
+  transition: stroke 0.3s ease-in-out, transform 0.3s ease-in-out,
+    stroke-width 0.3s ease-in-out;
+  stroke-width: 2;
+  overflow: visible;
+}
+button:has(> .addCircle):hover .addCircle {
+  transform: scale(110%);
+  stroke-width: 1.5;
+}
+.AddIconPlus {
+  transition: transform 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+  transform-origin: 50% 50%;
+}
+button:has(> .addCircle):hover .AddIconPlus {
+  transform: scale(1.3);
+}

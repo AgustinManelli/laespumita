@@ -24,11 +24,6 @@
 .stockistDDContainer button:hover .stockistDDSelected {
   color: #fff;
 }
-.stockistDDSelected {
-  font-weight: 400;
-  font-size: 14px;
-  font-family: "montserrat";
-}
 .stockistDDContainer button:hover {
   background-color: #008fd2 !important;
   border-radius: 5px;
@@ -95,6 +90,7 @@
   justify-content: center;
   align-items: center;
   top: 44px;
+  padding-left: 0px;
 }
 .stockistDDContainer li {
   display: block;
@@ -114,6 +110,11 @@
   list-style: none;
   margin: 0;
   padding: 7.5px;
+}
+.stockistDDSelected {
+  font-weight: 400;
+  font-size: 14px;
+  font-family: "montserrat";
 }
 .stockistDDAlertContainer {
   position: absolute;

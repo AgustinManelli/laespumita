@@ -56,24 +56,6 @@
   height: fit-content;
   right: 5px;
 }
-.totalWindowDailyDeleteIcon {
-  width: 15px;
-  height: auto;
-  stroke-width: 2;
-  transition: opacity 0.2s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.3;
-  overflow: visible;
-}
-
-.totalWindowDailyDeleteButton:hover .totalWindowDailyDeleteIcon {
-  opacity: 1;
-}
-.totalWindowDailyDeleteButton:hover .labelIconLid {
-  transform: translateY(-7px) translateX(3px) rotate(10deg);
-}
 .hiddenSwitch {
   position: absolute;
   opacity: 0;

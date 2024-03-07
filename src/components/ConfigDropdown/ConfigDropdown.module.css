@@ -4,10 +4,6 @@
   display: flex;
   justify-content: center;
 }
-.configSectionPercentP {
-  font-size: 14px;
-  font-weight: 400;
-}
 .DDButton {
   appearance: button;
   -webkit-appearance: button;
@@ -27,12 +23,6 @@
   height: 43px;
   z-index: 1;
 }
-.MoreIcon {
-  transition: stroke 0.3s ease-in-out;
-}
-.DDButton:hover .MoreIcon {
-  stroke: #008fd2 !important;
-}
 .DDContent {
   position: absolute;
   display: flex;
@@ -46,6 +36,7 @@
   overflow: hidden;
   backdrop-filter: blur(15px) saturate(200%);
   transition: background-color 0.3s ease-in-out;
+  padding-left: 0px;
 }
 .DDContent::before {
   content: "";
@@ -60,9 +51,6 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-}
-.configDDSelected {
-  z-index: 0;
 }
 .DDContainerData {
   position: relative;
@@ -85,6 +73,10 @@
   flex-direction: column;
   gap: 7px;
 }
+.configSectionPercentP {
+  font-size: 14px;
+  font-weight: 400;
+}
 .DDSectionThemeRadioContainer {
   width: 100%;
   display: flex;
@@ -101,6 +93,7 @@
   width: 100%;
   font-size: 14px;
   transition: border-color 0.3s ease-in-out;
+  background-color: transparent;
 }
 .DDSectionThemeRadio .DDradio {
   flex: 1 1 auto;
@@ -129,6 +122,25 @@
   stroke-width: 2;
   overflow-y: visible;
   transition: stroke 0.3s ease-in-out;
+}
+.DDButton:hover .MoreIcon {
+  stroke: #008fd2 !important;
+}
+.MoonIconMoon {
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-in-out, stroke-width 0.5s ease-in-out;
+}
+.MoonIconWorld {
+  transform: translateY(10px);
+  transform-origin: 50% 50%;
+  transition: transform 0.5s ease-in-out;
+}
+.configSectionThemeRadio .radio .name:hover .MoonIconWorld {
+  transform: none !important;
+}
+.configSectionThemeRadio .radio .name:hover .MoonIconMoon {
+  transform: scale(80%) !important;
+  stroke-width: 2.5 !important;
 }
 .SunIconRay {
   transform-origin: 50% 50%;
@@ -164,35 +176,19 @@
     transform: rotate(360deg);
   }
 }
-.MoonIconWorld {
-  transform: translateY(10px);
-  transform-origin: 50% 50%;
-  transition: transform 0.5s ease-in-out;
+.MoreIcon {
+  transition: stroke 0.3s ease-in-out;
+  stroke-width: 3;
 }
-.configSectionThemeRadio .radio .name:hover .MoonIconWorld {
-  transform: none !important;
-}
-.MoonIconMoon {
-  transform-origin: 50% 50%;
-  transition: transform 0.5s ease-in-out, stroke-width 0.5s ease-in-out;
-}
-.configSectionThemeRadio .radio .name:hover .MoonIconMoon {
-  transform: scale(80%) !important;
-  stroke-width: 2.5 !important;
-}
-.DDFooter {
-  font-size: 12px;
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 18px;
-  text-align: left;
-  transition: background-color 0.3s ease-in-out;
+.ConfigIcon {
+  transition: stroke 0.3s ease-in-out;
+  width: 20px;
+  stroke-width: 2;
 }
 .DDSeparator {
   height: 1px;
   transition: background-color 0.3s ease-in-out;
 }
-
 .DDSectionButton {
   border: none;
   cursor: pointer;
@@ -207,4 +203,16 @@
   align-items: center;
   gap: 5px;
   transition: background-color 0.2s ease-in-out;
+}
+.DDSectionButton p {
+  font-weight: 500;
+  font-size: 15px;
+}
+.DDFooter {
+  font-size: 12px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  text-align: left;
+  transition: background-color 0.3s ease-in-out;
 }

@@ -1,0 +1,20 @@
+.addButtonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 2;
+}
+.addButtonCircle {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.locked {
+  opacity: 0.2;
+  pointer-events: none;
+}
+@media screen and (max-width: 815px) {
+  .addButtonsContainer {
+    flex-direction: row;
+  }
+}

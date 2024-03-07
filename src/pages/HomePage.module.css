@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100lvh;
   gap: 30px;
+  transition: background-color 0.3s ease-in-out;
 }
 .blurredbg {
   position: absolute;
@@ -35,7 +36,6 @@
     opacity: 0.3;
   }
 }
-
 @media screen and (max-width: 815px) {
   .homeContainer {
     flex-direction: column;

@@ -9,17 +9,22 @@
 }
 .navbarContainer {
   width: 100%;
-  max-width: 1000px;
+  max-width: 960px;
   border-radius: 23px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: background-color 0.3s ease-in-out;
+  padding: 15px 20px 15px 20px;
 }
 .logoNavbar {
-  height: 35px;
-  margin: 15px;
-  margin-left: 30px;
+  height: 40px;
+}
+.buttonSectionNavbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .navbarOpenModal {
   background: none;
@@ -35,7 +40,6 @@
 .navbarOpenModal:hover .navbarOpenModalIcon {
   stroke: #008fd2 !important;
 }
-
 .navbarOpenModal:hover .navbarOpenModalIconLine {
   stroke-dasharray: 20;
   stroke-dashoffset: 20;

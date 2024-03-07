@@ -47,24 +47,3 @@
   transition: background-color 0.5s ease-in-out;
   cursor: pointer;
 }
-.labelIcon {
-  width: 20px;
-  height: auto;
-  stroke: rgb(255, 0, 0);
-  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-  stroke-width: 2;
-  overflow: visible;
-}
-
-.labelButton:hover .labelIcon {
-  stroke: rgb(255, 87, 87);
-  transform: scale(110%);
-}
-
-.labelIconLid {
-  transition: transform 0.2s ease-in-out;
-}
-
-.labelButton:hover .labelIconLid {
-  transform: translateY(-7px) translateX(3px) rotate(10deg);
-}

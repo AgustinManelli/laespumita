@@ -1,3 +1,11 @@
+.calculatorContainerTotal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 340px;
+}
 .calculatorContainer {
   width: 400px;
   height: 100%;
@@ -24,14 +32,6 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
-}
-.inputIcon {
-  position: absolute;
-  right: 9px;
-  height: auto;
-  width: 20px;
-  stroke-width: 2;
-  transition: stroke 0.3s ease-in-out;
 }
 .inputLabel {
   position: relative;
@@ -60,10 +60,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.totalResult {
-  margin: 0;
-  font-weight: 600;
-  font-size: 20px;
+.inputIcon {
+  position: absolute;
+  right: 9px;
+  height: auto;
+  width: 20px;
+  stroke-width: 2;
+  transition: stroke 0.3s ease-in-out;
 }
 .deleteInputCalculator {
   background: none;
@@ -92,7 +95,11 @@ input::-webkit-inner-spin-button {
 .deleteInputCalculator:hover .deleteInputCalculatorIconX {
   transform: rotate(-360deg);
 }
-
+.totalResult {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+}
 .mostPercentContainerSection {
   position: relative;
   padding: 10px;
@@ -107,14 +114,12 @@ input::-webkit-inner-spin-button {
   width: 400px;
   transition: background-color 0.3s ease-in-out;
 }
-
 .mostPercentContainerSection h2 {
   margin: 0;
   font-weight: 500;
   font-size: 18px;
   color: #008fd2;
 }
-
 .mostPercentContainer {
   display: flex;
   flex-direction: row;
@@ -122,14 +127,12 @@ input::-webkit-inner-spin-button {
   align-items: center;
   width: 100%;
 }
-
 .mostPerrcentList {
   display: flex;
   flex-direction: row;
   gap: 10px;
   width: 100%;
 }
-
 .mostPercentBox {
   width: 43px;
   height: 43px;
@@ -152,4 +155,10 @@ input::-webkit-inner-spin-button {
   background-color: #008fd2 !important;
   color: #fff !important;
   border-radius: 10px;
+}
+.calculatorSeparator {
+  width: 2px;
+  height: 41px;
+  background-color: #008fd2;
+  margin-right: 22px;
 }

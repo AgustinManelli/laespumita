@@ -1,6 +1,9 @@
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
+//SRC
 import logo from "../../assets/logo.svg";
+//COMPONENT IMPORT
 import ConfigDropdown from "../ConfigDropdown/ConfigDropdown";
+//THEME PROVIDER & GLOBAL STATES
 import { useTheme } from "../../context/ThemeProvider";
 import { useModal } from "../../store/modal";
 
@@ -9,7 +12,7 @@ const AnalyticsIcon = ({ theme, totalModal }) => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
-    className="navbarOpenModalIcon"
+    className={styles.navbarOpenModalIcon}
     data-src="/icons/analytics-01-stroke-rounded.svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     role="img"
@@ -43,37 +46,30 @@ const AnalyticsIcon = ({ theme, totalModal }) => (
 
 function Navbar() {
   const { theme } = useTheme();
+  //GLOBAL STATES
   const totalModal = useModal((state) => state.totalModal);
   const setTotalModal = useModal((state) => state.setTotalModal);
 
   const handleOpenModal = () => {
     setTotalModal(true);
   };
+
   return (
-    <div className="navbarFix">
+    <div className={styles.navbarFix}>
       <nav
-        className="navbarContainer"
+        className={styles.navbarContainer}
         style={{
           backgroundColor: theme.backgroundContainer,
           boxShadow: theme.boxShadow,
         }}
       >
-        <div>
-          <img src={logo} alt="la espumita logo" className="logoNavbar" />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <button onClick={handleOpenModal} className="navbarOpenModal">
+        <img src={logo} alt="la espumita logo" className={styles.logoNavbar} />
+        <section className={styles.buttonSectionNavbar}>
+          <button onClick={handleOpenModal} className={styles.navbarOpenModal}>
             <AnalyticsIcon theme={theme} totalModal={totalModal} />
           </button>
           <ConfigDropdown />
-        </div>
+        </section>
       </nav>
     </div>
   );

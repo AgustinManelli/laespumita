@@ -1,0 +1,17 @@
+.deleteCircle {
+  height: auto;
+  cursor: pointer;
+  transition: stroke 0.3s ease-in-out, transform 0.3s ease-in-out,
+    stroke-width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: visible;
+}
+button:has(> .deleteCircle):hover .deleteCircle {
+  transform: scale(110%);
+  stroke-width: 1.5;
+}
+.DeleteIconLid {
+  transition: transform 0.2s ease-in-out;
+}
+button:has(> .deleteCircle):hover .DeleteIconLid {
+  transform: translateY(-3px) rotate(-5deg) translateX(-1px);
+}

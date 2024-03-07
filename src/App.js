@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import { Toaster } from "sonner";
 import { useEffect } from "react";
 import ThemeProvider from "./context/ThemeProvider";
@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider>
       <div className="App">
         <Toaster position="bottom-center" richColors />
-        <Home />
+        <HomePage />
       </div>
     </ThemeProvider>
   );

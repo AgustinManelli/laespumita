@@ -1,46 +1,48 @@
-import "./Home.css";
+import styles from "./HomePage.module.css";
+
+/* THEME PROVIDER & ZUSTAND GLOBAL STATES */
 import { useTheme } from "../context/ThemeProvider";
 import { useInputs } from "../store/inputs";
-import { useProduct } from "../store/product";
-import AddButtons from "../components/AddButtons/AddButtons";
+
+/* COMPONENTS IMPORTS */
+import Navbar from "../components/Navbar/Navbar";
 import Calculator from "../components/Calculator/Calculator";
+import AddButtons from "../components/AddButtons/AddButtons";
 import ListProducts from "../components/ListProduct/ListProducts";
 import TotalLabel from "../components/TotalLabel/TotalLabel";
 import TotalWindow from "../components/TotalWindow/TotalWindow";
-import Navbar from "../components/Navbar/Navbar";
 import ConfigWindow from "../components/ConfigWindow/ConfigWindow";
 import AboutWindow from "../components/AboutWindow/AboutWindow";
 
 function Home() {
+  //THEME
   const { theme } = useTheme();
-  const isCard = useInputs((state) => state.isCard);
-  const addProduct = useProduct((state) => state.AddProduct);
 
-  const handleEnterKeyPress = (event) => {
-    if (event.key === "Enter") {
-      addProduct();
-    }
-  };
+  //GLOBAL STATES
+  const isCard = useInputs((state) => state.isCard);
 
   return (
-    <div
-      className="homeContainer"
+    <main
+      className={styles.homeContainer}
       style={{
         backgroundColor: theme.background,
-        transition: "background-color 0.3s ease-in-out",
       }}
     >
-      <div className={isCard ? "blurredbg blurredbgact" : "blurredbg"}></div>
+      <div
+        className={
+          isCard ? styles.blurredbg(styles.blurredbgact) : styles.blurredbg
+        }
+      ></div>
 
       <Navbar />
-      <Calculator handleEnterKeyPress={handleEnterKeyPress} />
+      <Calculator />
       <AddButtons />
       <ListProducts />
       <TotalLabel />
       <TotalWindow />
       <ConfigWindow />
       <AboutWindow />
-    </div>
+    </main>
   );
 }
 

@@ -9,9 +9,6 @@ export const useProduct = create((set, get) => ({
 
   handleSetProductList: (e) => set(() => ({ productList: e })),
   AddProduct: () => {
-    /*const isStockist = useInputs((state) => state.isStockist);
-    const handleSetPrice = useInputs((state) => state.handleSetPrice);
-    const handleSetPercent = useInputs((state) => state.handleSetPercent);*/
     const currentDate = new Date();
     const formattedDateProduct = `${
       (currentDate.getHours() < 10 ? "0" : "") + currentDate.getHours()

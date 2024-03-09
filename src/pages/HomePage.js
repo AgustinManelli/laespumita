@@ -30,7 +30,9 @@ function Home() {
     >
       <div
         className={
-          isCard ? styles.blurredbg(styles.blurredbgact) : styles.blurredbg
+          isCard
+            ? `${styles.blurredbg} ${styles.blurredbgact}`
+            : styles.blurredbg
         }
       ></div>
 

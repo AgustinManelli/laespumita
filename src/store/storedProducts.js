@@ -89,13 +89,6 @@ export const useStoredProducts = create((set, get) => ({
         ).filter((all) => all.month === idMonth);
         window.localStorage.setItem("total", JSON.stringify(flagMonth));
         set({ storedTotal: flagMonth });
-        // const monthId = storedMonth[totalIndexMonth - 1].id;
-        /*if (idMonth !== monthId) {
-          window.localStorage.setItem("total", "[]");
-          set({ storedTotal: [] });
-          window.localStorage.setItem("products", "[]");
-          set({ storedProducts: [] });
-        }*/
       }
     } catch {
       window.localStorage.setItem("products", "[]");
@@ -114,12 +107,6 @@ export const useStoredProducts = create((set, get) => ({
         ).filter((all) => all.totalId === idDay);
         window.localStorage.setItem("products", JSON.stringify(flagTotal));
         set({ storedProducts: flagTotal });
-        console.log(idDay);
-        // const totalId = storedTotal[totalIndex - 1].id;
-        // if (idDay !== totalId) {
-        //   window.localStorage.setItem("products", "[]");
-        //   set({ storedProducts: [] });
-        // }
       }
     } catch {
       window.localStorage.setItem("products", "[]");
@@ -168,15 +155,21 @@ export const useStoredProducts = create((set, get) => ({
     const handleSetProductList = useProduct.getState().handleSetProductList;
     const handleSetTotalPrice = useProduct.getState().handleSetTotalPrice;
     const isCard = useInputs.getState().isCard;
+
     if (totalPrice > 0) {
       try {
         const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
         const totalIndexMonth = storedMonth.length;
 
-        const storedTotal = JSON.parse(window.localStorage.getItem("total"));
+        const storedTotal = JSON.parse(
+          window.localStorage.getItem("total")
+        ).filter((all) => all.month === idMonth);
         const totalIndex = storedTotal.length;
 
-        const storedProduct = JSON.parse(localStorage.getItem("products"));
+        // CARGA DE PRODUCTOS POR CLIENTE
+        const storedProduct = JSON.parse(
+          localStorage.getItem("products")
+        ).filter((all) => all.totalId === idDay);
         storedProduct.push({
           id: Date.now(),
           date: formattedDateProduct,
@@ -193,23 +186,21 @@ export const useStoredProducts = create((set, get) => ({
           storedProducts: JSON.parse(window.localStorage.getItem("products")),
         });
 
-        if (storedTotal.filter((all) => all.id === idDay).length > 0) {
-          /*storedTotal[totalIndex - 1].total += parseFloat(
-            (isCard ? totalPrice * 1.15 : totalPrice).toFixed(2)
-          );*/
+        if (storedTotal.some((all) => all.id === idDay)) {
           const calculateStoredTotal = parseFloat(
             (
-              storedTotal[totalIndex - 1].total +
-              (isCard ? totalPrice * 1.15 : totalPrice)
+              storedTotal[storedTotal.findIndex((all) => all.id === idDay)]
+                .total + (isCard ? totalPrice * 1.15 : totalPrice)
             ).toFixed(2)
           );
-          storedTotal[totalIndex - 1].total = calculateStoredTotal;
-
-          storedTotal[totalIndex - 1].productsList = storedTotal[
-            totalIndex - 1
+          storedTotal[storedTotal.findIndex((all) => all.id === idDay)].total =
+            calculateStoredTotal;
+          storedTotal[
+            storedTotal.findIndex((all) => all.id === idDay)
+          ].productsList = storedTotal[
+            storedTotal.findIndex((all) => all.id === idDay)
           ].productsList = storedProduct;
-          /////////////////////////////////////////
-          /////////////////////////////////////////
+
           const flagStored = storedProduct.length;
           if (
             storedProduct.length > 1 &&
@@ -222,9 +213,7 @@ export const useStoredProducts = create((set, get) => ({
               j < parseInt(storedProduct[flagStored - 1].chartTime);
               j++
             ) {
-              console.log(j);
               const chartFormattedTime = `${(j < 10 ? "0" : "") + j}`;
-              console.log(chartFormattedTime);
               storedTotal[totalIndex - 1].chartList.push({
                 time:
                   Date.parse(
@@ -253,15 +242,12 @@ export const useStoredProducts = create((set, get) => ({
               value: storedProduct[flagStored - 1].total,
             });
           }
-          //////////////////////////////////////////
-          //////////////////////////////////////////
 
           window.localStorage.setItem("total", JSON.stringify(storedTotal));
           set({
             storedTotal: JSON.parse(window.localStorage.getItem("total")),
           });
         } else {
-          const productLenght = storedProduct.length;
           const flagTime = storedProduct[0].chartTime - 1;
           const tempTime = `${
             (parseInt(storedProduct[0].chartTime) - 1 < 10 ? "0" : "") +
@@ -314,7 +300,7 @@ export const useStoredProducts = create((set, get) => ({
           });
         }
 
-        if (storedMonth.filter((all) => all.id === idMonth).length > 0) {
+        if (storedMonth.some((all) => all.id === idMonth)) {
           const calculatedStoredMonth = parseFloat(
             (
               storedMonth[totalIndexMonth - 1].total +

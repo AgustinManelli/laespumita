@@ -303,12 +303,14 @@ export const useStoredProducts = create((set, get) => ({
         if (storedMonth.some((all) => all.id === idMonth)) {
           const calculatedStoredMonth = parseFloat(
             (
-              storedMonth[totalIndexMonth - 1].total +
-              (isCard ? totalPrice * 1.15 : totalPrice)
+              storedMonth[storedMonth.findIndex((all) => all.id === idMonth)]
+                .total + (isCard ? totalPrice * 1.15 : totalPrice)
             ).toFixed(2)
           );
 
-          storedMonth[totalIndexMonth - 1].total = calculatedStoredMonth;
+          storedMonth[
+            storedMonth.findIndex((all) => all.id === idMonth)
+          ].total = calculatedStoredMonth;
 
           localStorage.setItem("monthly", JSON.stringify(storedMonth));
           set({
@@ -344,6 +346,7 @@ export const useStoredProducts = create((set, get) => ({
     }
   },
   DeleteStoredProduct: (id, product) => {
+    console.log(product);
     const getProduct = JSON.parse(window.localStorage.getItem("products"));
     const filtered = getProduct.filter((product) => product.id !== id);
     window.localStorage.setItem("products", JSON.stringify(filtered));

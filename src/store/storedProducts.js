@@ -159,17 +159,18 @@ export const useStoredProducts = create((set, get) => ({
     if (totalPrice > 0) {
       try {
         const storedMonth = JSON.parse(window.localStorage.getItem("monthly"));
-        const totalIndexMonth = storedMonth.length;
 
         const storedTotal = JSON.parse(
           window.localStorage.getItem("total")
         ).filter((all) => all.month === idMonth);
+
         const totalIndex = storedTotal.length;
 
         // CARGA DE PRODUCTOS POR CLIENTE
-        const storedProduct = JSON.parse(
-          localStorage.getItem("products")
-        ).filter((all) => all.totalId === idDay);
+        const products = localStorage.getItem("products");
+        const storedProduct = JSON.parse(products).filter(
+          (all) => all.totalId === idDay
+        );
         storedProduct.push({
           id: Date.now(),
           date: formattedDateProduct,
